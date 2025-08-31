@@ -1,5 +1,6 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,11 +22,12 @@ import { TelefonePipe } from './pipes/telefone.pipes';
     AppComponent,
     CpfPipe,
     DataPipe,
-    TelefonePipe
+    TelefonePipe,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     AppRoutingModule,
     MatBadgeModule,
     MatIconModule,
@@ -41,7 +43,8 @@ import { TelefonePipe } from './pipes/telefone.pipes';
     BrowserAnimationsModule
   ],
   providers: [
-    MatIconRegistry
+    MatIconRegistry,
+    HttpClient
   ],
   bootstrap: [AppComponent]
 })

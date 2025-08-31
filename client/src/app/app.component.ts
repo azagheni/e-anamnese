@@ -3,6 +3,8 @@ import { ANAMNESES } from 'src/db-data';
 import { Anamenese } from './model/anamnese';
 import { FormsModule } from '@angular/forms';
 
+import { AnamneseService } from './services/anamnese.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -21,7 +23,22 @@ export class AppComponent {
   telefone: string = '';
   cpf: string = '';
   escala:number = 5;
- 
+
+  /**
+	 * Constructor
+	 *
+	 * @param anamneseService service that handles all Anamnese related tasks
+   */
+	constructor(
+    public anamneseService: AnamneseService
+    ) {
+    /* istanbul ignore next */
+  }
+
+	ngOnInit() {
+    console.log('[AppComponent] =============== Initializing app ===============')
+  }
+
   findAnamneseById(id:number) {
     return ANAMNESES.find((anamnese: { id: number; }) => anamnese.id === id);
   }
