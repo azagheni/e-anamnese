@@ -1,4 +1,6 @@
 export interface AnamneseData {
-  name: string;
-  email: string;
+    id : number;
+    name: string;
+    cpf: string;
+    answers: string;
 }
