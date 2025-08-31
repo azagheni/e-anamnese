@@ -1,0 +1,5 @@
+{
+	"**/*.{css,less,sass,scss}": ["prettier --write --ignore-unknown", "stylelint --ignore-path .gitignore"],
+	"**/*.{js,mjs,ts}": ["prettier --write --ignore-unknown", "eslint --fix --ignore-path .gitignore"],
+	"**/*.!(js|mjs|ts|css|less|sass|scss)": ["prettier --write --ignore-unknown"]
+}

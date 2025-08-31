@@ -1,0 +1,13 @@
+/**
+ * elements/dialog.scss
+ */
+
+dialog {
+	border: var(--border-width) solid var(--color-border);
+	border-radius: var(--border-radius);
+}
+
+dialog::backdrop {
+	background: var(--color-blur);
+	backdrop-filter: blur(30px) saturate(125%);
+}
