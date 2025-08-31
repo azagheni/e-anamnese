@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-export interface Anamnese {
-  name: string;
-  email: string;
-}
+import { Anamnese } from '../model/anamnese';
 
 @Injectable({
   providedIn: 'root'
