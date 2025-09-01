@@ -8,7 +8,7 @@ import { Anamnese } from '../model/anamnese';
 })
 export class AnamneseService {
 
-  private apiUrl = 'https://demo.zagheni.com.br/anamneses';
+  private apiUrl = 'https://api.e-anamnese.com.br/anamneses';
     // Definição dos headers
   private httpOptions = {
     headers: new HttpHeaders({
