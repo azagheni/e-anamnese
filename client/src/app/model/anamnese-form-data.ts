@@ -2,7 +2,8 @@
 
 export interface AnamneseFormData {
     id: number;
-    privado: number;
+    confidencial: number;
+    isNome: number;
     descricao: string;
     video: string;
     inicio: number;

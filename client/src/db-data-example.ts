@@ -83,7 +83,7 @@ export const ANAMNESES: any = [
     },
     {
         id: 16,
-        privado: 1,
+        confidencial: 1,
         descricao: "Modelo de Pergunta aguardando resposta escrita e PRIVADA AO MÉDICO:",
         video: "4.mp4",
         texto: 99999

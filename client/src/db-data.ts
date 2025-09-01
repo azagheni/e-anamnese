@@ -9,124 +9,97 @@ export const ANAMNESES: any = [
     },
     {
         id: 2,
-        descricao: "Você veio acompanhado?",
-        video: "2.mp4",
-        sim: 3,
-        nao: 4
+        isNome: 1,
+        descricao: "Modelo de Pergunta aguardando resposta do nome (MANDATÓRIO):",
+        video: "4.mp4",
+        texto: 3
     },
     {
         id: 3,
-        descricao: "Escreva o nome e telefone do seu acompanhante:",
-        video: "3.mp4",
-        texto: 4
+        descricao: "Modelo de Pergunta SIM e NÃO:",
+        video: "2.mp4",
+        sim: 4,
+        nao: 4
     },
     {
         id: 4,
-        descricao: "Qual seu nome completo?",
-        video: "4.mp4",
-        texto: 5
+        descricao: "Modelo de Pergunta SIM, NÃO e NÃO SEI:",
+        video: "2.mp4",
+        sim: 5,
+        naosei: 5,
+        nao: 5
     },
     {
         id: 5,
-        descricao: "Qual seu sexo?",
-        video: "5.mp4",
-        opcao1: 6,
-        opcao1_desc: 'Masculino',
-        opcao1_icon: 'male',
-        opcao2: 6,
-        opcao2_desc: 'Feminino',
-        opcao2_icon: 'female'
+        descricao: "Modelo de Pergunta aguardando resposta escrita:",
+        video: "4.mp4",
+        texto: 6
     },
     {
         id: 6,
-        descricao: "Qual a sua data de nascimento?",
-        video: "6.mp4",
-        data: 7
+        descricao: "Modelo de Pegunta OPÇÕES?",
+        video: "5.mp4",
+        opcao1: 7,
+        opcao1_desc: 'Masculino',
+        opcao1_icon: 'male',
+        opcao2: 7,
+        opcao2_desc: 'Feminino',
+        opcao2_icon: 'female',
+        opcao3: 7,
+        opcao3_desc: 'Opção 3',
+        opcao3_icon: 'sign_language',
+        opcao4: 7,
+        opcao4_desc: 'Opção 4',
+        opcao4_icon: 'accessibility'
     },
     {
         id: 7,
-        descricao: "Qual sua idade?",
-        video: "7.mp4",
-        numero: 8
+        descricao: "Modelo de pergunta com resposta no formato data:",
+        video: "6.mp4",
+        data: 8
     },
     {
         id: 8,
-        descricao: "Qual o seu endereço residencial?",
-        video: "8.mp4",
-        texto: 9
-    },
-    {
-        id: 9,
-        descricao: "Você mora sozinho ou mora com sua família?",
-        video: "8.mp4",
-        opcao1: 10,
-        opcao1_desc: 'Sozinho',
-        opcao1_icon: 'man',
-        opcao2: 10,
-        opcao2_desc: 'Com familiares',
-        opcao2_icon: 'family_restroom'
+        descricao: "Modelo de Pergunta com resposta numérica:",
+        video: "7.mp4",
+        numero: 10
     },
     {
         id: 10,
-        descricao: "Qual seu CPF?",
+        descricao: "Modelo de Pergunta com resposta CPF:",
         video: "10.mp4",
-        cpf: 11
-    },
-    {
-        id: 11,
-        descricao: "Qual o nome do seu pai?",
-        video: "11.mp4",
-        texto: 12
-    },
-    {
-        id: 12,
-        descricao: "Qual o nome do seu mãe?",
-        video: "12.mp4",
-        texto: 13
+        cpf: 13
     },
     {
         id: 13,
-        descricao: "Qual seu E-mail?",
+        descricao: "Modelo de Pergunta com resposta E-mail:",
         video: "13.mp4",
         email: 14
     },
     {
         id: 14,
-        descricao: "Qual o número do seu celular?",
+        descricao: "Modelo de Pergunta com resposta Telefone:",
         video: "14.mp4",
         telefone: 15
     },
     {
         id: 15,
-        descricao: "Você tem whatsapp?",
-        video: "15.mp4",
-        sim: 16,
-        nao: 16
+        descricao: "Modelo de Pergunta com resposta ESCALA:",
+        video: "23.mp4",
+        escala: 16
     },
     {
         id: 16,
-        descricao: "Você tem Telegram?",
-        video: "14.mp4",
-        sim: 17,
-        nao: 17
+        confidencial: 1,
+        descricao: "Modelo de Pergunta aguardando resposta escrita e PRIVADA AO MÉDICO:",
+        video: "4.mp4",
+        texto: 99999
     },
-    {
-        id: 17,
-        descricao: "Você tem Signal?",
-        video: "17.mp4",
-        sim: 18,
-        nao: 18
-    },
-    {
-        id: 18,
-        descricao: "Exemplo de escala de dor",
-        video: "14.mp4",
-        escala: 99999
-    },
+
     {
         id: 99999,
         descricao: "Registro concluido!",
-        video: "4.mp4",
+        video: "99999.mp4",
         fim: 1
     }
 ];

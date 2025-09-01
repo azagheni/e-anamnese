@@ -24,6 +24,7 @@ export class AppComponent {
   telefone: string = '';
   cpf: string = '';
   escala:number = 5;
+  nome: string = '';
 
   /**
 	 * Constructor
@@ -49,6 +50,7 @@ export class AppComponent {
     this.anamneseForm = new AnamneseForm(this.anamneses[0]);
     this.anamneseResult = [];
     this.cpf = '';
+    this.nome = '';
     this.reset()
   }
 
@@ -65,9 +67,10 @@ export class AppComponent {
     this.isTranscricao = !this.isTranscricao;
   }
 
-  updateAnamnese(id:number, answer:string) : void {
+  updateAnamnese(id:number, confidential: number, answer:string) : void {
     var question = {
         "id": id,
+        "confidential": confidential,
         "answer": answer,
     };
     this.anamneseResult.push(question);
@@ -78,6 +81,20 @@ export class AppComponent {
     this.reset();
     this.anamneseForm = new AnamneseForm(this.findAnamneseById(id));
     console.log(`Next question: ` +  id );
+    if (this.anamneseForm.fim) {
+      this.salvar();
+    }
+  }
+
+  salvar() : void {
+    console.log('Salvando registro: \n' + JSON.stringify(this.anamneseResult));
+    const anamnese = new Anamnese();
+    anamnese.name = this.nome;
+    anamnese.cpf = this.cpf;
+    anamnese.answers = JSON.stringify(this.anamneseResult);
+    this.anamneseService.addAnamnese(anamnese).subscribe(() => {
+      alert("Usuário adicionado!");
+    });
   }
 
   onInicio() : void {
@@ -85,7 +102,7 @@ export class AppComponent {
   }
 
   onFim() : void {
-    console.log('REGISTRO CONCLUIDO COM SUCESSO: \n' + this.anamneseResult);
+    console.log('REGISTRO CONCLUIDO COM SUCESSO');
     const anamnese = new Anamnese();
     anamnese.cpf = this.cpf;
     anamnese.answers = JSON.stringify(this.anamneseResult);
@@ -96,97 +113,100 @@ export class AppComponent {
   }
 
   onSim() : void {
-    this.updateAnamnese(this.anamneseForm.id, 'SIM');
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, 'SIM');
     this.nextQuestionAnamnese(this.anamneseForm.sim);
   }
 
   onNao() : void {
-    this.updateAnamnese(this.anamneseForm.id, 'NÃO');
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, 'NÃO');
     this.nextQuestionAnamnese(this.anamneseForm.nao);
   }
 
   onNaoSei() : void {
-    this.updateAnamnese(this.anamneseForm.id, 'NÃO SEI');
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, 'NÃO SEI');
     this.nextQuestionAnamnese(this.anamneseForm.naosei);
   }
 
   onTexto() : void {
-    this.updateAnamnese(this.anamneseForm.id, this.texto);
+    if (this.anamneseForm.isNome) {
+      this.nome = this.texto;
+    }
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.texto);
     this.nextQuestionAnamnese(this.anamneseForm.texto);
   }
 
   onNumero() : void {
-    this.updateAnamnese(this.anamneseForm.id, this.numero);
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.numero);
     this.nextQuestionAnamnese(this.anamneseForm.numero);
   }
 
   onData() : void {
-    this.updateAnamnese(this.anamneseForm.id, this.data);
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.data);
     this.nextQuestionAnamnese(this.anamneseForm.data);
   }
 
   onEmail() : void {
-    this.updateAnamnese(this.anamneseForm.id, this.email);
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.email);
     this.nextQuestionAnamnese(this.anamneseForm.email);
   }
 
   onTelefone() : void {
-    this.updateAnamnese(this.anamneseForm.id, this.telefone);
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.telefone);
     this.nextQuestionAnamnese(this.anamneseForm.telefone);
   }
 
   onCPF() : void {
-    this.updateAnamnese(this.anamneseForm.id, this.cpf);
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.cpf);
     this.nextQuestionAnamnese(this.anamneseForm.cpf);
   }
 
   onEscala() : void {
-    this.updateAnamnese(this.anamneseForm.id, this.escala.toString());
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.escala.toString());
     this.nextQuestionAnamnese(this.anamneseForm.escala);
   }
 
   onOpcao1() : void {
-    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.opcao1_desc);
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.anamneseForm.opcao1_desc);
     this.nextQuestionAnamnese(this.anamneseForm.opcao1);
   }
 
   onOpcao2() : void {
-    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.opcao2_desc);
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.anamneseForm.opcao2_desc);
     this.nextQuestionAnamnese(this.anamneseForm.opcao2);
   }
 
   onOpcao3() : void {
-    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.opcao3_desc);
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.anamneseForm.opcao3_desc);
     this.nextQuestionAnamnese(this.anamneseForm.opcao3);
   }
 
   onOpcao4() : void {
-    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.opcao4_desc);
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.anamneseForm.opcao4_desc);
     this.nextQuestionAnamnese(this.anamneseForm.opcao4);
   }
 
   onOpcao5() : void {
-    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.opcao5_desc);
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.anamneseForm.opcao5_desc);
     this.nextQuestionAnamnese(this.anamneseForm.opcao5);
   }
 
   onOpcao6() : void {
-    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.opcao6_desc);
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.anamneseForm.opcao6_desc);
     this.nextQuestionAnamnese(this.anamneseForm.opcao6);
   }
 
   onOpcao7() : void {
-    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.opcao7_desc);
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.anamneseForm.opcao7_desc);
     this.nextQuestionAnamnese(this.anamneseForm.opcao7);
   }
 
   onOpcao8() : void {
-    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.opcao8_desc);
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.anamneseForm.opcao8_desc);
     this.nextQuestionAnamnese(this.anamneseForm.opcao8);
   }
 
   onOpcao9() : void {
-    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.opcao9_desc);
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.anamneseForm.opcao9_desc);
     this.nextQuestionAnamnese(this.anamneseForm.opcao9);
   }
 
