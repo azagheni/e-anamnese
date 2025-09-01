@@ -9,6 +9,7 @@ import { assign } from 'lodash';
  */
 export class AnamneseForm implements AnamneseFormData {
     id: number;
+    privado: number;
     descricao: string;
     video: string;
     inicio: number;
@@ -56,6 +57,7 @@ export class AnamneseForm implements AnamneseFormData {
 	 */
 	constructor(data?: any) {
 		this.id = 0;
+        this.privado = 0;
 		this.descricao = '';
 		this.video = '';
         this.inicio = 0;

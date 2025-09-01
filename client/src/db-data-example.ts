@@ -21,7 +21,7 @@ export const ANAMNESES: any = [
         sim: 4,
         naosei: 4,
         nao: 4
-    },    
+    },
     {
         id: 4,
         descricao: "Modelo de Pergunta aguardando resposta escrita:",
@@ -40,7 +40,7 @@ export const ANAMNESES: any = [
         opcao2_icon: 'female',
         opcao3: 6,
         opcao3_desc: 'Opção 3',
-        opcao3_icon: 'sign_language',  
+        opcao3_icon: 'sign_language',
         opcao4: 6,
         opcao4_desc: 'Opção 4',
         opcao4_icon: 'accessibility'
@@ -79,10 +79,16 @@ export const ANAMNESES: any = [
         id: 15,
         descricao: "Modelo de Pergunta com resposta ESCALA:",
         video: "23.mp4",
-        escala: 99999
+        escala: 16
+    },
+    {
+        id: 16,
+        privado: 1,
+        descricao: "Modelo de Pergunta aguardando resposta escrita e PRIVADA AO MÉDICO:",
+        video: "4.mp4",
+        texto: 99999
     },
 
-    
     {
         id: 99999,
         descricao: "Registro concluido!",

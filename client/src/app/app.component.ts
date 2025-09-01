@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ANAMNESES } from 'src/db-data';
+import { Anamnese } from './model/anamnese'
 import { AnamneseForm as AnamneseForm } from './model/anamnese-form';
 import { FormsModule } from '@angular/forms';
 
@@ -13,9 +14,9 @@ import { AnamneseService } from './services/anamnese.service';
 export class AppComponent {
   title = 'e-anamnese';
   anamneses = ANAMNESES;
-  anamnese = new AnamneseForm(this.anamneses[0]);
-  anamneseResult = '';
-  isTranscricao = false;
+  anamneseForm: AnamneseForm = new AnamneseForm(this.anamneses[0]);
+  anamneseResult: any = [];
+  isTranscricao: boolean = false;
   texto: string = '';
   numero: string = '';
   data: string = '';
@@ -45,8 +46,9 @@ export class AppComponent {
 
   onRecomecar() : void {
     console.log('onRecomecar');
-    this.anamnese = new AnamneseForm(this.anamneses[0]);
-    this.anamneseResult = '';
+    this.anamneseForm = new AnamneseForm(this.anamneses[0]);
+    this.anamneseResult = [];
+    this.cpf = '';
     this.reset()
   }
 
@@ -56,7 +58,6 @@ export class AppComponent {
     this.data = '';
     this.email = '';
     this.telefone = '';
-    this.cpf = '';
     this.escala = 5;
   }
 
@@ -64,119 +65,129 @@ export class AppComponent {
     this.isTranscricao = !this.isTranscricao;
   }
 
-  updateAnamnese(id:number) : void {
+  updateAnamnese(id:number, answer:string) : void {
+    var question = {
+        "id": id,
+        "answer": answer,
+    };
+    this.anamneseResult.push(question);
+    console.log(JSON.stringify(this.anamneseResult));
+  }
+
+  nextQuestionAnamnese(id:number) : void {
     this.reset();
-    this.anamnese = new AnamneseForm(this.findAnamneseById(id));
-    console.log(this.anamneseResult);
+    this.anamneseForm = new AnamneseForm(this.findAnamneseById(id));
+    console.log(`Next question: ` +  id );
   }
 
   onInicio() : void {
-    this.anamnese = new AnamneseForm(this.findAnamneseById(this.anamnese.inicio));
+    this.anamneseForm = new AnamneseForm(this.findAnamneseById(this.anamneseForm.inicio));
   }
 
   onFim() : void {
     console.log('REGISTRO CONCLUIDO COM SUCESSO: \n' + this.anamneseResult);
-    //const 
-    //this.anamneseService.addAnamnese(this.user).subscribe(() => {
-    //  this.user = { name: '', email: '' };
-    //  alert("Usuário adicionado!");
-    //});
+    const anamnese = new Anamnese();
+    anamnese.cpf = this.cpf;
+    anamnese.answers = JSON.stringify(this.anamneseResult);
+    this.anamneseService.addAnamnese(anamnese).subscribe(() => {
+      alert("Usuário adicionado!");
+    });
     this.onRecomecar();
   }
 
   onSim() : void {
-    this.anamneseResult += this.anamnese.id.toString() + '. ' + this.anamnese.descricao + ' Resposta: SIM \n';
-    this.updateAnamnese(this.anamnese.sim);
+    this.updateAnamnese(this.anamneseForm.id, 'SIM');
+    this.nextQuestionAnamnese(this.anamneseForm.sim);
   }
 
   onNao() : void {
-    this.anamneseResult += this.anamnese.id.toString() + '. ' + this.anamnese.descricao + ' Resposta: NÃO \n';
-    this.updateAnamnese(this.anamnese.nao);
+    this.updateAnamnese(this.anamneseForm.id, 'NÃO');
+    this.nextQuestionAnamnese(this.anamneseForm.nao);
   }
 
   onNaoSei() : void {
-    this.anamneseResult += this.anamnese.id.toString() + '. ' + this.anamnese.descricao + ' Resposta: NÃO SEI \n';
-    this.updateAnamnese(this.anamnese.naosei);
+    this.updateAnamnese(this.anamneseForm.id, 'NÃO SEI');
+    this.nextQuestionAnamnese(this.anamneseForm.naosei);
   }
 
   onTexto() : void {
-    this.anamneseResult += this.anamnese.id.toString() + '. ' + this.anamnese.descricao + ' Resposta: ' + this.texto + '\n';
-    this.updateAnamnese(this.anamnese.texto);
+    this.updateAnamnese(this.anamneseForm.id, this.texto);
+    this.nextQuestionAnamnese(this.anamneseForm.texto);
   }
 
   onNumero() : void {
-    this.anamneseResult += this.anamnese.id.toString() + '. ' + this.anamnese.descricao + ' Resposta: ' + this.numero + '\n';
-    this.updateAnamnese(this.anamnese.numero);
+    this.updateAnamnese(this.anamneseForm.id, this.numero);
+    this.nextQuestionAnamnese(this.anamneseForm.numero);
   }
 
   onData() : void {
-    this.anamneseResult += this.anamnese.id.toString() + '. ' + this.anamnese.descricao + ' Resposta: ' + this.data + '\n';
-    this.updateAnamnese(this.anamnese.data);
+    this.updateAnamnese(this.anamneseForm.id, this.data);
+    this.nextQuestionAnamnese(this.anamneseForm.data);
   }
 
   onEmail() : void {
-    this.anamneseResult += this.anamnese.id.toString() + '. ' + this.anamnese.descricao + ' Resposta: ' + this.email + '\n';
-    this.updateAnamnese(this.anamnese.email);
+    this.updateAnamnese(this.anamneseForm.id, this.email);
+    this.nextQuestionAnamnese(this.anamneseForm.email);
   }
 
   onTelefone() : void {
-    this.anamneseResult += this.anamnese.id.toString() + '. ' + this.anamnese.descricao + ' Resposta: ' + this.telefone + '\n';
-    this.updateAnamnese(this.anamnese.telefone);
+    this.updateAnamnese(this.anamneseForm.id, this.telefone);
+    this.nextQuestionAnamnese(this.anamneseForm.telefone);
   }
 
   onCPF() : void {
-    this.anamneseResult += this.anamnese.id.toString() + '. ' + this.anamnese.descricao + ' Resposta: ' + this.cpf + '\n';
-    this.updateAnamnese(this.anamnese.cpf);
+    this.updateAnamnese(this.anamneseForm.id, this.cpf);
+    this.nextQuestionAnamnese(this.anamneseForm.cpf);
   }
 
   onEscala() : void {
-    this.anamneseResult += this.anamnese.id.toString() + '. ' + this.anamnese.descricao + ' Resposta: ' + this.escala + '\n';
-    this.updateAnamnese(this.anamnese.escala);
+    this.updateAnamnese(this.anamneseForm.id, this.escala.toString());
+    this.nextQuestionAnamnese(this.anamneseForm.escala);
   }
 
   onOpcao1() : void {
-    this.anamneseResult += this.anamnese.id.toString() + '. ' + this.anamnese.descricao + ' Resposta: ' + this.anamnese.opcao1_desc + '\n';
-    this.updateAnamnese(this.anamnese.opcao1);
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.opcao1_desc);
+    this.nextQuestionAnamnese(this.anamneseForm.opcao1);
   }
 
   onOpcao2() : void {
-    this.anamneseResult += this.anamnese.id.toString() + '. ' + this.anamnese.descricao + ' Resposta: ' + this.anamnese.opcao2_desc + '\n';
-    this.updateAnamnese(this.anamnese.opcao2);
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.opcao2_desc);
+    this.nextQuestionAnamnese(this.anamneseForm.opcao2);
   }
 
   onOpcao3() : void {
-    this.anamneseResult += this.anamnese.id.toString() + '. ' + this.anamnese.descricao + ' Resposta: ' + this.anamnese.opcao3_desc + '\n';
-    this.updateAnamnese(this.anamnese.opcao3);
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.opcao3_desc);
+    this.nextQuestionAnamnese(this.anamneseForm.opcao3);
   }
 
   onOpcao4() : void {
-    this.anamneseResult += this.anamnese.id.toString() + '. ' + this.anamnese.descricao + ' Resposta: ' + this.anamnese.opcao4_desc + '\n';
-    this.updateAnamnese(this.anamnese.opcao4);
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.opcao4_desc);
+    this.nextQuestionAnamnese(this.anamneseForm.opcao4);
   }
 
   onOpcao5() : void {
-    this.anamneseResult += this.anamnese.id.toString() + '. ' + this.anamnese.descricao + ' Resposta: ' + this.anamnese.opcao5_desc + '\n';
-    this.updateAnamnese(this.anamnese.opcao5);
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.opcao5_desc);
+    this.nextQuestionAnamnese(this.anamneseForm.opcao5);
   }
 
   onOpcao6() : void {
-    this.anamneseResult += this.anamnese.id.toString() + '. ' + this.anamnese.descricao + ' Resposta: ' + this.anamnese.opcao6_desc + '\n';
-    this.updateAnamnese(this.anamnese.opcao6);
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.opcao6_desc);
+    this.nextQuestionAnamnese(this.anamneseForm.opcao6);
   }
 
   onOpcao7() : void {
-    this.anamneseResult += this.anamnese.id.toString() + '. ' + this.anamnese.descricao + ' Resposta: ' + this.anamnese.opcao7_desc + '\n';
-    this.updateAnamnese(this.anamnese.opcao7);
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.opcao7_desc);
+    this.nextQuestionAnamnese(this.anamneseForm.opcao7);
   }
 
   onOpcao8() : void {
-    this.anamneseResult += this.anamnese.id.toString() + '. ' + this.anamnese.descricao + ' Resposta: ' + this.anamnese.opcao8_desc + '\n';
-    this.updateAnamnese(this.anamnese.opcao8);
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.opcao8_desc);
+    this.nextQuestionAnamnese(this.anamneseForm.opcao8);
   }
 
   onOpcao9() : void {
-    this.anamneseResult += this.anamnese.id.toString() + '. ' + this.anamnese.descricao + ' Resposta: ' + this.anamnese.opcao9_desc + '\n';
-    this.updateAnamnese(this.anamnese.opcao9);
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.opcao9_desc);
+    this.nextQuestionAnamnese(this.anamneseForm.opcao9);
   }
 
   validateData() : boolean {
