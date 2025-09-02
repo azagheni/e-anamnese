@@ -69,9 +69,9 @@ export class AppComponent {
 
   updateAnamnese(id:number, confidential: number, answer:string) : void {
     var question = {
-        "id": id,
-        "confidential": confidential,
-        "answer": answer,
+        id: id,
+        confidential: confidential,
+        answer: answer
     };
     this.anamneseResult.push(question);
     console.log(JSON.stringify(this.anamneseResult));
@@ -103,12 +103,6 @@ export class AppComponent {
 
   onFim() : void {
     console.log('REGISTRO CONCLUIDO COM SUCESSO');
-    const anamnese = new Anamnese();
-    anamnese.cpf = this.cpf;
-    anamnese.answers = JSON.stringify(this.anamneseResult);
-    this.anamneseService.addAnamnese(anamnese).subscribe(() => {
-      alert("Usuário adicionado!");
-    });
     this.onRecomecar();
   }
 
