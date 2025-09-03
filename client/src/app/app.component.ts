@@ -25,7 +25,6 @@ export class AppComponent {
   cpf: string = '';
   escala:number = 5;
   nome: string = '';
-  anam:Anamnese[] = [];
 
   /**
 	 * Constructor
@@ -53,6 +52,14 @@ export class AppComponent {
     this.cpf = '';
     this.nome = '';
     this.reset();
+
+    // TESTS
+    //this.anamneseService.getAnamneses().subscribe(data =>
+    //  {
+    //    let anam:Anamnese[] = data;
+    //    console.log(JSON.stringify(anam));
+    //  }
+    //);
   }
 
   reset() : void {

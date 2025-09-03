@@ -10,6 +10,7 @@ export class AnamneseService {
 
   private apiUrl = 'https://api.e-anamnese.com.br/anamneses';
     // Definição dos headers
+    // 'Authorization': 'Bearer xbyGcps84wZHKJD9cjRU4b5zutsEKbTHoHf5VY2MZROoxqmCvPyWkhMizwbsCXhg'
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
