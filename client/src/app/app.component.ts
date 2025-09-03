@@ -25,6 +25,7 @@ export class AppComponent {
   cpf: string = '';
   escala:number = 5;
   nome: string = '';
+  anam:Anamnese[] = [];
 
   /**
 	 * Constructor
@@ -51,7 +52,7 @@ export class AppComponent {
     this.anamneseResult = [];
     this.cpf = '';
     this.nome = '';
-    this.reset()
+    this.reset();
   }
 
   reset() : void {
@@ -89,11 +90,11 @@ export class AppComponent {
   salvar() : void {
     console.log('Salvando registro: \n' + JSON.stringify(this.anamneseResult));
     const anamnese = new Anamnese();
-    anamnese.name = this.nome;
-    anamnese.cpf = this.cpf;
-    anamnese.answers = JSON.stringify(this.anamneseResult);
+    anamnese.name = encodeURIComponent(this.nome);
+    anamnese.cpf = encodeURIComponent(this.cpf);
+    anamnese.answers = encodeURIComponent(JSON.stringify(this.anamneseResult));
     this.anamneseService.addAnamnese(anamnese).subscribe(() => {
-      alert("Usuário adicionado!");
+      alert("Anamnese salva com sucesso!");
     });
   }
 

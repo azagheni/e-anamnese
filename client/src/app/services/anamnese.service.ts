@@ -12,8 +12,7 @@ export class AnamneseService {
     // Definição dos headers
   private httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'X-Auth-Header': 'zagheni'
+      'Content-Type': 'application/json'
     })
   };
 
