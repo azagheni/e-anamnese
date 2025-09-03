@@ -9,11 +9,10 @@ import { Anamnese } from '../model/anamnese';
 export class AnamneseService {
 
   private apiUrl = 'https://api.e-anamnese.com.br/anamneses';
-    // Definição dos headers
-    // 'Authorization': 'Bearer xbyGcps84wZHKJD9cjRU4b5zutsEKbTHoHf5VY2MZROoxqmCvPyWkhMizwbsCXhg'
+  // Definição dos headers
   private httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json; charset=UTF-8'
     })
   };
 
