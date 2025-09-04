@@ -8,6 +8,7 @@ import { Anamnese } from '../model/anamnese';
 })
 export class AnamneseService {
 
+  private hash: string = '?hash=xbyGcps84wZHKJD9cjRU4b5zutsEKbTHoHf5VY2MZROoxqmCvPyWkhMizwbsCXhg';
   private apiUrl = 'https://api.e-anamnese.com.br/anamneses';
   // Definição dos headers
   private httpOptions = {
@@ -19,7 +20,7 @@ export class AnamneseService {
   constructor(private http: HttpClient) {}
 
   getAnamneses(): Observable<Anamnese[]> {
-    return this.http.get<Anamnese[]>(this.apiUrl, this.httpOptions);
+    return this.http.get<Anamnese[]>(`${this.apiUrl}${this.hash}`, this.httpOptions);
   }
 
   getAnamnese(id: number): Observable<Anamnese> {
@@ -27,14 +28,14 @@ export class AnamneseService {
   }
 
   addAnamnese(anamnese: Anamnese): Observable<Anamnese> {
-    return this.http.post<Anamnese>(this.apiUrl, anamnese, this.httpOptions);
+    return this.http.post<Anamnese>(`${this.apiUrl}${this.hash}`, anamnese, this.httpOptions);
   }
 
   updateAnamnese(id: number, anamnese: Anamnese): Observable<Anamnese> {
-    return this.http.put<Anamnese>(`${this.apiUrl}/${id}`, anamnese, this.httpOptions);
+    return this.http.put<Anamnese>(`${this.apiUrl}/${id}${this.hash}`, anamnese, this.httpOptions);
   }
 
   deleteAnamnese(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+    return this.http.delete(`${this.apiUrl}/${id}${this.hash}`);
   }
 }

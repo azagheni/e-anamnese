@@ -54,12 +54,10 @@ export class AppComponent {
     this.reset();
 
     // TESTS
-    //this.anamneseService.getAnamneses().subscribe(data =>
-    //  {
+    //this.anamneseService.getAnamneses().subscribe(data => {
     //    let anam:Anamnese[] = data;
     //    console.log(JSON.stringify(anam));
-    //  }
-    //);
+    //});
   }
 
   reset() : void {
