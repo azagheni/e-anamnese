@@ -8,7 +8,7 @@ import { Anamnese } from '../model/anamnese';
 })
 export class AnamneseService {
 
-  private hash: string = '?hash=xbyGcps84wZHKJD9cjRU4b5zutsEKbTHoHf5VY2MZROoxqmCvPyWkhMizwbsCXhg';
+  private hash: string = '?lg=gz';
   private apiUrl = 'https://api.e-anamnese.com.br/anamneses';
   // Definição dos headers
   private httpOptions = {
