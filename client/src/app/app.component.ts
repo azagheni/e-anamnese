@@ -18,7 +18,7 @@ import { WelcomeDialogComponent } from './welcome-dialog/welcome-dialog.componen
 export class AppComponent {
   title = 'e-anamnese';
   anamneses = ANAMNESES;
-  anamneseForm: AnamneseForm = new AnamneseForm(this.anamneses[0]);
+  anamneseForm: AnamneseForm = new AnamneseForm();
   anamneseResult: any = [];
   isTranscricao: boolean = false;
   texto: string = '';
@@ -44,8 +44,18 @@ export class AppComponent {
   }
 
 	ngOnInit() {
-    console.log('[AppComponent] =============== Initializing app ===============')
-    this.dialog.open(WelcomeDialogComponent);
+    console.log('[AppComponent] =============== Initializing app ===============');
+    const dialogRef = this.dialog.open(WelcomeDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.onRecomecar();
+      }
+    });
+    dialogRef.backdropClick().subscribe(() => {
+      dialogRef.close();
+      this.onRecomecar();
+    })
   }
 
   findAnamneseById(id:number) {

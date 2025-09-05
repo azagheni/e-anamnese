@@ -61,7 +61,7 @@ export class AnamneseForm implements AnamneseFormData {
         this.confidencial = 0;
         this.isNome = 0;
 		this.descricao = '';
-		this.video = '';
+		this.video = '0.mp4';
         this.inicio = 0;
         this.fim = 0;
         this.sim = 0;
