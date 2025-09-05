@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
@@ -17,12 +18,17 @@ import { CpfPipe } from './pipes/cpf.pipes';
 import { DataPipe } from './pipes/data.pipes';
 import { TelefonePipe } from './pipes/telefone.pipes';
 
+import { TermsService } from './services/terms.service';
+import { AnamneseService } from './services/anamnese.service';
+import { TermsDialogComponent } from './terms-dialog/terms-dialog.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     CpfPipe,
     DataPipe,
     TelefonePipe,
+    TermsDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +40,7 @@ import { TelefonePipe } from './pipes/telefone.pipes';
     MatSidenavModule,
     MatButtonModule,
     MatSliderModule,
+    MatDialogModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
@@ -44,7 +51,9 @@ import { TelefonePipe } from './pipes/telefone.pipes';
   ],
   providers: [
     MatIconRegistry,
-    HttpClient
+    HttpClient,
+    TermsService,
+    AnamneseService
   ],
   bootstrap: [AppComponent]
 })

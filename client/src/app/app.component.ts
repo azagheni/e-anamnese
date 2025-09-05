@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ANAMNESES } from 'src/db-data';
 import { Anamnese } from './model/anamnese'
 import { AnamneseForm as AnamneseForm } from './model/anamnese-form';
 import { FormsModule } from '@angular/forms';
+import { TermsDialogComponent } from './terms-dialog/terms-dialog.component';
 
 import { AnamneseService } from './services/anamnese.service';
+import { TermsService } from './services/terms.service';
 
 @Component({
   selector: 'app-root',
@@ -32,13 +35,22 @@ export class AppComponent {
 	 * @param anamneseService service that handles all Anamnese related tasks
    */
 	constructor(
-    public anamneseService: AnamneseService
+    public anamneseService: AnamneseService,
+    private dialog: MatDialog,
+    private termsService: TermsService
     ) {
     /* istanbul ignore next */
   }
 
 	ngOnInit() {
     console.log('[AppComponent] =============== Initializing app ===============')
+    const dialogRef = this.dialog.open(TermsDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.termsService.acceptTerms();
+      }
+    });
   }
 
   findAnamneseById(id:number) {
