@@ -21,6 +21,7 @@ import { TelefonePipe } from './pipes/telefone.pipes';
 import { TermsService } from './services/terms.service';
 import { AnamneseService } from './services/anamnese.service';
 import { TermsDialogComponent } from './terms-dialog/terms-dialog.component';
+import { WelcomeDialogComponent } from './welcome-dialog/welcome-dialog.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { TermsDialogComponent } from './terms-dialog/terms-dialog.component';
     DataPipe,
     TelefonePipe,
     TermsDialogComponent,
+    WelcomeDialogComponent
   ],
   imports: [
     BrowserModule,

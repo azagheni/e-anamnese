@@ -8,6 +8,7 @@ import { TermsDialogComponent } from './terms-dialog/terms-dialog.component';
 
 import { AnamneseService } from './services/anamnese.service';
 import { TermsService } from './services/terms.service';
+import { WelcomeDialogComponent } from './welcome-dialog/welcome-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -44,13 +45,7 @@ export class AppComponent {
 
 	ngOnInit() {
     console.log('[AppComponent] =============== Initializing app ===============')
-    const dialogRef = this.dialog.open(TermsDialogComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.termsService.acceptTerms();
-      }
-    });
+    this.dialog.open(WelcomeDialogComponent);
   }
 
   findAnamneseById(id:number) {
