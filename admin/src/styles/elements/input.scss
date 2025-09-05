@@ -1,0 +1,113 @@
+/**
+ * elements/input.css
+ */
+
+/*************************************************************************************************
+ * Basic Label style
+ *************************************************************************************************/
+label {
+	display: flex;
+	flex-direction: column;
+	margin: var(--spacing-s);
+	color: var(--color-text);
+	font-size: var(--font-size-m);
+	gap: var(--spacing-s);
+}
+
+/*************************************************************************************************
+ * Basic Input Style
+ *************************************************************************************************/
+input {
+	font-variant-numeric: lining-nums;
+	block-size: fit-content;
+	padding: var(--spacing-s);
+	border: var(--border-width) solid var(--color-border);
+	border-radius: var(--border-radius);
+	outline: none;
+	background-color: var(--color-bg);
+	box-shadow: var(--shadow-xs);
+	color: var(--color-text-secondary);
+	font-family: inherit;
+	font-size: var(--font-size-m);
+
+	&::placeholder {
+		color: var(--color-text-placeholder);
+	}
+
+	/**
+  * States
+  */
+	&:focus-visible {
+		animation: var(--animation-outline);
+		outline-color: var(--color-accent-text);
+		outline-offset: var(--outline-offset);
+		outline-style: solid;
+	}
+	&:invalid {
+		background-color: var(--color-error-bg);
+	}
+	&:disabled {
+		border-color: var(--color-accent-border--disabled);
+		background-color: var(--color-accent-bg--disabled);
+		color: var(--color-text-secondary);
+	}
+	&:not(:disabled):is(:focus, :focus-within) {
+		border-color: var(--color-accent-border--focus);
+	}
+	&:not(:disabled):focus,
+	&:not(:disabled):hover {
+		border-color: var(--color-accent-border--hover);
+	}
+}
+
+/*************************************************************************************************
+ * Search Input Style
+ *************************************************************************************************/
+
+label.search {
+	--block-size: 3em;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	min-block-size: var(--block-size);
+	inline-size: 125%;
+	margin-block-end: 1rem;
+	border: var(--border-width) solid var(--color-border);
+	border-radius: var(--border-radius);
+	box-shadow: var(--shadow-xs);
+
+	& > input[type='search'],
+	& > input[type='search']:focus {
+		flex-grow: 1;
+		padding-block: 0.5em;
+		padding-inline: 1em;
+		border: none;
+		outline: none;
+		background: transparent;
+		box-shadow: none;
+	}
+	& > button {
+		block-size: 100%;
+		aspect-ratio: 1;
+		border: none;
+		border-radius: 50%;
+		background-color: var(--color-bg-subtle);
+		box-shadow: 0 0 0.5rem hsl(var(--hsl-shadow) / 0.25);
+
+		&:not(:disabled):focus,
+		&:not(:disabled):hover {
+			background-color: var(--color-accent-bg--hover);
+			color: var(--color-onaccent-text--hover);
+		}
+		&:not(:disabled):active {
+			background-color: var(--color-accent-bg--active);
+			color: var(--color-onaccent-text--active);
+		}
+	}
+	&:focus-within {
+		animation: var(--animation-outline);
+		outline: var(--outline-width) solid var(--color-accent-bg);
+		outline-offset: var(--outline-offset);
+	}
+}

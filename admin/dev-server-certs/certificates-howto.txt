@@ -1,0 +1,33 @@
+A) Creating the certificates (https://betterprogramming.pub/how-to-create-trusted-ssl-certificates-for-your-local-development-13fd5aad29c6)
+
+  A.1) Create an own certificate authority
+      & "C:\Program Files\Git\usr\bin\openssl" req -x509 -nodes -new -sha512 -days 3650 -newkey rsa:4096 -keyout ca.key -out ca.pem -subj "/C=DE/CN=CA-FOR-ANGULAR-NG-SERVE"
+
+  A.2) Convert certificate from .pem to .crt (required for ng serve)
+      & "C:\Program Files\Git\usr\bin\openssl" x509 -outform pem -in ca.pem -out ca.crt
+
+  A.3) Create private key, certificate and signing request (for the server certificate)
+      & "C:\Program Files\Git\usr\bin\openssl" req -new -nodes -newkey rsa:4096 -keyout localhost.key -out localhost.csr -subj "/C=DE/ST=State/L=City/O=Some-Organization-Name/CN=localhost"
+
+  A.4) Sign the newly created server certificate
+      & "C:\Program Files\Git\usr\bin\openssl" x509 -req -sha512 -days 3650 -extfile v3.ext -CA ca.crt -CAkey ca.key -CAcreateserial -in localhost.csr -out localhost.crt
+
+B) Set up ng serve (https://betterprogramming.pub/how-to-serve-your-angular-application-over-https-using-ng-serve-240e2c2e0a5d)
+
+    "projects": {
+        "my-sample-project": {
+            "architect": {
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "sslKey": "<relative path from angular.json>/server.key",
+                        "sslCert": "<relative path from angular.json>/server.crt",
+                        "ssl": true
+                        ...
+                    }, ...
+                }, ...
+            }, ...
+        }, ...
+    }, ...
+
+C) Trust the certificates in your OS (https://betterprogramming.pub/how-to-create-trusted-ssl-certificates-for-your-local-development-13fd5aad29c6)

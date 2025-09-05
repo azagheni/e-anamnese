@@ -1,0 +1,23 @@
+<div class="header">
+    <div>
+      <img class="logo"
+          src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
+    </div>
+    <button (click)="onTranscricao()">
+      <mat-icon aria-hidden="true">text_snippet</mat-icon>
+        Transcrição
+    </button>
+    <div></div>
+    <button *ngIf="anamneseForm.id != 1" (click)="onRecomecar()">
+      <mat-icon aria-hidden="true">restart_alt</mat-icon>
+      Recomeçar
+    </button>
+</div>
+
+
+<div class="content">
+
+  <app-navbar></app-navbar>
+  <router-outlet></router-outlet>
+
+</div>

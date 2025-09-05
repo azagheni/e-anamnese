@@ -1,0 +1,64 @@
+/**
+ * base/animation.scss
+ */
+
+:root {
+	@media (prefers-reduced-motion: no-preference) {
+		--animation-outline: outline 0.3s cubic-bezier(0.3, 1, 0.7, 3) both;
+	}
+}
+
+@keyframes outline {
+	from {
+		outline-offset: var(--outline-offset);
+	}
+	to {
+		outline-offset: calc((calc(var(--outline-offset) + calc(var(--outline-offset) / 2))) * -1);
+	}
+}
+
+.spinner {
+	display: inline-block;
+	position: relative;
+	block-size: 80px;
+	inline-size: 80px;
+}
+
+.spinner div {
+	display: block;
+	position: absolute;
+	box-sizing: border-box;
+	block-size: 64px;
+	inline-size: 64px;
+	margin: 8px;
+	animation: spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+	border: 8px solid var(--color-accent-bg);
+	border-radius: 50%;
+	border-color: var(--color-accent-bg) transparent transparent transparent;
+}
+
+.spinner div:nth-child(1) {
+	animation-delay: -0.45s;
+}
+
+.spinner div:nth-child(2) {
+	animation-delay: -0.3s;
+}
+
+.spinner div:nth-child(3) {
+	animation-delay: -0.15s;
+}
+@keyframes spinner {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.spinner-wrapper {
+	inline-size: fit-content;
+	margin: var(--spacing-s);
+	justify-self: center;
+}
