@@ -7,12 +7,12 @@
     block-size: 100vh; // Fallback for missing 'vb' unit support
     block-size: 100vb;
     max-block-size: 100vh; // Fallback for missing 'vb' unit support
-    max-block-size: 100vb;   
+    max-block-size: 100vb;
 }
 
 .logo {
     max-height: 55px;
-}    
+}
 
 .header {
     grid-area: header;
@@ -31,7 +31,7 @@
     flex-direction: column;
     inline-size: 100%;
     max-inline-size: 720px;
-    padding-inline: 15px;  
+    padding-inline: 15px;
     justify-self: center;
     align-items: center;
     row-gap: 15px;
@@ -40,13 +40,13 @@
 .transcription-card {
     text-align: center;
     border-radius: 4px;
-    padding: 20px;   
+    padding: 20px;
     box-shadow: 0 1px 16px 0 rgba(0, 0, 0, .2), 0 2px 8px 0 rgba(0, 0, 0, .14), 0 4px 8px -1px rgba(0, 0, 0, .12);
 
 	@media screen and (prefers-color-scheme: dark) {
         box-shadow: 0 1px 16px 0 rgba(255, 255, 255, .8), 0 2px 8px 0 rgba(0, 0, 0, .14), 0 4px 8px -1px rgba(255, 255, 255, .8);
 	}
-   
+
 }
 
 .center {
@@ -58,6 +58,14 @@
     display: flex;
     row-gap: 15px;
     flex-direction: column;
+}
+
+.center-list-texto {
+    display: flex;
+    row-gap: 15px;
+    flex-direction: column;
+    width: inherit;
+    align-items: start;
 }
 
 .input-full {

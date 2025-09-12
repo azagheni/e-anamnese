@@ -113,12 +113,12 @@
         [(ngModel)]="texto"
       />
 
-    <div *ngIf="anamneseForm.opcaoTexto" class="center-list">
-      <button class="round-button" (click)="onOpcaoTexto()">
-        <mat-icon *ngIf="anamneseForm.opcaoTexto_icon" aria-hidden="true">{{ anamneseForm.opcaoTexto_icon }}</mat-icon>
-        {{ anamneseForm.opcaoTexto_desc }}
-      </button>
-    </div>
+      <div *ngIf="anamneseForm.opcaoTexto" class="center-list-texto">
+        <button *ngIf="anamneseForm.opcaoTexto" class="round-button" [disabled]="texto" (click)="onOpcaoTexto()">
+          <mat-icon *ngIf="anamneseForm.opcaoTexto_icon" aria-hidden="true">{{ anamneseForm.opcaoTexto_icon }}</mat-icon>
+          {{ anamneseForm.opcaoTexto_desc }}
+        </button>
+      </div>
 
       <button class="round-button" (click)="onTexto()" [disabled]="!texto">
         Próximo
