@@ -3,8 +3,6 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ANAMNESES } from 'src/db-data';
 import { Anamnese } from './model/anamnese'
 import { AnamneseForm as AnamneseForm } from './model/anamnese-form';
-import { FormsModule } from '@angular/forms';
-import { TermsDialogComponent } from './terms-dialog/terms-dialog.component';
 
 import { AnamneseService } from './services/anamnese.service';
 import { TermsService } from './services/terms.service';
@@ -150,6 +148,11 @@ export class AppComponent {
     }
     this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.texto);
     this.nextQuestionAnamnese(this.anamneseForm.texto);
+  }
+
+  onOpcaoTexto() : void {
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.anamneseForm.opcaoTexto_desc);
+    this.nextQuestionAnamnese(this.anamneseForm.opcaoTexto);
   }
 
   onNumero() : void {

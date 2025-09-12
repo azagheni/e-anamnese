@@ -5,6 +5,7 @@ export interface AnamneseFormData {
     confidencial: number;
     isNome: number;
     descricao: string;
+    impressao: string;
     video: string;
     inicio: number;
     fim: number;
@@ -13,6 +14,9 @@ export interface AnamneseFormData {
     naosei: number;
     escala: number;
     texto: number;
+    opcaoTexto: number;
+    opcaoTexto_desc: string;
+    opcaoTexto_icon: string;
     numero: number;
     data: number;
     telefone: number;

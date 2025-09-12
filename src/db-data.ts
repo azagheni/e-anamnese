@@ -35,10 +35,13 @@ export const ANAMNESES: any = [
     },
     {
         id: 5,
-        descricao: "Modelo de Pergunta aguardando resposta escrita:",
-        impressao: "Modelo de Pergunta aguardando resposta escrita:",
+        descricao: "Modelo de Pergunta aguardando resposta escrita e com uma opção padrão:",
+        impressao: "Modelo de Pergunta aguardando resposta escrita e com uma opção padrão:",
         video: "4.mp4",
-        texto: 6
+        texto: 6,
+        opcaoTexto: 6,
+        opcaoTexto_desc: 'Resposta Padrão',
+        opcaoTexto_icon: 'accessibility'
     },
     {
         id: 6,

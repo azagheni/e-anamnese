@@ -12,6 +12,7 @@ export class AnamneseForm implements AnamneseFormData {
     confidencial: number;
     isNome: number;
     descricao: string;
+    impressao: string;
     video: string;
     inicio: number;
     fim: number;
@@ -20,6 +21,9 @@ export class AnamneseForm implements AnamneseFormData {
     naosei: number;
     escala: number;
     texto: number;
+    opcaoTexto: number;
+    opcaoTexto_desc: string;
+    opcaoTexto_icon: string;
     numero: number;
     data: number;
     telefone: number;
@@ -61,6 +65,7 @@ export class AnamneseForm implements AnamneseFormData {
         this.confidencial = 0;
         this.isNome = 0;
 		this.descricao = '';
+        this.impressao = '';
 		this.video = '0.mp4';
         this.inicio = 0;
         this.fim = 0;
@@ -69,6 +74,9 @@ export class AnamneseForm implements AnamneseFormData {
         this.naosei = 0;
         this.escala = 0;
         this.texto = 0;
+        this.opcaoTexto = 0;
+        this.opcaoTexto_desc = '';
+        this.opcaoTexto_icon = '';
         this.numero = 0;
         this.data = 0;
         this.telefone = 0;
