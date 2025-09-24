@@ -67,7 +67,7 @@
       </div>
     </div>
 
-    <div *ngIf="anamneseForm.opcao1" class="center-list">
+    <div *ngIf="anamneseForm.opcao1 && !anamneseForm.checkbox" class="center-list">
       <button *ngIf="anamneseForm.opcao1" class="round-button" (click)="onOpcao1()">
         <mat-icon *ngIf="anamneseForm.opcao1_icon" aria-hidden="true">{{ anamneseForm.opcao1_icon }}</mat-icon>
         {{ anamneseForm.opcao1_desc }}
@@ -104,6 +104,62 @@
         <mat-icon *ngIf="anamneseForm.opcao9_icon" aria-hidden="true">{{ anamneseForm.opcao9_icon }}</mat-icon>
         {{ anamneseForm.opcao9_desc }}
       </button>
+    </div>
+
+    <div *ngIf="!anamneseForm.opcao1 && anamneseForm.checkbox" class="center-list">
+      <form class="example-section" [formGroup]="checkboxes">
+        <p><mat-checkbox *ngIf="anamneseForm.opcao1_desc"  formControlName="opcao1">{{ anamneseForm.opcao1_desc }}</mat-checkbox></p>
+        <p><mat-checkbox *ngIf="anamneseForm.opcao2_desc"  formControlName="opcao2">{{ anamneseForm.opcao2_desc }}</mat-checkbox></p>
+        <p><mat-checkbox *ngIf="anamneseForm.opcao3_desc"  formControlName="opcao3">{{ anamneseForm.opcao3_desc }}</mat-checkbox></p>
+        <p><mat-checkbox *ngIf="anamneseForm.opcao4_desc"  formControlName="opcao4">{{ anamneseForm.opcao4_desc }}</mat-checkbox></p>
+        <p><mat-checkbox *ngIf="anamneseForm.opcao5_desc"  formControlName="opcao5">{{ anamneseForm.opcao5_desc }}</mat-checkbox></p>
+        <p><mat-checkbox *ngIf="anamneseForm.opcao6_desc"  formControlName="opcao6">{{ anamneseForm.opcao6_desc }}</mat-checkbox></p>
+        <p><mat-checkbox *ngIf="anamneseForm.opcao7_desc"  formControlName="opcao7">{{ anamneseForm.opcao7_desc }}</mat-checkbox></p>
+        <p><mat-checkbox *ngIf="anamneseForm.opcao8_desc"  formControlName="opcao8">{{ anamneseForm.opcao8_desc }}</mat-checkbox></p>
+        <p><mat-checkbox *ngIf="anamneseForm.opcao9_desc"  formControlName="opcao9">{{ anamneseForm.opcao9_desc }}</mat-checkbox></p>
+      </form>
+
+      <button *ngIf="anamneseForm.opcao1" class="round-button" (click)="onOpcao1()">
+        <mat-icon *ngIf="anamneseForm.opcao1_icon" aria-hidden="true">{{ anamneseForm.opcao1_icon }}</mat-icon>
+        {{ anamneseForm.opcao1_desc }}
+      </button>
+      <button *ngIf="anamneseForm.opcao2" class="round-button" (click)="onOpcao2()">
+        <mat-icon *ngIf="anamneseForm.opcao2_icon" aria-hidden="true">{{ anamneseForm.opcao2_icon }}</mat-icon>
+        {{ anamneseForm.opcao2_desc }}
+      </button>
+      <button *ngIf="anamneseForm.opcao3" class="round-button" (click)="onOpcao3()">
+        <mat-icon *ngIf="anamneseForm.opcao3_icon" aria-hidden="true">{{ anamneseForm.opcao3_icon }}</mat-icon>
+        {{ anamneseForm.opcao3_desc }}
+      </button>
+      <button *ngIf="anamneseForm.opcao4" class="round-button" (click)="onOpcao4()">
+        <mat-icon *ngIf="anamneseForm.opcao4_icon" aria-hidden="true">{{ anamneseForm.opcao4_icon }}</mat-icon>
+        {{ anamneseForm.opcao4_desc }}
+      </button>
+      <button *ngIf="anamneseForm.opcao5" class="round-button" (click)="onOpcao5()">
+        <mat-icon *ngIf="anamneseForm.opcao5_icon" aria-hidden="true">{{ anamneseForm.opcao5_icon }}</mat-icon>
+        {{ anamneseForm.opcao5_desc }}
+      </button>
+      <button *ngIf="anamneseForm.opcao6" class="round-button" (click)="onOpcao6()">
+        <mat-icon *ngIf="anamneseForm.opcao6_icon" aria-hidden="true">{{ anamneseForm.opcao6_icon }}</mat-icon>
+        {{ anamneseForm.opcao6_desc }}
+      </button>
+      <button *ngIf="anamneseForm.opcao7" class="round-button" (click)="onOpcao7()">
+        <mat-icon *ngIf="anamneseForm.opcao7_icon" aria-hidden="true">{{ anamneseForm.opcao7_icon }}</mat-icon>
+        {{ anamneseForm.opcao7_desc }}
+      </button>
+      <button *ngIf="anamneseForm.opcao8" class="round-button" (click)="onOpcao8()">
+        <mat-icon *ngIf="anamneseForm.opcao8_icon" aria-hidden="true">{{ anamneseForm.opcao8_icon }}</mat-icon>
+        {{ anamneseForm.opcao8_desc }}
+      </button>
+      <button *ngIf="anamneseForm.opcao9" class="round-button" (click)="onOpcao9()">
+        <mat-icon *ngIf="anamneseForm.opcao9_icon" aria-hidden="true">{{ anamneseForm.opcao9_icon }}</mat-icon>
+        {{ anamneseForm.opcao9_desc }}
+      </button>
+      <div class="align-end">
+        <button class="round-button" (click)="onCheckBox()">
+          Próximo
+        </button>
+      </div>
     </div>
 
     <div *ngIf="anamneseForm.texto" class="input-full">

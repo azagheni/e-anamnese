@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ANAMNESES } from 'src/db-data';
 import { Anamnese } from './model/anamnese'
@@ -7,6 +7,7 @@ import { AnamneseForm as AnamneseForm } from './model/anamnese-form';
 import { AnamneseService } from './services/anamnese.service';
 import { TermsService } from './services/terms.service';
 import { WelcomeDialogComponent } from './welcome-dialog/welcome-dialog.component';
+import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -25,8 +26,19 @@ export class AppComponent {
   email: string = '';
   telefone: string = '';
   cpf: string = '';
-  escala:number = 5;
+  escala: number = 5;
   nome: string = '';
+  checkboxes = this._formBuilder.group({
+    opcao1: false,
+    opcao2: false,
+    opcao3: false,
+    opcao4: false,
+    opcao5: false,
+    opcao6: false,
+    opcao7: false,
+    opcao8: false,
+    opcao9: false,
+  });
 
   /**
 	 * Constructor
@@ -36,8 +48,9 @@ export class AppComponent {
 	constructor(
     public anamneseService: AnamneseService,
     private dialog: MatDialog,
-    private termsService: TermsService
-    ) {
+    private _formBuilder: FormBuilder,
+    private TermsService: TermsService
+  ) {
     /* istanbul ignore next */
   }
 
@@ -82,6 +95,7 @@ export class AppComponent {
     this.email = '';
     this.telefone = '';
     this.escala = 5;
+    this.checkboxes.setValue({opcao1: false, opcao2: false, opcao3: false, opcao4: false, opcao5: false, opcao6: false, opcao7: false, opcao8: false, opcao9: false});
   }
 
   onTranscricao() : void {
@@ -183,6 +197,43 @@ export class AppComponent {
   onEscala() : void {
     this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.escala.toString());
     this.nextQuestionAnamnese(this.anamneseForm.escala);
+  }
+
+  onCheckBox() : void {
+    let valor = '';
+    if (this.anamneseForm.opcao1_desc){
+      valor += (this.checkboxes.value.opcao1 ? "(X) " : "( ) ") + this.anamneseForm.opcao1_desc + '; ';
+    }
+    if (this.anamneseForm.opcao2_desc){
+      valor += (this.checkboxes.value.opcao2 ? "(X) " : "( ) ") + this.anamneseForm.opcao2_desc + '; ';
+    }
+    if (this.anamneseForm.opcao3_desc){
+      valor += (this.checkboxes.value.opcao3 ? "(X) " : "( ) ") + this.anamneseForm.opcao3_desc + '; ';
+    }
+    if (this.anamneseForm.opcao4_desc){
+      valor += (this.checkboxes.value.opcao4 ? "(X) " : "( ) ") + this.anamneseForm.opcao4_desc + '; ';
+    }
+    if (this.anamneseForm.opcao5_desc){
+      valor += (this.checkboxes.value.opcao5 ? "(X) " : "( ) ") + this.anamneseForm.opcao5_desc + '; ';
+    }
+    if (this.anamneseForm.opcao6_desc){
+      valor += (this.checkboxes.value.opcao6 ? "(X) " : "( ) ") + this.anamneseForm.opcao6_desc + '; ';
+    }
+    if (this.anamneseForm.opcao7_desc){
+      valor += (this.checkboxes.value.opcao7 ? "(X) " : "( ) ") + this.anamneseForm.opcao7_desc + '; ';
+    }
+    if (this.anamneseForm.opcao8_desc){
+      valor += (this.checkboxes.value.opcao8 ? "(X) " : "( ) ") + this.anamneseForm.opcao8_desc + '; ';
+    }
+    if (this.anamneseForm.opcao9_desc){
+      valor += (this.checkboxes.value.opcao9 ? "(X) " : "( ) ") + this.anamneseForm.opcao9_desc + '; ';
+    }
+    if (valor.endsWith(';')) {
+      valor = valor.slice(0, -1);
+    }
+
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, valor);
+    this.nextQuestionAnamnese(this.anamneseForm.checkbox);
   }
 
   onOpcao1() : void {

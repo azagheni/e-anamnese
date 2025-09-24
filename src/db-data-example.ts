@@ -111,7 +111,17 @@ export const ANAMNESES: any = [
         video: "4.mp4",
         texto: 99999
     },
-
+    {
+        id: 17,
+        descricao: "Modelo de Pergunta CHECKBOX?",
+        impressao: "Modelo de Pegunta CHECKBOX?",
+        video: "5.mp4",
+        checkbox: 99999,
+        opcao1_desc: 'Masculino',
+        opcao2_desc: 'Feminino',
+        opcao3_desc: 'Opção 3',
+        opcao4_desc: 'Opção 4',
+    },
     {
         id: 99999,
         descricao: "Registro concluido!",

@@ -14,14 +14,12 @@ export interface AnamneseFormData {
     naosei: number;
     escala: number;
     texto: number;
-    opcaoTexto: number;
-    opcaoTexto_desc: string;
-    opcaoTexto_icon: string;
     numero: number;
     data: number;
     telefone: number;
     email: number;
     cpf: number;
+    checkbox: number;
     opcao1: number;
     opcao1_desc: string;
     opcao1_icon: string;
@@ -49,4 +47,7 @@ export interface AnamneseFormData {
     opcao9: number;
     opcao9_desc: string;
     opcao9_icon: string;
+    opcaoTexto: number;
+    opcaoTexto_desc: string;
+    opcaoTexto_icon: string;
 }

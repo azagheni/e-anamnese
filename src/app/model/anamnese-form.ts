@@ -21,14 +21,12 @@ export class AnamneseForm implements AnamneseFormData {
     naosei: number;
     escala: number;
     texto: number;
-    opcaoTexto: number;
-    opcaoTexto_desc: string;
-    opcaoTexto_icon: string;
     numero: number;
     data: number;
     telefone: number;
     email: number;
     cpf: number;
+    checkbox: number;
     opcao1:number;
     opcao1_desc: string;
     opcao1_icon: string;
@@ -56,6 +54,9 @@ export class AnamneseForm implements AnamneseFormData {
     opcao9:number;
     opcao9_desc: string;
     opcao9_icon: string;
+    opcaoTexto: number;
+    opcaoTexto_desc: string;
+    opcaoTexto_icon: string;
 
 	/**
 	 * Constructor
@@ -74,14 +75,12 @@ export class AnamneseForm implements AnamneseFormData {
         this.naosei = 0;
         this.escala = 0;
         this.texto = 0;
-        this.opcaoTexto = 0;
-        this.opcaoTexto_desc = '';
-        this.opcaoTexto_icon = '';
         this.numero = 0;
         this.data = 0;
         this.telefone = 0;
         this.email = 0;
         this.cpf = 0;
+        this.checkbox = 0;
         this.opcao1 = 0;
         this.opcao1_desc = '';
         this.opcao1_icon = '';
@@ -109,6 +108,9 @@ export class AnamneseForm implements AnamneseFormData {
         this.opcao9 = 0;
         this.opcao9_desc = '';
         this.opcao9_icon = '';
+        this.opcaoTexto = 0;
+        this.opcaoTexto_desc = '';
+        this.opcaoTexto_icon = '';
 
         if (data) {
 			assign(this, data);

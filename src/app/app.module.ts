@@ -13,7 +13,8 @@ import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSliderModule } from '@angular/material/slider';
-import { FormsModule } from '@angular/forms';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CpfPipe } from './pipes/cpf.pipes';
 import { DataPipe } from './pipes/data.pipes';
 import { TelefonePipe } from './pipes/telefone.pipes';
@@ -43,6 +44,8 @@ import { WelcomeDialogComponent } from './welcome-dialog/welcome-dialog.componen
     MatButtonModule,
     MatSliderModule,
     MatDialogModule,
+    MatCheckboxModule,
+    ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
