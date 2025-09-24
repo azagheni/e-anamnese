@@ -73,38 +73,38 @@ export const ANAMNESES: any = [
         descricao: "Modelo de Pergunta com resposta numérica:",
         impressao: "Modelo de Pergunta com resposta numérica:",
         video: "7.mp4",
-        numero: 9
-    },
-    {
-        id: 9,
-        descricao: "Modelo de Pergunta com resposta CPF:",
-        impressao: "Modelo de Pergunta com resposta CPF:",
-        video: "10.mp4",
-        cpf: 10
+        numero: 10
     },
     {
         id: 10,
-        descricao: "Modelo de Pergunta com resposta E-mail:",
-        impressao: "Modelo de Pergunta com resposta E-mail:",
-        video: "13.mp4",
-        email: 11
-    },
-    {
-        id: 11,
-        descricao: "Modelo de Pergunta com resposta Telefone:",
-        impressao: "Modelo de Pergunta com resposta Telefone:",
-        video: "14.mp4",
-        telefone: 12
-    },
-    {
-        id: 12,
-        descricao: "Modelo de Pergunta com resposta ESCALA:",
-        impressao: "Modelo de Pergunta com resposta ESCALA:",
-        video: "23.mp4",
-        escala: 13
+        descricao: "Modelo de Pergunta com resposta CPF:",
+        impressao: "Modelo de Pergunta com resposta CPF:",
+        video: "10.mp4",
+        cpf: 13
     },
     {
         id: 13,
+        descricao: "Modelo de Pergunta com resposta E-mail:",
+        impressao: "Modelo de Pergunta com resposta E-mail:",
+        video: "13.mp4",
+        email: 14
+    },
+    {
+        id: 14,
+        descricao: "Modelo de Pergunta com resposta Telefone:",
+        impressao: "Modelo de Pergunta com resposta Telefone:",
+        video: "14.mp4",
+        telefone: 15
+    },
+    {
+        id: 15,
+        descricao: "Modelo de Pergunta com resposta ESCALA:",
+        impressao: "Modelo de Pergunta com resposta ESCALA:",
+        video: "23.mp4",
+        escala: 16
+    },
+    {
+        id: 16,
         confidencial: 1,
         descricao: "Modelo de Pergunta aguardando resposta escrita e PRIVADA AO MÉDICO:",
         impressao: "Modelo de Pergunta aguardando resposta escrita e PRIVADA AO MÉDICO:",
