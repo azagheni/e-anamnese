@@ -147,7 +147,7 @@ export const ANAMNESES: any = [
         opcaoTexto_desc: 'Desempregado'
     },
     {
-        id: 170,
+        id: 160,
         descricao: "Qual o nome da sua mãe?",
         impressao: "Mãe:",
         video: "4.mp4",
