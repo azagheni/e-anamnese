@@ -9,11 +9,13 @@ export interface AnamneseFormData {
     video: string;
     inicio: number;
     fim: number;
+    informacao: number;
     sim: number;
     nao: number;
     naosei: number;
     escala: number;
     texto: number;
+    placeholder: string;
     numero: number;
     data: number;
     telefone: number;

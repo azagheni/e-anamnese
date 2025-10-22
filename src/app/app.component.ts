@@ -128,12 +128,17 @@ export class AppComponent {
     anamnese.cpf = encodeURIComponent(this.cpf);
     anamnese.answers = encodeURIComponent(JSON.stringify(this.anamneseResult));
     this.anamneseService.addAnamnese(anamnese).subscribe(() => {
-      alert("Anamnese salva com sucesso!");
+      //alert("Anamnese salva com sucesso!");
+      console.log('Anamnese salva com sucesso!');
     });
   }
 
   onInicio() : void {
     this.anamneseForm = new AnamneseForm(this.findAnamneseById(this.anamneseForm.inicio));
+  }
+
+  onInformacao() : void {
+    this.anamneseForm = new AnamneseForm(this.findAnamneseById(this.anamneseForm.informacao));
   }
 
   onFim() : void {

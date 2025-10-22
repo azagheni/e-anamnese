@@ -28,6 +28,12 @@
       </button>
     </div>
 
+    <div *ngIf="anamneseForm.informacao">
+      <button (click)="onInformacao()">
+          Continuar
+      </button>
+    </div>
+
     <div *ngIf="anamneseForm.fim" class="input-normal">
       <div class="transcription-card">
         Obrigado por utilizar o e-anamnese. Clique em Concluir para finalizar o seu cadastro.
@@ -165,7 +171,7 @@
     <div *ngIf="anamneseForm.texto" class="input-full">
       <input
         type="search"
-        placeholder="Digite sua resposta"
+        [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'Digite sua resposta'"
         [(ngModel)]="texto"
       />
 
@@ -184,7 +190,7 @@
     <div *ngIf="anamneseForm.numero" class="input-normal">
       <input
         type="search"
-        placeholder="ex: 50"
+        [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'ex: 25'"
         [(ngModel)]="numero"
       />
       <div class="align-end">
@@ -198,7 +204,7 @@
       <input
         type="search"
         name="data"
-        placeholder="dd/mm/aaaa"
+        [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'dd/mm/aaaa'"
         [ngModel]="data | data"
         (ngModelChange)="data=$event"
       />
@@ -212,7 +218,7 @@
     <div *ngIf="anamneseForm.telefone" class="input-normal">
       <input
         type="search"
-        placeholder="ex: (41)9999-88888"
+        [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'ex: (41)9999-88888'"
         [ngModel]="telefone | telefone"
         (ngModelChange)="telefone=$event"
       />
@@ -240,7 +246,7 @@
       <input
         type="search"
         name="cpf"
-        placeholder="ex: 111.222.333-44"
+        [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'ex: 111.222.333-44'"
         [ngModel]="cpf | cpf"
         (ngModelChange)="cpf=$event"
       />

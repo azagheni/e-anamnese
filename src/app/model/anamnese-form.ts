@@ -16,11 +16,13 @@ export class AnamneseForm implements AnamneseFormData {
     video: string;
     inicio: number;
     fim: number;
+    informacao: number;
     sim: number;
     nao: number;
     naosei: number;
     escala: number;
     texto: number;
+    placeholder: string;
     numero: number;
     data: number;
     telefone: number;
@@ -70,11 +72,13 @@ export class AnamneseForm implements AnamneseFormData {
 		this.video = '0.mp4';
         this.inicio = 0;
         this.fim = 0;
+        this.informacao = 0;
         this.sim = 0;
         this.nao = 0;
         this.naosei = 0;
         this.escala = 0;
         this.texto = 0;
+        this.placeholder = '';
         this.numero = 0;
         this.data = 0;
         this.telefone = 0;
