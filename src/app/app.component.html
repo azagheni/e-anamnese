@@ -3,22 +3,22 @@
       <img class="logo"
           src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
     </div>
-    <button (click)="onTranscricao()">
-      <mat-icon aria-hidden="true">text_snippet</mat-icon>
-        Transcrição
-    </button>
+    <div></div>
     <div></div>
     <button *ngIf="anamneseForm.id != 1" (click)="onRecomecar()">
       <mat-icon aria-hidden="true">restart_alt</mat-icon>
       Recomeçar
     </button>
 </div>
+<div class="progress-bar">
+  <mat-progress-bar mode="determinate" [value]="progresso"></mat-progress-bar>
+</div>
 
 <video [src]="'./assets/videos/' + anamneseForm.video" autoplay muted loop type="video/mp4" poster="./assets/images/video.gif"></video>
 
 <div class="content">
 
-    <div *ngIf="isTranscricao" class="transcription-card">
+    <div class="transcription-card">
       {{ anamneseForm.descricao }}
     </div>
 

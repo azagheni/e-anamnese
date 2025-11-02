@@ -2,6 +2,7 @@
     display: grid;
     grid-template:
         'header' auto
+        'progress' auto
         'video' auto
         'content' 1fr;
     block-size: 100vh; // Fallback for missing 'vb' unit support
@@ -23,6 +24,10 @@
     color: white;
     align-items: center;
     justify-content: space-between;
+}
+
+.progress-bar {
+    grid-area: progress;
 }
 
 .content {

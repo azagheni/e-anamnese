@@ -17,9 +17,9 @@ import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 export class AppComponent {
   title = 'e-anamnese';
   anamneses = ANAMNESES;
+  progresso: number = 0;
   anamneseForm: AnamneseForm = new AnamneseForm();
   anamneseResult: any = [];
-  isTranscricao: boolean = false;
   texto: string = '';
   numero: string = '';
   data: string = '';
@@ -98,10 +98,6 @@ export class AppComponent {
     this.checkboxes.setValue({opcao1: false, opcao2: false, opcao3: false, opcao4: false, opcao5: false, opcao6: false, opcao7: false, opcao8: false, opcao9: false});
   }
 
-  onTranscricao() : void {
-    this.isTranscricao = !this.isTranscricao;
-  }
-
   updateAnamnese(id:number, confidential: number, answer:string) : void {
     var question = {
         id: id,
@@ -115,6 +111,7 @@ export class AppComponent {
   nextQuestionAnamnese(id:number) : void {
     this.reset();
     this.anamneseForm = new AnamneseForm(this.findAnamneseById(id));
+    this.progresso = this.anamneses.findIndex((obj: any) => obj.id === this.anamneseForm.id);
     console.log(`Next question: ` +  id );
     if (this.anamneseForm.fim) {
       this.salvar();

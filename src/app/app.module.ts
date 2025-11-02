@@ -14,6 +14,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CpfPipe } from './pipes/cpf.pipes';
 import { DataPipe } from './pipes/data.pipes';
@@ -45,6 +46,7 @@ import { WelcomeDialogComponent } from './welcome-dialog/welcome-dialog.componen
     MatSliderModule,
     MatDialogModule,
     MatCheckboxModule,
+    MatProgressBarModule,
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
