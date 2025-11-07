@@ -12,9 +12,11 @@
 </div>
 <div class="progress-bar">
   <mat-progress-bar mode="determinate" [value]="progresso"></mat-progress-bar>
-  <div class="progress-init-background">
-    <div class="progress-init"></div>
+  <div class="progress-indicator">
+    <div class="progress-indicator-start"></div>
   </div>
+  <div class="progress-label">Progresso</div>
+  <div class="progress-percent">{{ progresso }} %</div>
 </div>
 
 <video [src]="'./assets/videos/' + anamneseForm.video" autoplay muted loop type="video/mp4" poster="./assets/images/video.gif"></video>

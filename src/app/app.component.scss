@@ -25,12 +25,15 @@
     color: black;
     align-items: center;
     justify-content: space-between;
+    border-bottom: 1px solid #efefef;
 }
 
 .progress-bar {
     grid-area: progress;
     background: linear-gradient(45deg, #f5faff, white);
-    padding: 20px;
+    padding-inline: 20px;
+    padding-top: 80px;
+    padding-bottom: 20px;
 
     .mat-mdc-progress-bar {
         --mdc-linear-progress-active-indicator-height: 14px;
@@ -40,12 +43,30 @@
         --mdc-linear-progress-track-color: rgba(63, 81, 181, 0.25);
     }
 
-    .progress-init-background {
+    .progress-label {
+        position: absolute;
+        margin-top: -80px;
+        font-weight: var(--font-weight-medium);
+        font-size: var(--font-size-m);
+        right: 20px;
+        color: gray;
+    }
+
+    .progress-percent {
+        position: absolute;
+        margin-top: -50px;
+        font-weight: var(--font-weight-bold);
+        font-size: var(--font-size-header-xs);
+        right: 20px;
+        color: #4290fb;
+    }
+
+    .progress-indicator {
         position: absolute;
         background-color: #f5faff;
         margin-top: -15px;
 
-        .progress-init {
+        .progress-indicator-start {
             background-color: #4290fb;
             inline-size: 8px;
             block-size: 14px;
