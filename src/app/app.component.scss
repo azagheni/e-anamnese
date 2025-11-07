@@ -9,6 +9,7 @@
     block-size: 100vb;
     max-block-size: 100vh; // Fallback for missing 'vb' unit support
     max-block-size: 100vb;
+    background-color: #effbf9;
 }
 
 .logo {
@@ -19,15 +20,25 @@
     grid-area: header;
     display: grid;
     grid-template-columns: auto auto 1fr auto;
-    background: #1976d2;
+    background: White;
     padding: 2px 15px;
-    color: white;
+    color: black;
     align-items: center;
     justify-content: space-between;
 }
 
 .progress-bar {
     grid-area: progress;
+    background: linear-gradient(45deg, #f5faff, white);
+    padding: 20px;
+
+    .mat-mdc-progress-bar {
+        --mdc-linear-progress-active-indicator-height: 4px;
+        --mdc-linear-progress-track-height: 16px;
+        --mdc-linear-progress-track-shape: 16px;
+        --mdc-linear-progress-active-indicator-color: #3f51b5;
+        --mdc-linear-progress-track-color: rgba(63, 81, 181, 0.25);
+    }
 }
 
 .content {
