@@ -33,11 +33,25 @@
     padding: 20px;
 
     .mat-mdc-progress-bar {
-        --mdc-linear-progress-active-indicator-height: 4px;
+        --mdc-linear-progress-active-indicator-height: 14px;
         --mdc-linear-progress-track-height: 16px;
         --mdc-linear-progress-track-shape: 16px;
-        --mdc-linear-progress-active-indicator-color: #3f51b5;
+        --mdc-linear-progress-active-indicator-color: #4290fb;
         --mdc-linear-progress-track-color: rgba(63, 81, 181, 0.25);
+    }
+
+    .progress-init-background {
+        position: absolute;
+        background-color: #f5faff;
+        margin-top: -15px;
+
+        .progress-init {
+            background-color: #4290fb;
+            inline-size: 8px;
+            block-size: 14px;
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+        }
     }
 }
 
