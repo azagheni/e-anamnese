@@ -131,11 +131,11 @@ export class AppComponent {
   }
 
   onInicio() : void {
-    this.anamneseForm = new AnamneseForm(this.findAnamneseById(this.anamneseForm.inicio));
+    this.nextQuestionAnamnese(this.anamneseForm.inicio);
   }
 
   onInformacao() : void {
-    this.anamneseForm = new AnamneseForm(this.findAnamneseById(this.anamneseForm.informacao));
+    this.nextQuestionAnamnese(this.anamneseForm.informacao);
   }
 
   onFim() : void {
