@@ -5,7 +5,7 @@
     </div>
     <div></div>
     <div></div>
-    <button *ngIf="anamneseForm.id != 1" (click)="onRecomecar()">
+    <button class="button-recomecar" *ngIf="anamneseForm.id != 1" (click)="onRecomecar()">
       <mat-icon aria-hidden="true">restart_alt</mat-icon>
       Recomeçar
     </button>
@@ -19,7 +19,9 @@
   <div class="progress-percent">{{ progresso }} %</div>
 </div>
 
-<video [src]="'./assets/videos/' + anamneseForm.video" autoplay muted loop type="video/mp4" poster="./assets/images/video.gif"></video>
+<div class="video-container">
+  <video [src]="'./assets/videos/' + anamneseForm.video" autoplay muted loop type="video/mp4" poster="./assets/images/video.gif"></video>
+</div>
 
 <div class="content">
 
@@ -262,4 +264,13 @@
       </div>
     </div>
 
+</div>
+
+<div class="footer">
+  <button class="button-footer">
+    Anterior
+  </button>
+  <button class="button-footer">
+    Próximo
+  </button>
 </div>

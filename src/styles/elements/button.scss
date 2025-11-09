@@ -5,25 +5,25 @@
 button,
 .button {
 	display: flex;
-	padding-block: var(--spacing-s);
-	padding-inline: var(--spacing-m);
+	padding-block: var(--spacing-m);
+	padding-inline: var(--spacing-xxl);
 	border: none;
 	border-radius: var(--border-radius);
-	background: var(--color-bg-subtle);
-	box-shadow: var(--shadow-s);
-	color: var(--color-text);
+	background: linear-gradient(90deg, #3B82F4, #15B8A7);
+	box-shadow: var(--shadow-m);
+	color: white;
 	font-family: inherit;
-	font-size: var(--font-size-m);
-	font-weight: var(--font-weight-semi-bold);
+	font-size: var(--font-size-xl);
+	font-weight: var(--font-weight-medium);
 	text-decoration: none;
     align-items: center;
 	cursor: pointer;
 	font-variant-numeric: lining-nums;
 
 	&:disabled {
-		background-color: var(--color-bg--disabled);
+		background: var(--color-bg--disabled);
 		cursor: default;
-		color: lightgray;
+		color: gray;
 	}
 	&:not(:disabled):focus,
 	&:not(:disabled):hover {

@@ -4,7 +4,8 @@
         'header' auto
         'progress' auto
         'video' auto
-        'content' 1fr;
+        'content' 1fr
+        'footer' auto;
     block-size: 100vh; // Fallback for missing 'vb' unit support
     block-size: 100vb;
     max-block-size: 100vh; // Fallback for missing 'vb' unit support
@@ -26,6 +27,12 @@
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #efefef;
+
+    .button-recomecar {
+        padding-block: var(--spacing-s);
+        padding-inline: var(--spacing-m);
+        font-size: var(--font-size-m);
+    }
 }
 
 .progress-bar {
@@ -56,9 +63,9 @@
         position: absolute;
         margin-top: -50px;
         font-weight: var(--font-weight-bold);
-        font-size: var(--font-size-header-xs);
+        font-size: 1.6rem;
         right: 20px;
-        color: #4290fb;
+        color: #2c64cf;
     }
 
     .progress-indicator {
@@ -88,6 +95,19 @@
     row-gap: 15px;
 }
 
+.footer {
+    grid-area: footer;
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+
+    .button-footer {
+        max-width: 300px;
+        justify-content: center;
+        width: 48%;
+    }
+}
+
 .transcription-card {
     text-align: center;
     border-radius: 4px;
@@ -97,7 +117,6 @@
 	@media screen and (prefers-color-scheme: dark) {
         box-shadow: 0 1px 16px 0 rgba(255, 255, 255, .8), 0 2px 8px 0 rgba(0, 0, 0, .14), 0 4px 8px -1px rgba(255, 255, 255, .8);
 	}
-
 }
 
 .center {
@@ -147,12 +166,16 @@
     justify-content: flex-end;
 }
 
-video {
+.video-container {
     grid-area: video;
-    inline-size: 100%;
-    max-inline-size: 720px;
-    justify-self: center;
-    padding: 15px;
+    padding: 20px;
+
+    video {
+        inline-size: 100%;
+        max-inline-size: 720px;
+        justify-self: center;
+        border-radius: 1rem;
+    }
 }
 
 video::-webkit-media-controls {
