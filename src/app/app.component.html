@@ -25,7 +25,7 @@
 
 <div class="content">
 
-    <div class="transcription-card">
+    <div class="transcription">
       {{ anamneseForm.descricao }}
     </div>
 
@@ -266,11 +266,11 @@
 
 </div>
 
-<div class="footer">
-  <button class="button-footer">
+<div *ngIf="!anamneseForm.inicio" class="footer">
+  <button class="button-footer" (click)="onAnterior()" [disabled]="!validateAnterior()">
     Anterior
   </button>
-  <button class="button-footer">
+  <button class="button-footer" (click)="onProximo()" [disabled]="!validateProximo()">
     Próximo
   </button>
 </div>

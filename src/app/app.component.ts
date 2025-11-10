@@ -57,6 +57,7 @@ export class AppComponent {
 	ngOnInit() {
     console.log('[AppComponent] =============== Initializing app ===============');
     const dialogRef = this.dialog.open(WelcomeDialogComponent);
+    this.onRecomecar();
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
@@ -129,6 +130,23 @@ export class AppComponent {
       console.log('Anamnese salva com sucesso!');
     });
   }
+
+  onProximo() : void {
+
+  }
+
+  validateProximo() : boolean {
+    return true;
+  }
+
+  onAnterior() : void {
+    this.reset();
+  }
+
+  validateAnterior() : boolean {
+    return this.progresso > 0;
+  }
+
 
   onInicio() : void {
     this.nextQuestionAnamnese(this.anamneseForm.inicio);
