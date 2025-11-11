@@ -40,6 +40,8 @@ export class AppComponent {
     opcao9: false,
   });
 
+  isOpcaoTexto: boolean = false;
+
   /**
 	 * Constructor
 	 *
@@ -97,6 +99,7 @@ export class AppComponent {
     this.telefone = '';
     this.escala = 5;
     this.checkboxes.setValue({opcao1: false, opcao2: false, opcao3: false, opcao4: false, opcao5: false, opcao6: false, opcao7: false, opcao8: false, opcao9: false});
+    this.isOpcaoTexto = false;
   }
 
   updateAnamnese(id:number, confidential: number, answer:string) : void {
@@ -132,10 +135,15 @@ export class AppComponent {
   }
 
   onProximo() : void {
-
+    if(this.anamneseForm.texto) {
+      this.onTexto();
+    }
   }
 
   validateProximo() : boolean {
+    if(this.anamneseForm.texto) {
+      return this.texto.length > 0 || this.isOpcaoTexto;
+    }
     return true;
   }
 
@@ -180,13 +188,12 @@ export class AppComponent {
     if (this.anamneseForm.isNome) {
       this.nome = this.texto;
     }
-    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.texto);
+    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.isOpcaoTexto ? this.anamneseForm.opcaoTexto_desc : this.texto);
     this.nextQuestionAnamnese(this.anamneseForm.texto);
   }
 
   onOpcaoTexto() : void {
-    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.anamneseForm.opcaoTexto_desc);
-    this.nextQuestionAnamnese(this.anamneseForm.opcaoTexto);
+    this.isOpcaoTexto = !this.isOpcaoTexto;
   }
 
   onNumero() : void {

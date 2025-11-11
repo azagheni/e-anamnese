@@ -10,7 +10,7 @@ label {
 	flex-direction: column;
 	margin: var(--spacing-s);
 	color: var(--color-text);
-	font-size: var(--font-size-m);
+	font-size: var(--font-size-xl);
 	gap: var(--spacing-s);
 }
 
@@ -28,7 +28,7 @@ input {
 	box-shadow: var(--shadow-xs);
 	color: var(--color-text-secondary);
 	font-family: inherit;
-	font-size: var(--font-size-m);
+	font-size: var(--font-size-xl);
 
 	&::placeholder {
 		color: var(--color-text-placeholder);

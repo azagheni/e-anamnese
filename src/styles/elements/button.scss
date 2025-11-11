@@ -25,6 +25,7 @@ button,
 		cursor: default;
 		color: gray;
 	}
+	/*
 	&:not(:disabled):focus,
 	&:not(:disabled):hover {
 		background-color: var(--color-accent-bg--hover);
@@ -41,6 +42,7 @@ button,
 		background-color: var(--color-accent-bg--active);
 		color: var(--color-onaccent-text--active);
 	}
+	*/
 }
 
 /*************************************************************************************************
