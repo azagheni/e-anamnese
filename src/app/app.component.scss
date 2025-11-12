@@ -224,7 +224,13 @@ video::-webkit-media-controls {
 	}
 }
 
-.button-not-checked {
+.button-answer {
+    width: 100%;
+    padding-inline: var(--spacing-m);
+    column-gap: 10px;
+}
+
+.button-answer-not-checked {
     background: white;
     color: black;
     box-shadow: 0px 0px 2px 2px #e6e6e8;

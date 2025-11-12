@@ -51,5 +51,4 @@ export interface AnamneseFormData {
     opcao9_icon: string;
     opcaoTexto: number;
     opcaoTexto_desc: string;
-    opcaoTexto_icon: string;
 }

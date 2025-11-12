@@ -58,7 +58,6 @@ export class AnamneseForm implements AnamneseFormData {
     opcao9_icon: string;
     opcaoTexto: number;
     opcaoTexto_desc: string;
-    opcaoTexto_icon: string;
 
 	/**
 	 * Constructor
@@ -114,7 +113,6 @@ export class AnamneseForm implements AnamneseFormData {
         this.opcao9_icon = '';
         this.opcaoTexto = 0;
         this.opcaoTexto_desc = '';
-        this.opcaoTexto_icon = '';
 
         if (data) {
 			assign(this, data);

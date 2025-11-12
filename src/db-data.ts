@@ -58,8 +58,7 @@ export const ANAMNESES: any = [
         texto: 70,
         opcaoTexto: 70,
         placeholder: "Digite aqui o texto que não segue a resposta padrão",
-        opcaoTexto_desc: 'Resposta Padrão',
-        opcaoTexto_icon: 'accessibility'
+        opcaoTexto_desc: 'Resposta Padrão'
     },
     {
         id: 70,

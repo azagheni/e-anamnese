@@ -185,8 +185,9 @@
         />
 
         <div *ngIf="anamneseForm.opcaoTexto" class="center-list-texto">
-          <button *ngIf="anamneseForm.opcaoTexto" class="round-button" [ngClass]="{'button-not-checked': !isOpcaoTexto && texto.length === 0}" [disabled]="texto" (click)="onOpcaoTexto()">
-            <mat-icon *ngIf="anamneseForm.opcaoTexto_icon" aria-hidden="true">{{ anamneseForm.opcaoTexto_icon }}</mat-icon>
+          <button *ngIf="anamneseForm.opcaoTexto" class="button-answer" [ngClass]="{'button-answer-not-checked': !isOpcaoTexto && texto.length === 0}" [disabled]="texto" (click)="onOpcaoTexto()">
+            <mat-icon *ngIf="!isOpcaoTexto && texto.length === 0 || texto.length > 0">radio_button_unchecked</mat-icon>
+            <mat-icon *ngIf="isOpcaoTexto && texto.length === 0">radio_button_checked</mat-icon>
             {{ anamneseForm.opcaoTexto_desc }}
           </button>
         </div>
