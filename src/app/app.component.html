@@ -5,9 +5,9 @@
     </div>
     <div></div>
     <div></div>
-    <button class="button-recomecar" *ngIf="anamneseForm.id != 1" (click)="onRecomecar()">
+    <div class="button-recomecar" *ngIf="anamneseForm.id != 1" (click)="onRecomecar()">
       <mat-icon aria-hidden="true">close</mat-icon>
-    </button>
+    </div>
 </div>
 <div class="progress-bar">
   <mat-progress-bar mode="determinate" [value]="progresso"></mat-progress-bar>
@@ -33,7 +33,7 @@
     <div class="content-answers">
       <div *ngIf="anamneseForm.inicio">
         <button (click)="onInicio()">
-            Iniciar
+            Iniciar Anamnese
         </button>
       </div>
 
