@@ -6,7 +6,7 @@ export const ANAMNESES: any = [
         descricao: "Oi, tudo bem? Neste aplicativo faremos algumas perguntas importantes para o seu atendimento com os enfermeiros e médicos. Você responderá clicando algumas respostas ‘sim’, ‘não’ ou ‘não sei’ e também haverá uma escala de dor que vai de 0 a 10. Essa escala tem rostos e cores que você escolherá informando qual o nível de sua dor.",
         impressao: "Oi, tudo bem? Neste aplicativo faremos algumas perguntas importantes para o seu atendimento com os enfermeiros e médicos. Você responderá clicando algumas respostas ‘sim’, ‘não’ ou ‘não sei’ e também haverá uma escala de dor que vai de 0 a 10. Essa escala tem rostos e cores que você escolherá informando qual o nível de sua dor.",
         video: "1.mp4",
-        inicio: 60
+        inicio: 2
     },
     {
         id: 2,

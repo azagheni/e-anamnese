@@ -161,6 +161,7 @@
     display: flex;
     row-gap: 15px;
     flex-direction: column;
+    width: 100%;
 }
 
 .center-list-texto {
@@ -229,7 +230,7 @@ video::-webkit-media-controls {
 .button-answer {
     width: 100%;
     padding-inline: var(--spacing-m);
-    column-gap: 10px;
+    column-gap: var(--spacing-xs);
 }
 
 .button-answer-not-checked {

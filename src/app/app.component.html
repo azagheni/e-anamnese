@@ -30,16 +30,10 @@
       </div>
     </div>
 
-    <div class="content-answers">
+    <div *ngIf="!anamneseForm.informacao" class="content-answers">
       <div *ngIf="anamneseForm.inicio">
         <button (click)="onInicio()">
             Iniciar Anamnese
-        </button>
-      </div>
-
-      <div *ngIf="anamneseForm.informacao">
-        <button (click)="onInformacao()">
-            Continuar
         </button>
       </div>
 
@@ -55,18 +49,39 @@
         </div>
       </div>
 
-      <div *ngIf="anamneseForm.sim || anamneseForm.nao || anamneseForm.naosei" class="center">
-        <button class="round-button error" *ngIf="anamneseForm.nao" (click)="onNao()">
-          <mat-icon aria-hidden="true">close</mat-icon>
+      <div *ngIf="anamneseForm.texto" class="input-full">
+        <input
+          type="search"
+          [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'Digite sua resposta'"
+          [(ngModel)]="texto"
+        />
+
+        <div *ngIf="anamneseForm.opcaoTexto" class="center-list-texto">
+          <button *ngIf="anamneseForm.opcaoTexto" class="button-answer" [ngClass]="{'button-answer-not-checked': !isOpcaoTexto && texto.length === 0}" [disabled]="texto" (click)="onOpcaoTexto()">
+            <mat-icon *ngIf="!isOpcaoTexto && texto.length === 0 || texto.length > 0">radio_button_unchecked</mat-icon>
+            <mat-icon *ngIf="isOpcaoTexto && texto.length === 0">radio_button_checked</mat-icon>
+            {{ anamneseForm.opcaoTexto_desc }}
+          </button>
+        </div>
+      </div>
+
+      <div *ngIf="anamneseForm.sim || anamneseForm.nao || anamneseForm.naosei" class="center-list">
+        <button *ngIf="anamneseForm.sim" class="button-answer" [ngClass]="{'button-answer-not-checked': !isSim}" (click)="onSim()">
+          <mat-icon *ngIf="!isSim">radio_button_unchecked</mat-icon>
+          <mat-icon *ngIf="isSim">radio_button_checked</mat-icon>
+          Sim
+        </button>
+
+        <button *ngIf="anamneseForm.nao" class="button-answer" [ngClass]="{'button-answer-not-checked': !isNao}" (click)="onNao()">
+          <mat-icon *ngIf="!isNao">radio_button_unchecked</mat-icon>
+          <mat-icon *ngIf="isNao">radio_button_checked</mat-icon>
           Não
         </button>
-        <button class="round-button"  *ngIf="anamneseForm.naosei"  (click)="onNaoSei()">
-          <mat-icon aria-hidden="true">question_mark</mat-icon>
+
+        <button *ngIf="anamneseForm.naosei" class="button-answer" [ngClass]="{'button-answer-not-checked': !isNaoSei}" (click)="onNaoSei()">
+          <mat-icon *ngIf="!isNaoSei">radio_button_unchecked</mat-icon>
+          <mat-icon *ngIf="isNaoSei">radio_button_checked</mat-icon>
           Não sei
-        </button>
-        <button class="round-button success" *ngIf="anamneseForm.sim" (click)="onSim()">
-          <mat-icon aria-hidden="true">check</mat-icon>
-          Sim
         </button>
       </div>
 
@@ -173,22 +188,6 @@
         <div class="align-end">
           <button class="round-button" (click)="onCheckBox()">
             Próximo
-          </button>
-        </div>
-      </div>
-
-      <div *ngIf="anamneseForm.texto" class="input-full">
-        <input
-          type="search"
-          [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'Digite sua resposta'"
-          [(ngModel)]="texto"
-        />
-
-        <div *ngIf="anamneseForm.opcaoTexto" class="center-list-texto">
-          <button *ngIf="anamneseForm.opcaoTexto" class="button-answer" [ngClass]="{'button-answer-not-checked': !isOpcaoTexto && texto.length === 0}" [disabled]="texto" (click)="onOpcaoTexto()">
-            <mat-icon *ngIf="!isOpcaoTexto && texto.length === 0 || texto.length > 0">radio_button_unchecked</mat-icon>
-            <mat-icon *ngIf="isOpcaoTexto && texto.length === 0">radio_button_checked</mat-icon>
-            {{ anamneseForm.opcaoTexto_desc }}
           </button>
         </div>
       </div>

@@ -41,6 +41,9 @@ export class AppComponent {
   });
 
   isOpcaoTexto: boolean = false;
+  isSim: boolean = false;
+  isNao: boolean = false;
+  isNaoSei: boolean = false;
 
   /**
 	 * Constructor
@@ -100,6 +103,9 @@ export class AppComponent {
     this.escala = 5;
     this.checkboxes.setValue({opcao1: false, opcao2: false, opcao3: false, opcao4: false, opcao5: false, opcao6: false, opcao7: false, opcao8: false, opcao9: false});
     this.isOpcaoTexto = false;
+    this.isSim = false;
+    this.isNao = false;
+    this.isNaoSei = false;
   }
 
   updateAnamnese(id:number, confidential: number, answer:string) : void {
@@ -135,14 +141,34 @@ export class AppComponent {
   }
 
   onProximo() : void {
-    if(this.anamneseForm.texto) {
-      this.onTexto();
+    if(this.anamneseForm.informacao) {
+      this.nextQuestionAnamnese(this.anamneseForm.informacao);
+    } else if(this.anamneseForm.texto) {
+      if (this.anamneseForm.isNome) {
+        this.nome = this.texto;
+      }
+      this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.isOpcaoTexto ? this.anamneseForm.opcaoTexto_desc : this.texto);
+      this.nextQuestionAnamnese(this.anamneseForm.texto);
+    } else if(this.anamneseForm.sim) {
+      if (!this.isSim) {
+        this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, 'SIM');
+        this.nextQuestionAnamnese(this.anamneseForm.sim);
+      } else if (this.anamneseForm.nao) {
+        this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, 'NÃO');
+        this.nextQuestionAnamnese(this.anamneseForm.nao);
+      } else if (this.anamneseForm.naosei) {
+        this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, 'NÃO SEI');
+        this.nextQuestionAnamnese(this.anamneseForm.naosei);
+      }
     }
   }
 
   validateProximo() : boolean {
     if(this.anamneseForm.texto) {
       return this.texto.length > 0 || this.isOpcaoTexto;
+    }
+    if(this.anamneseForm.sim) {
+      return this.isSim || this.isNao || this.isNaoSei;
     }
     return true;
   }
@@ -160,28 +186,27 @@ export class AppComponent {
     this.nextQuestionAnamnese(this.anamneseForm.inicio);
   }
 
-  onInformacao() : void {
-    this.nextQuestionAnamnese(this.anamneseForm.informacao);
-  }
-
   onFim() : void {
     console.log('REGISTRO CONCLUIDO COM SUCESSO');
     this.onRecomecar();
   }
 
   onSim() : void {
-    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, 'SIM');
-    this.nextQuestionAnamnese(this.anamneseForm.sim);
+    this.isSim = !this.isSim;
+    this.isNao = false;
+    this.isNaoSei = false;
   }
 
   onNao() : void {
-    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, 'NÃO');
-    this.nextQuestionAnamnese(this.anamneseForm.nao);
+    this.isNao = !this.isNao;
+    this.isSim = false;
+    this.isNaoSei = false;
   }
 
   onNaoSei() : void {
-    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, 'NÃO SEI');
-    this.nextQuestionAnamnese(this.anamneseForm.naosei);
+    this.isNaoSei = !this.isNaoSei;
+    this.isSim = false;
+    this.isNao = false;
   }
 
   onTexto() : void {
