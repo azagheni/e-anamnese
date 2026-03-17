@@ -20,6 +20,7 @@ export class AppComponent {
   progresso: number = 0;
   anamneseForm: AnamneseForm = new AnamneseForm();
   anamneseResult: any = [];
+  anamneseBackup: any = [];
   texto: string = '';
   numero: string = '';
   data: string = '';
@@ -83,6 +84,7 @@ export class AppComponent {
     console.log('onRecomecar');
     this.anamneseForm = new AnamneseForm(this.anamneses[0]);
     this.anamneseResult = [];
+    this.anamneseBackup = [];
     this.cpf = '';
     this.nome = '';
     this.reset();
@@ -114,7 +116,16 @@ export class AppComponent {
         confidential: confidential,
         answer: answer
     };
+
     this.anamneseResult.push(question);
+
+    const indexToReplace = this.anamneseBackup.findIndex((a: { id: number; }) => a.id === id);
+    if (indexToReplace !== -1) {
+      this.anamneseBackup.splice(indexToReplace, 1, question);
+    } else {
+      this.anamneseBackup.push(question);
+    }
+
     console.log(JSON.stringify(this.anamneseResult));
   }
 
@@ -123,6 +134,27 @@ export class AppComponent {
     this.anamneseForm = new AnamneseForm(this.findAnamneseById(id));
     this.progresso = this.anamneses.findIndex((obj: any) => obj.id === this.anamneseForm.id);
     console.log(`Next question: ` +  id );
+
+    const existAnswer = this.anamneseBackup.find((a: { id: number; }) => a.id === id);
+    if (existAnswer) {
+      const answerBackup = this.anamneseBackup.find((a: { id: number; }) => a.id === id)?.answer;
+      if (this.anamneseForm.texto) {
+        if (answerBackup === this.anamneseForm.opcaoTexto_desc) {
+          this.isOpcaoTexto = true;
+        } else {
+          this.texto = answerBackup;
+        }
+      } else if (this.anamneseForm.sim) {
+        if (answerBackup === 'SIM') {
+          this.isSim = true;
+        } else if (answerBackup === 'NÃO') {
+          this.isNao = true;
+        } else if (answerBackup === 'NÃO SEI') {
+          this.isNaoSei = true;
+        }
+      }
+    }
+
     if (this.anamneseForm.fim) {
       this.salvar();
     }
@@ -150,13 +182,13 @@ export class AppComponent {
       this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.isOpcaoTexto ? this.anamneseForm.opcaoTexto_desc : this.texto);
       this.nextQuestionAnamnese(this.anamneseForm.texto);
     } else if(this.anamneseForm.sim) {
-      if (!this.isSim) {
+      if (this.isSim) {
         this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, 'SIM');
         this.nextQuestionAnamnese(this.anamneseForm.sim);
-      } else if (this.anamneseForm.nao) {
+      } else if (this.isNao) {
         this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, 'NÃO');
         this.nextQuestionAnamnese(this.anamneseForm.nao);
-      } else if (this.anamneseForm.naosei) {
+      } else if (this.isNaoSei) {
         this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, 'NÃO SEI');
         this.nextQuestionAnamnese(this.anamneseForm.naosei);
       }
@@ -174,7 +206,10 @@ export class AppComponent {
   }
 
   onAnterior() : void {
-    this.reset();
+    const idAnterior = this.anamneseResult.length > 0 ? this.anamneseResult[this.anamneseResult.length - 1].id : this.anamneses[0].id;
+    this.anamneseResult.pop();
+    this.nextQuestionAnamnese(idAnterior);
+    console.log(`Previous question: ` +  idAnterior );
   }
 
   validateAnterior() : boolean {
