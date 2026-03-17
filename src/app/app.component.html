@@ -99,38 +99,56 @@
 
       <div *ngIf="anamneseForm.opcao1 && !anamneseForm.checkbox" class="center-list">
         <button *ngIf="anamneseForm.opcao1" class="button-answer" [ngClass]="{'button-answer-not-checked': !this.checkboxes.value.opcao1}" (click)="onOpcao1()">
+          <mat-icon *ngIf="!this.checkboxes.value.opcao1">radio_button_unchecked</mat-icon>
+          <mat-icon *ngIf="this.checkboxes.value.opcao1">radio_button_checked</mat-icon>
           <mat-icon *ngIf="anamneseForm.opcao1_icon" aria-hidden="true">{{ anamneseForm.opcao1_icon }}</mat-icon>
           {{ anamneseForm.opcao1_desc }}
         </button>
         <button *ngIf="anamneseForm.opcao2" class="button-answer" [ngClass]="{'button-answer-not-checked': !this.checkboxes.value.opcao2}" (click)="onOpcao2()">
+          <mat-icon *ngIf="!this.checkboxes.value.opcao2">radio_button_unchecked</mat-icon>
+          <mat-icon *ngIf="this.checkboxes.value.opcao2">radio_button_checked</mat-icon>
           <mat-icon *ngIf="anamneseForm.opcao2_icon" aria-hidden="true">{{ anamneseForm.opcao2_icon }}</mat-icon>
           {{ anamneseForm.opcao2_desc }}
         </button>
         <button *ngIf="anamneseForm.opcao3" class="button-answer" [ngClass]="{'button-answer-not-checked': !this.checkboxes.value.opcao3}" (click)="onOpcao3()">
+          <mat-icon *ngIf="!this.checkboxes.value.opcao3">radio_button_unchecked</mat-icon>
+          <mat-icon *ngIf="this.checkboxes.value.opcao3">radio_button_checked</mat-icon>
           <mat-icon *ngIf="anamneseForm.opcao3_icon" aria-hidden="true">{{ anamneseForm.opcao3_icon }}</mat-icon>
           {{ anamneseForm.opcao3_desc }}
         </button>
         <button *ngIf="anamneseForm.opcao4" class="button-answer" [ngClass]="{'button-answer-not-checked': !this.checkboxes.value.opcao4}" (click)="onOpcao4()">
+          <mat-icon *ngIf="!this.checkboxes.value.opcao4">radio_button_unchecked</mat-icon>
+          <mat-icon *ngIf="this.checkboxes.value.opcao4">radio_button_checked</mat-icon>
           <mat-icon *ngIf="anamneseForm.opcao4_icon" aria-hidden="true">{{ anamneseForm.opcao4_icon }}</mat-icon>
           {{ anamneseForm.opcao4_desc }}
         </button>
         <button *ngIf="anamneseForm.opcao5" class="button-answer" [ngClass]="{'button-answer-not-checked': !this.checkboxes.value.opcao5}" (click)="onOpcao5()">
+          <mat-icon *ngIf="!this.checkboxes.value.opcao5">radio_button_unchecked</mat-icon>
+          <mat-icon *ngIf="this.checkboxes.value.opcao5">radio_button_checked</mat-icon>
           <mat-icon *ngIf="anamneseForm.opcao5_icon" aria-hidden="true">{{ anamneseForm.opcao5_icon }}</mat-icon>
           {{ anamneseForm.opcao5_desc }}
         </button>
         <button *ngIf="anamneseForm.opcao6" class="button-answer" [ngClass]="{'button-answer-not-checked': !this.checkboxes.value.opcao6}" (click)="onOpcao6()">
+          <mat-icon *ngIf="!this.checkboxes.value.opcao6">radio_button_unchecked</mat-icon>
+          <mat-icon *ngIf="this.checkboxes.value.opcao6">radio_button_checked</mat-icon>
           <mat-icon *ngIf="anamneseForm.opcao6_icon" aria-hidden="true">{{ anamneseForm.opcao6_icon }}</mat-icon>
           {{ anamneseForm.opcao6_desc }}
         </button>
         <button *ngIf="anamneseForm.opcao7" class="button-answer" [ngClass]="{'button-answer-not-checked': !this.checkboxes.value.opcao7}" (click)="onOpcao7()">
+          <mat-icon *ngIf="!this.checkboxes.value.opcao7">radio_button_unchecked</mat-icon>
+          <mat-icon *ngIf="this.checkboxes.value.opcao7">radio_button_checked</mat-icon>
           <mat-icon *ngIf="anamneseForm.opcao7_icon" aria-hidden="true">{{ anamneseForm.opcao7_icon }}</mat-icon>
           {{ anamneseForm.opcao7_desc }}
         </button>
         <button *ngIf="anamneseForm.opcao8" class="button-answer" [ngClass]="{'button-answer-not-checked': !this.checkboxes.value.opcao8}" (click)="onOpcao8()">
+          <mat-icon *ngIf="!this.checkboxes.value.opcao8">radio_button_unchecked</mat-icon>
+          <mat-icon *ngIf="this.checkboxes.value.opcao8">radio_button_checked</mat-icon>
           <mat-icon *ngIf="anamneseForm.opcao8_icon" aria-hidden="true">{{ anamneseForm.opcao8_icon }}</mat-icon>
           {{ anamneseForm.opcao8_desc }}
         </button>
         <button *ngIf="anamneseForm.opcao9" class="button-answer" [ngClass]="{'button-answer-not-checked': !this.checkboxes.value.opcao9}" (click)="onOpcao9()">
+          <mat-icon *ngIf="!this.checkboxes.value.opcao9">radio_button_unchecked</mat-icon>
+          <mat-icon *ngIf="this.checkboxes.value.opcao9">radio_button_checked</mat-icon>
           <mat-icon *ngIf="anamneseForm.opcao9_icon" aria-hidden="true">{{ anamneseForm.opcao9_icon }}</mat-icon>
           {{ anamneseForm.opcao9_desc }}
         </button>
