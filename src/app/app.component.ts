@@ -137,20 +137,39 @@ export class AppComponent {
 
     const existAnswer = this.anamneseBackup.find((a: { id: number; }) => a.id === id);
     if (existAnswer) {
-      const answerBackup = this.anamneseBackup.find((a: { id: number; }) => a.id === id)?.answer;
       if (this.anamneseForm.texto) {
-        if (answerBackup === this.anamneseForm.opcaoTexto_desc) {
+        if (existAnswer.answer === this.anamneseForm.opcaoTexto_desc) {
           this.isOpcaoTexto = true;
         } else {
-          this.texto = answerBackup;
+          this.texto = existAnswer.answer;
         }
       } else if (this.anamneseForm.sim) {
-        if (answerBackup === 'SIM') {
+        if (existAnswer.answer === 'SIM') {
           this.isSim = true;
-        } else if (answerBackup === 'NÃO') {
+        } else if (existAnswer.answer === 'NÃO') {
           this.isNao = true;
-        } else if (answerBackup === 'NÃO SEI') {
+        } else if (existAnswer.answer === 'NÃO SEI') {
           this.isNaoSei = true;
+        }
+      } else if (this.anamneseForm.opcao1 && !this.anamneseForm.checkbox) {
+        if (existAnswer === this.anamneseForm.opcao1_desc) {
+          this.checkboxes.value.opcao1 = true;
+        } else if (existAnswer === this.anamneseForm.opcao2_desc) {
+          this.checkboxes.value.opcao2 = true;
+        } else if (existAnswer === this.anamneseForm.opcao3_desc) {
+          this.checkboxes.value.opcao3 = true;
+        } else if (existAnswer === this.anamneseForm.opcao4_desc) {
+          this.checkboxes.value.opcao4 = true;
+        } else if (existAnswer === this.anamneseForm.opcao5_desc) {
+          this.checkboxes.value.opcao5 = true;
+        } else if (existAnswer === this.anamneseForm.opcao6_desc) {
+          this.checkboxes.value.opcao6 = true;
+        } else if (existAnswer === this.anamneseForm.opcao7_desc) {
+          this.checkboxes.value.opcao7 = true;
+        } else if (existAnswer === this.anamneseForm.opcao8_desc) {
+          this.checkboxes.value.opcao8 = true;
+        } else if (existAnswer === this.anamneseForm.opcao9_desc) {
+          this.checkboxes.value.opcao9 = true;
         }
       }
     }
@@ -192,6 +211,35 @@ export class AppComponent {
         this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, 'NÃO SEI');
         this.nextQuestionAnamnese(this.anamneseForm.naosei);
       }
+    } else if (this.anamneseForm.opcao1 && !this.anamneseForm.checkbox) {
+      if (this.checkboxes.value.opcao1 === true) {
+        this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.anamneseForm.opcao1_desc);
+        this.nextQuestionAnamnese(this.anamneseForm.opcao1);
+      } else if (this.checkboxes.value.opcao2 === true) {
+        this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.anamneseForm.opcao2_desc);
+        this.nextQuestionAnamnese(this.anamneseForm.opcao2);
+      } else if (this.checkboxes.value.opcao3 === true) {
+        this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.anamneseForm.opcao3_desc);
+        this.nextQuestionAnamnese(this.anamneseForm.opcao3);
+      } else if (this.checkboxes.value.opcao4 === true) {
+        this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.anamneseForm.opcao4_desc);
+        this.nextQuestionAnamnese(this.anamneseForm.opcao4);
+      } else if (this.checkboxes.value.opcao5 === true) {
+        this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.anamneseForm.opcao5_desc);
+        this.nextQuestionAnamnese(this.anamneseForm.opcao5);
+      } else if (this.checkboxes.value.opcao6 === true) {
+        this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.anamneseForm.opcao6_desc);
+        this.nextQuestionAnamnese(this.anamneseForm.opcao6);
+      } else if (this.checkboxes.value.opcao7 === true) {
+        this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.anamneseForm.opcao7_desc);
+        this.nextQuestionAnamnese(this.anamneseForm.opcao7);
+      } else if (this.checkboxes.value.opcao8 === true) {
+        this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.anamneseForm.opcao8_desc);
+        this.nextQuestionAnamnese(this.anamneseForm.opcao8);
+      } else if (this.checkboxes.value.opcao9 === true) {
+        this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.anamneseForm.opcao9_desc);
+        this.nextQuestionAnamnese(this.anamneseForm.opcao9);
+      }
     }
   }
 
@@ -201,6 +249,9 @@ export class AppComponent {
     }
     if(this.anamneseForm.sim) {
       return this.isSim || this.isNao || this.isNaoSei;
+    }
+    if (this.anamneseForm.opcao1 && !this.anamneseForm.checkbox) {
+      return this.checkboxes.value.opcao1 === true || this.checkboxes.value.opcao2 === true || this.checkboxes.value.opcao3 === true || this.checkboxes.value.opcao4 === true || this.checkboxes.value.opcao5 === true || this.checkboxes.value.opcao6 === true || this.checkboxes.value.opcao7 === true || this.checkboxes.value.opcao8 === true || this.checkboxes.value.opcao9 === true;
     }
     return true;
   }
@@ -215,7 +266,6 @@ export class AppComponent {
   validateAnterior() : boolean {
     return this.progresso > 0;
   }
-
 
   onInicio() : void {
     this.nextQuestionAnamnese(this.anamneseForm.inicio);
@@ -324,48 +374,39 @@ export class AppComponent {
   }
 
   onOpcao1() : void {
-    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.anamneseForm.opcao1_desc);
-    this.nextQuestionAnamnese(this.anamneseForm.opcao1);
+    this.checkboxes.setValue({opcao1: true, opcao2: false, opcao3: false, opcao4: false, opcao5: false, opcao6: false, opcao7: false, opcao8: false, opcao9: false});
   }
 
   onOpcao2() : void {
-    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.anamneseForm.opcao2_desc);
-    this.nextQuestionAnamnese(this.anamneseForm.opcao2);
+    this.checkboxes.setValue({opcao1: false, opcao2: true, opcao3: false, opcao4: false, opcao5: false, opcao6: false, opcao7: false, opcao8: false, opcao9: false});
   }
 
   onOpcao3() : void {
-    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.anamneseForm.opcao3_desc);
-    this.nextQuestionAnamnese(this.anamneseForm.opcao3);
+    this.checkboxes.setValue({opcao1: false, opcao2: false, opcao3: true, opcao4: false, opcao5: false, opcao6: false, opcao7: false, opcao8: false, opcao9: false});
   }
 
   onOpcao4() : void {
-    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.anamneseForm.opcao4_desc);
-    this.nextQuestionAnamnese(this.anamneseForm.opcao4);
+    this.checkboxes.setValue({opcao1: false, opcao2: false, opcao3: false, opcao4: true, opcao5: false, opcao6: false, opcao7: false, opcao8: false, opcao9: false});
   }
 
   onOpcao5() : void {
-    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.anamneseForm.opcao5_desc);
-    this.nextQuestionAnamnese(this.anamneseForm.opcao5);
+    this.checkboxes.setValue({opcao1: false, opcao2: false, opcao3: false, opcao4: false, opcao5: true, opcao6: false, opcao7: false, opcao8: false, opcao9: false});
   }
 
   onOpcao6() : void {
-    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.anamneseForm.opcao6_desc);
-    this.nextQuestionAnamnese(this.anamneseForm.opcao6);
+    this.checkboxes.setValue({opcao1: false, opcao2: false, opcao3: false, opcao4: false, opcao5: false, opcao6: true, opcao7: false, opcao8: false, opcao9: false});
   }
 
   onOpcao7() : void {
-    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.anamneseForm.opcao7_desc);
-    this.nextQuestionAnamnese(this.anamneseForm.opcao7);
+    this.checkboxes.setValue({opcao1: false, opcao2: false, opcao3: false, opcao4: false, opcao5: false, opcao6: false, opcao7: true, opcao8: false, opcao9: false});
   }
 
   onOpcao8() : void {
-    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.anamneseForm.opcao8_desc);
-    this.nextQuestionAnamnese(this.anamneseForm.opcao8);
+    this.checkboxes.setValue({opcao1: false, opcao2: false, opcao3: false, opcao4: false, opcao5: false, opcao6: false, opcao7: false, opcao8: true, opcao9: false});
   }
 
   onOpcao9() : void {
-    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.anamneseForm.opcao9_desc);
-    this.nextQuestionAnamnese(this.anamneseForm.opcao9);
+    this.checkboxes.setValue({opcao1: false, opcao2: false, opcao3: false, opcao4: false, opcao5: false, opcao6: false, opcao7: false, opcao8: false, opcao9: true});
   }
 
   validateData() : boolean {
