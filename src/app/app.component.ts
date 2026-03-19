@@ -110,6 +110,18 @@ export class AppComponent {
     this.isNaoSei = false;
   }
 
+  salvar() : void {
+    console.log('Salvando registro: \n' + JSON.stringify(this.anamneseResult));
+    const anamnese = new Anamnese();
+    anamnese.name = encodeURIComponent(this.nome);
+    anamnese.cpf = encodeURIComponent(this.cpf);
+    anamnese.answers = encodeURIComponent(JSON.stringify(this.anamneseResult));
+    this.anamneseService.addAnamnese(anamnese).subscribe(() => {
+      //alert("Anamnese salva com sucesso!");
+      console.log('Anamnese salva com sucesso!');
+    });
+  }
+
   updateAnamnese(id:number, confidential: number, answer:string) : void {
     var question = {
         id: id,
@@ -154,21 +166,21 @@ export class AppComponent {
       } else if (this.anamneseForm.opcao1 && !this.anamneseForm.checkbox) {
         if (existAnswer === this.anamneseForm.opcao1_desc) {
           this.checkboxes.value.opcao1 = true;
-        } else if (existAnswer === this.anamneseForm.opcao2_desc) {
+        } else if (existAnswer.answer === this.anamneseForm.opcao2_desc) {
           this.checkboxes.value.opcao2 = true;
-        } else if (existAnswer === this.anamneseForm.opcao3_desc) {
+        } else if (existAnswer.answer === this.anamneseForm.opcao3_desc) {
           this.checkboxes.value.opcao3 = true;
-        } else if (existAnswer === this.anamneseForm.opcao4_desc) {
+        } else if (existAnswer.answer === this.anamneseForm.opcao4_desc) {
           this.checkboxes.value.opcao4 = true;
-        } else if (existAnswer === this.anamneseForm.opcao5_desc) {
+        } else if (existAnswer.answer === this.anamneseForm.opcao5_desc) {
           this.checkboxes.value.opcao5 = true;
-        } else if (existAnswer === this.anamneseForm.opcao6_desc) {
+        } else if (existAnswer.answer === this.anamneseForm.opcao6_desc) {
           this.checkboxes.value.opcao6 = true;
-        } else if (existAnswer === this.anamneseForm.opcao7_desc) {
+        } else if (existAnswer.answer === this.anamneseForm.opcao7_desc) {
           this.checkboxes.value.opcao7 = true;
-        } else if (existAnswer === this.anamneseForm.opcao8_desc) {
+        } else if (existAnswer.answer === this.anamneseForm.opcao8_desc) {
           this.checkboxes.value.opcao8 = true;
-        } else if (existAnswer === this.anamneseForm.opcao9_desc) {
+        } else if (existAnswer.answer === this.anamneseForm.opcao9_desc) {
           this.checkboxes.value.opcao9 = true;
         }
       }
@@ -177,18 +189,6 @@ export class AppComponent {
     if (this.anamneseForm.fim) {
       this.salvar();
     }
-  }
-
-  salvar() : void {
-    console.log('Salvando registro: \n' + JSON.stringify(this.anamneseResult));
-    const anamnese = new Anamnese();
-    anamnese.name = encodeURIComponent(this.nome);
-    anamnese.cpf = encodeURIComponent(this.cpf);
-    anamnese.answers = encodeURIComponent(JSON.stringify(this.anamneseResult));
-    this.anamneseService.addAnamnese(anamnese).subscribe(() => {
-      //alert("Anamnese salva com sucesso!");
-      console.log('Anamnese salva com sucesso!');
-    });
   }
 
   onProximo() : void {
