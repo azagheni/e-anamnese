@@ -6,7 +6,6 @@ import { AnamneseForm as AnamneseForm } from './model/anamnese-form';
 
 import { AnamneseService } from './services/anamnese.service';
 import { TermsService } from './services/terms.service';
-import { WelcomeDialogComponent } from './welcome-dialog/welcome-dialog.component';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @Component({
@@ -62,18 +61,7 @@ export class AppComponent {
 
 	ngOnInit() {
     console.log('[AppComponent] =============== Initializing app ===============');
-    const dialogRef = this.dialog.open(WelcomeDialogComponent);
     this.onRecomecar();
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.onRecomecar();
-      }
-    });
-    dialogRef.backdropClick().subscribe(() => {
-      dialogRef.close();
-      this.onRecomecar();
-    })
   }
 
   findAnamneseById(id:number) {

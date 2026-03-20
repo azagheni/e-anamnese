@@ -19,7 +19,8 @@
 </div>
 
 <div class="video-container">
-  <video [src]="'./assets/videos/' + anamneseForm.video" autoplay muted loop type="video/mp4" poster="./assets/images/video.gif"></video>
+  <img *ngIf="anamneseForm.inicio" src="./assets/images/welcome.gif" alt="Bem vindo" />
+  <video *ngIf="!anamneseForm.inicio" [src]="'./assets/videos/' + anamneseForm.video" autoplay muted loop type="video/mp4" poster="./assets/images/video.gif"></video>
 </div>
 
 <div class="content">

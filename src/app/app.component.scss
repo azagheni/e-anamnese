@@ -209,6 +209,13 @@
         justify-self: center;
         border-radius: 1rem;
     }
+
+    img {
+        inline-size: 100%;
+        max-inline-size: 720px;
+        justify-self: center;
+        border-radius: 1rem;
+    }
 }
 
 video::-webkit-media-controls {
