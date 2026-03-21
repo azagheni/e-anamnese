@@ -207,7 +207,7 @@ export class AppComponent {
     }
 
     if (this.anamneseForm.fim) {
-      this.salvar();
+      //this.salvar();
     }
   }
 

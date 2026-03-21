@@ -39,9 +39,9 @@
       </div>
 
       <div *ngIf="anamneseForm.fim" class="input-normal">
-        <div class="transcription-card">
-          Obrigado por utilizar o e-anamnese. Clique em Concluir para finalizar o seu cadastro.
-        </div>
+        <button (click)="onProximo()">
+            Concluir
+        </button>
       </div>
 
       <div *ngIf="anamneseForm.texto" class="input-full">
@@ -242,11 +242,11 @@
     </div>
 </div>
 
-<div class="footer">
-  <button *ngIf="!anamneseForm.inicio" class="button-footer" (click)="onAnterior()" [disabled]="!validateAnterior()">
+<div *ngIf="!(anamneseForm.inicio || anamneseForm.fim)"class="footer">
+  <button class="button-footer" (click)="onAnterior()" [disabled]="!validateAnterior()">
     Anterior
   </button>
-  <button *ngIf="!anamneseForm.inicio" class="button-footer" (click)="onProximo()" [disabled]="!validateProximo()">
+  <button class="button-footer" (click)="onProximo()" [disabled]="!validateProximo()">
     Próximo
   </button>
 </div>
