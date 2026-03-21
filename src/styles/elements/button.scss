@@ -5,8 +5,8 @@
 button,
 .button {
 	display: flex;
-	padding-block: var(--spacing-m);
-	padding-inline: var(--spacing-xxl);
+	padding-block: var(--spacing-s);
+	padding-inline: var(--spacing-xl);
 	border: none;
 	border-radius: var(--border-radius);
 	background: linear-gradient(90deg, #3B82F4, #15B8A7);

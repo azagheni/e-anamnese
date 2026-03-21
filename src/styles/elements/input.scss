@@ -29,6 +29,7 @@ input {
 	color: var(--color-text-secondary);
 	font-family: inherit;
 	font-size: var(--font-size-m);
+	min-width: 20rem;
 
 	&::placeholder {
 		color: var(--color-text-placeholder);
