@@ -443,6 +443,42 @@ export class AppComponent {
     this.checkboxes.setValue({opcao1: false, opcao2: false, opcao3: false, opcao4: false, opcao5: false, opcao6: false, opcao7: false, opcao8: false, opcao9: true});
   }
 
+  onCheckOpcao1() : void {
+    this.checkboxes.patchValue({opcao1: !this.checkboxes.value.opcao1});
+  }
+
+  onCheckOpcao2() : void {
+    this.checkboxes.patchValue({opcao2: !this.checkboxes.value.opcao2});
+  }
+
+  onCheckOpcao3() : void {
+    this.checkboxes.patchValue({opcao3: !this.checkboxes.value.opcao3});
+  }
+
+  onCheckOpcao4() : void {
+    this.checkboxes.patchValue({opcao4: !this.checkboxes.value.opcao4});
+  }
+
+  onCheckOpcao5() : void {
+    this.checkboxes.patchValue({opcao5: !this.checkboxes.value.opcao5});
+  }
+
+  onCheckOpcao6() : void {
+    this.checkboxes.patchValue({opcao6: !this.checkboxes.value.opcao6});
+  }
+
+  onCheckOpcao7() : void {
+    this.checkboxes.patchValue({opcao7: !this.checkboxes.value.opcao7});
+  }
+
+  onCheckOpcao8() : void {
+    this.checkboxes.patchValue({opcao8: !this.checkboxes.value.opcao8});
+  }
+
+  onCheckOpcao9() : void {
+    this.checkboxes.patchValue({opcao9: !this.checkboxes.value.opcao9});
+  }
+
 checkBoxValue() : string {
     let valor = '';
     if (this.anamneseForm.opcao1_desc){

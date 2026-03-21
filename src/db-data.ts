@@ -14,7 +14,7 @@ export const ANAMNESES: any = [
         descricao: "Modelo de informação usado para dividir sessões de perguntas:",
         impressao: "Modelo de informação usado para dividir sessões de perguntas:",
         video: "4.mp4",
-        informacao: 20
+        informacao: 170
     },
     {
         id: 20,
