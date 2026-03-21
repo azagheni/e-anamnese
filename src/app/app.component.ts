@@ -139,6 +139,7 @@ export class AppComponent {
     this.reset();
     this.anamneseForm = new AnamneseForm(this.findAnamneseById(id));
     this.progresso = this.anamneses.findIndex((obj: any) => obj.id === this.anamneseForm.id) / (this.anamneses.length - 1) * 100;
+    this.progresso = parseFloat(this.progresso.toFixed(0));
     console.log(`Next question: ` +  id );
 
     const existAnswer = this.anamneseBackup.find((a: { id: number; }) => a.id === id);
