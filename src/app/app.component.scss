@@ -6,10 +6,11 @@
         'video' auto
         'content' 1fr
         'footer' auto;
-    block-size: 100vh; // Fallback for missing 'vb' unit support
-    block-size: 100vb;
-    max-block-size: 100vh; // Fallback for missing 'vb' unit support
-    max-block-size: 100vb;
+	block-size: 100vh; // Fallback for missing 'vb' unit support
+    block-size: 100dvh;     /* moderno */
+    min-height: 100dvh;
+	max-height: 100%; // fix mobile layout
+    max-height: 100dvh;
     background-color: #effbf9;
 }
 
@@ -133,8 +134,6 @@
         background: white;
         box-shadow: var(--shadow-m);
         inline-size: 100%;
-        max-block-size: 100%;
-        block-size: 100%;
     }
 }
 
