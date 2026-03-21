@@ -10,7 +10,6 @@ export const ANAMNESES: any = [
     },
     {
         id: 2,
-        isNome: 1,
         descricao: "Modelo de informação usado para dividir sessões de perguntas:",
         impressao: "Modelo de informação usado para dividir sessões de perguntas:",
         video: "4.mp4",
@@ -145,6 +144,13 @@ export const ANAMNESES: any = [
         opcao3_desc: 'Opção 3',
         opcao4_desc: 'Opção 4'
     },
+    {
+        id: 180,
+        descricao: "Muito obrigado. Clique em próximo para finalizar.",
+        impressao: "Muito Obrigado:",
+        video: "4.mp4",
+        informacao: 99999
+    },	
     {
         id: 99999,
         descricao: "Registro concluido!",
