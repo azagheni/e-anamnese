@@ -480,7 +480,7 @@ checkBoxValue() : string {
 
   validateData() : boolean {
     if (this.data.length > 10) {
-      this.data = this.data.substring(0, 10);
+      return false;
     }
     let valor = this.data.replace(/\D/g, '');
     if (valor.length === 8) {
