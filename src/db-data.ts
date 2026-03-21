@@ -6,7 +6,7 @@ export const ANAMNESES: any = [
         descricao: "Oi, tudo bem? Neste aplicativo faremos algumas perguntas importantes para o seu atendimento com os enfermeiros e médicos. Você responderá clicando algumas respostas ‘sim’, ‘não’ ou ‘não sei’ e também haverá uma escala de dor que vai de 0 a 10. Essa escala tem rostos e cores que você escolherá informando qual o nível de sua dor.",
         impressao: "Oi, tudo bem? Neste aplicativo faremos algumas perguntas importantes para o seu atendimento com os enfermeiros e médicos. Você responderá clicando algumas respostas ‘sim’, ‘não’ ou ‘não sei’ e também haverá uma escala de dor que vai de 0 a 10. Essa escala tem rostos e cores que você escolherá informando qual o nível de sua dor.",
         video: "1.mp4",
-        inicio: 2
+        inicio: 70
     },
     {
         id: 2,
@@ -65,16 +65,16 @@ export const ANAMNESES: any = [
         descricao: "Modelo de Pegunta OPÇÕES?",
         impressao: "Modelo de Pegunta OPÇÕES?",
         video: "5.mp4",
-        opcao1: 80,
+        opcao1: 170,
         opcao1_desc: 'Masculino',
         opcao1_icon: 'male',
-        opcao2: 80,
+        opcao2: 170,
         opcao2_desc: 'Feminino',
         opcao2_icon: 'female',
-        opcao3: 80,
+        opcao3: 170,
         opcao3_desc: 'Opção 3',
         opcao3_icon: 'sign_language',
-        opcao4: 80,
+        opcao4: 170,
         opcao4_desc: 'Opção 4',
         opcao4_icon: 'accessibility'
     },
@@ -139,7 +139,7 @@ export const ANAMNESES: any = [
         descricao: "Modelo de Pergunta CHECKBOX?",
         impressao: "Modelo de Pegunta CHECKBOX?",
         video: "5.mp4",
-        checkbox: 99999,
+        checkbox: 160,
         opcao1_desc: 'Opção 1',
         opcao2_desc: 'Opção 2',
         opcao3_desc: 'Opção 3',
