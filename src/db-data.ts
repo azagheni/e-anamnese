@@ -75,7 +75,22 @@ export const ANAMNESES: any = [
         opcao3_icon: 'sign_language',
         opcao4: 80,
         opcao4_desc: 'Opção 4',
-        opcao4_icon: 'accessibility'
+        opcao4_icon: 'accessibility',
+        opcao5: 80,
+        opcao5_desc: 'Opção 5',
+        opcao5_icon: 'accessibility',
+        opcao6: 80,
+        opcao6_desc: 'Opção 6',
+        opcao6_icon: 'accessibility',
+        opcao7: 80,
+        opcao7_desc: 'Opção 7',
+        opcao7_icon: 'accessibility',
+        opcao8: 80,
+        opcao8_desc: 'Opção 8',
+        opcao8_icon: 'accessibility',
+        opcao9: 80,
+        opcao9_desc: 'Opção 9',
+        opcao9_icon: 'accessibility'
     },
     {
         id: 80,
@@ -142,7 +157,12 @@ export const ANAMNESES: any = [
         opcao1_desc: 'Opção 1',
         opcao2_desc: 'Opção 2',
         opcao3_desc: 'Opção 3',
-        opcao4_desc: 'Opção 4'
+        opcao4_desc: 'Opção 4',
+        opcao5_desc: 'Opção 5',
+        opcao6_desc: 'Opção 6',
+        opcao7_desc: 'Opção 7',
+        opcao8_desc: 'Opção 8',
+        opcao9_desc: 'Opção 9'
     },
     {
         id: 180,
