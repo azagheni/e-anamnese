@@ -135,12 +135,19 @@
 	color-scheme: dark light;
 
 	/* Background colors */
-	--color-bg: var(--color-dark);
-	--color-bg-subtle: var(--color-grey-900);
-	--color-bg-selection: var(--color-grey-600);
+	/*--color-bg: var(--color-dark);*/
+	/*--color-bg-subtle: var(--color-grey-900);*/
+	/*--color-bg-selection: var(--color-grey-600);*/
+	/*--color-bg-call: var(--color-grey-900);*/
+	/*--color-bg-call-secondary: var(--color-grey-850);*/
+	/*--color-bg--disabled: var(--color-grey-100);*/
+
+	/* Background colors */
+	--color-bg: var(--color-light);
+	--color-bg-subtle: var(--color-grey-50);
+	--color-bg-selection: var(--color-grey-400);
 	--color-bg-call: var(--color-grey-900);
 	--color-bg-call-secondary: var(--color-grey-850);
-	--color-bg--disabled: var(--color-grey-100);
 
 	/* Text colors */
 	/* --color-text: var(--color-grey-25); */

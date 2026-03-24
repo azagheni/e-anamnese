@@ -22,29 +22,31 @@
     grid-area: header;
     display: grid;
     grid-template-columns: auto auto 1fr auto;
-    background: White;
-    padding: 2px 15px;
+    background: linear-gradient(45deg, #f5faff, white);
+    padding: 1rem;
     color: black;
-    align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #efefef;
-    height: 4.5rem;
+    height: 6.5rem;
 
     .button-recomecar {
-        padding-block: var(--spacing-s);
-        padding-inline: var(--spacing-m);
+        position: fixed;
+        right: 5px;
+        top: 5px;
         font-size: var(--font-size-m);
         color: #4290fb;
         cursor: pointer;
+        z-index: 1000
     }
 }
 
 .progress-bar {
     grid-area: progress;
-    background: linear-gradient(45deg, #f5faff, white);
+    position: fixed;
+    width: 100%;
     padding-inline: 20px;
-    padding-top: 80px;
-    padding-bottom: 20px;
+    padding-top: 4.5rem;
+    padding-bottom: 1rem;
 
     .mat-mdc-progress-bar {
         --mdc-linear-progress-active-indicator-height: 14px;
@@ -54,22 +56,27 @@
         --mdc-linear-progress-track-color: rgba(63, 81, 181, 0.25);
     }
 
-    .progress-label {
+    .progress-bar-container {
         position: absolute;
-        margin-top: -80px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        margin-top: -40px;
+        justify-content: flex-end;
+    }
+
+    .progress-label {
         font-weight: var(--font-weight-medium);
         font-size: var(--font-size-m);
-        right: 20px;
         color: gray;
+        margin-inline-end: var(--spacing-m);
     }
 
     .progress-percent {
-        position: absolute;
-        margin-top: -50px;
         font-weight: var(--font-weight-bold);
-        font-size: 1.6rem;
-        right: 20px;
+        font-size: var(--font-size-header-xs);
         color: #2c64cf;
+        margin-inline-end: var(--spacing-xxl);
     }
 
     .progress-indicator {
@@ -96,7 +103,7 @@
     inline-size: 100%;
     justify-self: center;
     align-items: center;
-    padding: 20px;
+    padding: 0 20px 20px 20px;
     overflow-y: auto;
 
     .content-transcription {
