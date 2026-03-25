@@ -22,31 +22,30 @@
     grid-area: header;
     display: grid;
     grid-template-columns: auto auto 1fr auto;
-    background: linear-gradient(45deg, #f5faff, white);
-    padding: 1rem;
+    background: White;
+    padding: 2px 15px;
     color: black;
+    align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #efefef;
-    height: 6.5rem;
+    height: 4rem;
 
     .button-recomecar {
-        position: fixed;
-        right: 5px;
-        top: 5px;
+        padding-block: var(--spacing-s);
+        padding-inline: var(--spacing-m);
         font-size: var(--font-size-m);
         color: #4290fb;
         cursor: pointer;
-        z-index: 1000
     }
 }
 
 .progress-bar {
     grid-area: progress;
-    position: fixed;
-    width: 100%;
+    background: linear-gradient(45deg, #f5faff, white);
     padding-inline: 20px;
-    padding-top: 4.5rem;
-    padding-bottom: 1rem;
+    padding-top: 35px;
+    padding-bottom: 15px;
+    height: 4rem;
 
     .mat-mdc-progress-bar {
         --mdc-linear-progress-active-indicator-height: 14px;
@@ -69,12 +68,12 @@
         font-weight: var(--font-weight-medium);
         font-size: var(--font-size-m);
         color: gray;
-        margin-inline-end: var(--spacing-m);
+        margin-inline-end: var(--spacing-s);
     }
 
     .progress-percent {
         font-weight: var(--font-weight-bold);
-        font-size: var(--font-size-header-xs);
+        font-size: var(--font-size-l);
         color: #2c64cf;
         margin-inline-end: var(--spacing-xxl);
     }
@@ -103,7 +102,8 @@
     inline-size: 100%;
     justify-self: center;
     align-items: center;
-    padding: 0 20px 20px 20px;
+    padding: 0 0 20px 40px;
+    margin-right: 40px;
     overflow-y: auto;
 
     .content-transcription {
@@ -252,5 +252,5 @@ video::-webkit-media-controls {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #4290fb !important;
+    background-color: #4290fb;
 }

@@ -153,7 +153,7 @@ export const ANAMNESES: any = [
         descricao: "Modelo de Pergunta CHECKBOX?",
         impressao: "Modelo de Pegunta CHECKBOX?",
         video: "5.mp4",
-        checkbox: 99999,
+        checkbox: 180,
         opcao1_desc: 'Opção 1',
         opcao2_desc: 'Opção 2',
         opcao3_desc: 'Opção 3',

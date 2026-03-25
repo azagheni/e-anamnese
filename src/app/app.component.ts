@@ -208,8 +208,8 @@ export class AppComponent {
     }
 
     if (this.anamneseForm.fim) {
-      //this.salvar();
-      alert('Necessário implementar ação de salvar para concluir o registro da anamnese!');
+      this.salvar();
+      //alert('Necessário implementar ação de salvar para concluir o registro da anamnese!');
     }
   }
 
