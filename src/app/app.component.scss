@@ -250,3 +250,7 @@ video::-webkit-media-controls {
     color: black;
     box-shadow: 0px 0px 2px 2px #e6e6e8;
 }
+
+::-webkit-scrollbar-thumb {
+    background-color: #4290fb !important;
+}
