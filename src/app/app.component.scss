@@ -157,6 +157,13 @@
         box-shadow: var(--shadow-m);
         inline-size: 100%;
     }
+
+    .version {
+        position: absolute;
+        bottom: 10px;
+        font-size: var(--font-size-s);
+        color: gray;
+    }
 }
 
 .footer {

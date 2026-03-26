@@ -5,6 +5,7 @@ import { AnamneseForm as AnamneseForm } from './model/anamnese-form';
 
 import { AnamneseService } from './services/anamnese.service';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import packageInfo from '../../package.json'; // Adjust path as necessary
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 })
 export class AppComponent {
   title = 'e-anamnese';
+  version = packageInfo.version;
   anamneses = ANAMNESES;
   progresso: number = 0;
   anamneseForm: AnamneseForm = new AnamneseForm();
@@ -481,7 +483,7 @@ export class AppComponent {
     this.checkboxes.patchValue({opcao9: !this.checkboxes.value.opcao9});
   }
 
-checkBoxValue() : string {
+  checkBoxValue() : string {
     let valor = '';
     if (this.anamneseForm.opcao1_desc){
       valor += (this.checkboxes.value.opcao1 ? '(X) ' : '( ) ') + this.anamneseForm.opcao1_desc + '; ';
