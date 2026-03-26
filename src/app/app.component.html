@@ -1,3 +1,4 @@
+<main class="main-container">
 <div class="header">
     <div>
       <img class="logo"
@@ -10,7 +11,9 @@
     </div>
 </div>
 <div class="progress-bar">
-  <mat-progress-bar mode="determinate" [value]="progresso"></mat-progress-bar>
+  <div class="mdc">
+    <mat-progress-bar mode="determinate" [value]="progresso"></mat-progress-bar>
+  </div>
   <div class="progress-indicator">
     <div class="progress-indicator-start"></div>
   </div>
@@ -258,4 +261,4 @@
     Próximo
   </button>
 </div>
-
+</main>
