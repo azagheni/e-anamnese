@@ -11,15 +11,15 @@
     </div>
 </div>
 <div class="progress-bar">
-  <div class="mdc">
-    <mat-progress-bar mode="determinate" [value]="progresso"></mat-progress-bar>
-  </div>
-  <div class="progress-indicator">
-    <div class="progress-indicator-start"></div>
-  </div>
   <div class="progress-bar-container">
-    <div class="progress-label">Progresso</div>
-    <div class="progress-percent">{{ progresso }}%</div>
+    <mat-progress-bar mode="determinate" [value]="progresso"></mat-progress-bar>
+    <div class="progress-indicator">
+      <div class="progress-indicator-start"></div>
+    </div>
+    <div class="progress-bar-text">
+      <div class="progress-label">Progresso</div>
+      <div class="progress-percent">{{ progresso }}%</div>
+    </div>
   </div>
 </div>
 
