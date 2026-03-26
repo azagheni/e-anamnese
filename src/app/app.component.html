@@ -252,11 +252,11 @@
       </div>
     </div>
 
-  <div class="version" *ngIf="anamneseForm.id === 1">
-    Version: {{ version }}
-  </div>
+    <div class="version" *ngIf="anamneseForm.id === 1">
+      Version: {{ version }}
+    </div>
 
-</div>
+  </div>
 
   <div *ngIf="!(anamneseForm.inicio || anamneseForm.fim)"class="footer">
     <button class="button-footer" (click)="onAnterior()" [disabled]="!validateAnterior()">
