@@ -86,10 +86,10 @@
       </div>
 
       <div *ngIf="anamneseForm.escala" class="input-normal">
-        <img src="./assets/images/escala-visual.jpg">
         <mat-slider min="0" max="10" step="1" value="0" discrete="true">
-          <input matSliderThumb [(ngModel)]="escala" #slider>
+          <input class="escala" matSliderThumb [(ngModel)]="escala" #slider>
         </mat-slider>
+        <img class="image-escala" src="./assets/images/escala-visual.png">
       </div>
 
       <div *ngIf="anamneseForm.opcao1 && !anamneseForm.checkbox" class="center-list">

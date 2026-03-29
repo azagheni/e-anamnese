@@ -217,8 +217,8 @@
     row-gap: 15px;
 
     & > mat-slider {
-        inline-size: 92%;
-        inset-inline-start: 1.5%;
+        inline-size: 84%;
+        inset-inline-start: 6%;
     }
 }
 
@@ -271,6 +271,11 @@ video::-webkit-media-controls {
     background: white;
     color: black;
     box-shadow: 0px 0px 2px 2px #e6e6e8;
+}
+
+.image-escala {
+    top: -20px;
+    position: relative;
 }
 
 ::-webkit-scrollbar-thumb {
