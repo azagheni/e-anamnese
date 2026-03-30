@@ -1,3 +1,16 @@
+<app-dialog
+	*ngIf="showInformationPopup"
+	[description]="popupText"
+	(confirmationResult)="handleForwardingPopupResult($event)"
+></app-dialog>
+
+<app-dialog
+	*ngIf="showReloadConfirmationPopup"
+	[description]="popupText"
+	[id]="'DUMMY'"
+	(confirmationResult)="handleServiceWorkerUpdatePopupResult($event)"
+></app-dialog>
+
 <main class="main-container">
 <div class="header">
     <div>
@@ -25,7 +38,7 @@
 
 <div class="video-container">
   <img *ngIf="anamneseForm.inicio" src="./assets/images/welcome.gif" alt="Bem vindo" />
-  <video *ngIf="!anamneseForm.inicio" [src]="'./assets/videos/' + anamneseForm.video" autoplay muted loop type="video/mp4" poster="./assets/images/video.gif"></video>
+  <video *ngIf="!anamneseForm.inicio" [src]="'./assets/videos/' + anamneseForm.video" playsinline webkit-playsinline autoplay muted loop type="video/mp4" poster="./assets/images/video.gif"></video>
 </div>
 
 <div class="content">

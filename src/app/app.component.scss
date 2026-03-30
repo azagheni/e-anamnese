@@ -192,11 +192,10 @@
 }
 
 .center-list-texto {
-    display: flex;
+    display: flex-start;
     row-gap: 15px;
     flex-direction: column;
     width: inherit;
-    align-items: start;
 }
 
 .input-full {

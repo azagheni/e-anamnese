@@ -1,0 +1,19 @@
+dialog {
+	max-inline-size: 30rem;
+}
+
+button {
+	padding-block-end: var(--spacing-s);
+}
+
+.text-wrapper {
+	padding: var(--spacing-l);
+	text-align: center;
+}
+
+.button-wrapper {
+	display: flex;
+	gap: var(--spacing-l);
+	justify-content: center;
+	float: inline-end;
+}

@@ -1,0 +1,17 @@
+<dialog #dialog>
+	<div class="text-wrapper" role="alert" [attr.aria-label]="description">{{ description }}</div>
+	<div class="button-wrapper" (keydown)="onKeyDown($event)" tabindex="-1">
+		<button type="button" id="okButton" class="primary" (click)="confirmationResult.emit({ confirm: true, id: id })">
+			OK
+		</button>
+		<button
+			*ngIf="id !== ''"
+			type="button"
+			id="cancelButton"
+			class="secondary"
+			(click)="confirmationResult.emit({ confirm: false, id: id })"
+		>
+			Cancelar
+		</button>
+	</div>
+</dialog>

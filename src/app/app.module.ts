@@ -19,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CpfPipe } from './pipes/cpf.pipes';
 import { DataPipe } from './pipes/data.pipes';
 import { TelefonePipe } from './pipes/telefone.pipes';
+import { DialogComponent } from './dialog/dialog.component';
 
 import { TermsService } from './services/terms.service';
 import { AnamneseService } from './services/anamnese.service';
@@ -30,7 +31,8 @@ import { TermsDialogComponent } from './terms-dialog/terms-dialog.component';
     CpfPipe,
     DataPipe,
     TelefonePipe,
-    TermsDialogComponent
+    TermsDialogComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
