@@ -151,7 +151,7 @@ export class AppComponent {
 							console.log(
 								`[AppComponent] Service Worker is up to date${
 									this.needToReload ? ' (reload pending!!)' : ''
-								}. Next check in ${this.UPDATE_CHECK_INTERVAL / 3600000} hours.`
+								}. Next check in ${this.UPDATE_CHECK_INTERVAL / 60000} minutes.`
 							);
 						} else {
 							// Don't do anything if a new Service Worker update was already
