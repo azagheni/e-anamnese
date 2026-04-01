@@ -1,10 +1,4 @@
 <app-dialog
-	*ngIf="showInformationPopup"
-	[description]="popupText"
-	(confirmationResult)="handleForwardingPopupResult($event)"
-></app-dialog>
-
-<app-dialog
 	*ngIf="showReloadConfirmationPopup"
 	[description]="popupText"
 	[id]="'DUMMY'"

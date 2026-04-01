@@ -22,7 +22,6 @@ export class AppComponent {
 	swDownloadInProgress = false;
 	startPeriodicalUpdateCheck: any = null; // Needed for unit testing
   popupText = '';
-	showInformationPopup = false;
 	showReloadConfirmationPopup = false;
   readonly FIRST_UPDATE_CHECK = 20 * 1000; // 20 seconds
   readonly UPDATE_CHECK_INTERVAL =  1 * 60 * 1000; // 1 minute
@@ -73,7 +72,11 @@ export class AppComponent {
     console.log('[AppComponent] =============== Initializing app ===============');
     this.onRecomecar();
     // Catch update related events
-		this.swUpdate.versionUpdates.subscribe((event) => {
+    if (window.location.hostname === 'localhost') {
+      console.log('Running on localhost domain - skipping Service Worker update checks!');
+    } else {
+      console.log('Not running on localhost domain - starting Service Worker update checks!');
+      this.swUpdate.versionUpdates.subscribe((event) => {
 			switch (event.type) {
 				case 'VERSION_DETECTED':
 					console.log(`[AppComponent] New Service Worker version detected. Downloading ...`);
@@ -92,87 +95,88 @@ export class AppComponent {
 				case 'VERSION_INSTALLATION_FAILED':
 					console.log(`[AppComponent] Failed to install new Service Worker!`);
 					break;
-			}
-		});
+			  }
+      });
 
-		/* istanbul ignore next */
-		this.swUpdate.unrecoverable.subscribe((event) => {
-			console.log(`[AppComponent] An error occured during Service Worker update. Please reload the app manually!`);
-		});
+      /* istanbul ignore next */
+      this.swUpdate.unrecoverable.subscribe((event) => {
+        console.log(`[AppComponent] An error occured during Service Worker update. Please reload the app manually!`);
+      });
 
-		// Check for new Service Worker after FIRST_UPDATE_CHECK ms and then periodically after
-		// every UPDATE_CHECK_INTERVAL ms
-		this.startPeriodicalUpdateCheck = () => {
-			timer(this.FIRST_UPDATE_CHECK, this.UPDATE_CHECK_INTERVAL).subscribe(async () => {
-				if (this.swDownloadInProgress) {
-					console.log(`[AppComponent] Skipping Service Worker update check. Download in progress!`);
-					return;
-				}
+      // Check for new Service Worker after FIRST_UPDATE_CHECK ms and then periodically after
+      // every UPDATE_CHECK_INTERVAL ms
+      this.startPeriodicalUpdateCheck = () => {
+        timer(this.FIRST_UPDATE_CHECK, this.UPDATE_CHECK_INTERVAL).subscribe(async () => {
+          if (this.swDownloadInProgress) {
+            console.log(`[AppComponent] Skipping Service Worker update check. Download in progress!`);
+            return;
+          }
 
-				/* istanbul ignore next */
-				try {
-					// According to the spec, a service worker will not run after the user did a hard refresh
-					// (SHIFT-F5).This strange behavior also means that we can't start the
-					// update check for the Service Worker. There is a workaround described here, on how to
-					// un-register and then re-register the Service Worker after a hard reload in order to get
-					// running:
-					// See https://stackoverflow.com/questions/51597231/register-service-worker-after-hard-refresh
-					// Nevertheless the Service Worker doesn't seem to run as it should after this procedure. Even
-					// though it should then be registered, notification popups don't work. There is an error telling
-					// that there is no Service Worker registration. So the only way to get it working properly is,
-					// to ask the user to reload again after SHIFT-F5 (hard reload) was pressed. Very ugly!
-					if (!navigator.serviceWorker.controller) {
-						console.log(`[AppComponent] Service Worker is not running! User probably did a hard refresh (SHIFT-F5)!`);
-						console.log(`[AppComponent] Unregistering existing Service Worker ...`);
-						const registrations = await navigator.serviceWorker.getRegistrations();
-						await Promise.all(registrations.map((r) => r.unregister()));
+          /* istanbul ignore next */
+          try {
+            // According to the spec, a service worker will not run after the user did a hard refresh
+            // (SHIFT-F5).This strange behavior also means that we can't start the
+            // update check for the Service Worker. There is a workaround described here, on how to
+            // un-register and then re-register the Service Worker after a hard reload in order to get
+            // running:
+            // See https://stackoverflow.com/questions/51597231/register-service-worker-after-hard-refresh
+            // Nevertheless the Service Worker doesn't seem to run as it should after this procedure. Even
+            // though it should then be registered, notification popups don't work. There is an error telling
+            // that there is no Service Worker registration. So the only way to get it working properly is,
+            // to ask the user to reload again after SHIFT-F5 (hard reload) was pressed. Very ugly!
+            if (!navigator.serviceWorker.controller) {
+              console.log(`[AppComponent] Service Worker is not running! User probably did a hard refresh (SHIFT-F5)!`);
+              console.log(`[AppComponent] Unregistering existing Service Worker ...`);
+              const registrations = await navigator.serviceWorker.getRegistrations();
+              await Promise.all(registrations.map((r) => r.unregister()));
 
-						console.log(`[AppComponent] Trying to re-registering Service Worker ...`);
-						const registration = await navigator.serviceWorker.register('ngsw-worker.js');
+              console.log(`[AppComponent] Trying to re-registering Service Worker ...`);
+              const registration = await navigator.serviceWorker.register('ngsw-worker.js');
 
-						if (registration) {
-							console.log(`[AppComponent] Successfully re-registered Service Worker.`);
-							console.log(
-								`[AppComponent] Service Worker is not fully functional yet (e.g. popups don't work)! Asking user to reload ...`
-							);
-							//this.needToReload = true;
-							//this.popupText = 'Por favor, recarregue a página para concluir a atualização do software!';
-							//this.showReloadConfirmationPopup = true;
-						} else {
-							console.log(`[AppComponent] Failed to re-register Service Worker.`);
-							return;
-						}
-					}
+              if (registration) {
+                console.log(`[AppComponent] Successfully re-registered Service Worker.`);
+                console.log(
+                  `[AppComponent] Service Worker is not fully functional yet (e.g. popups don't work)! Asking user to reload ...`
+                );
+                //this.needToReload = true;
+                //this.popupText = 'Por favor, recarregue a página para concluir a atualização do software!';
+                //this.showReloadConfirmationPopup = true;
+              } else {
+                console.log(`[AppComponent] Failed to re-register Service Worker.`);
+                return;
+              }
+            }
 
-					console.log(`[AppComponent] Checking for Service Worker update ...`);
+            console.log(`[AppComponent] Checking for Service Worker update ...`);
 
-					this.swUpdate.checkForUpdate().then((updateFound) => {
-						if (!updateFound) {
-							console.log(
-								`[AppComponent] Service Worker is up to date${
-									this.needToReload ? ' (reload pending!!)' : ''
-								}. Next check in ${this.UPDATE_CHECK_INTERVAL / 60000} minutes.`
-							);
-						} else {
-							// Don't do anything if a new Service Worker update was already
-							// signaled by an event. The problem is that after doing a hard reload
-							// (SHIFT-F5) and then re-registering the Service Worker, the events do not
-							// fire (only after F5). In that case we handle the update here.
-							if (!this.swDownloadInProgress && !this.needToReload) {
-								console.log(`[AppComponent] Downloaded new Service Worker version. Asking user to reload ...`);
-								this.needToReload = true;
-								this.popupText = 'Por favor, recarregue a página para concluir a atualização do software!';
-								this.showReloadConfirmationPopup = true;
-							}
-						}
-					});
-				} catch (err) {
-					console.log(`[AppComponent] Failed to check for Service Worker update: ${err}`);
-				}
-			});
-		};
+            this.swUpdate.checkForUpdate().then((updateFound) => {
+              if (!updateFound) {
+                console.log(
+                  `[AppComponent] Service Worker is up to date${
+                    this.needToReload ? ' (reload pending!!)' : ''
+                  }. Next check in ${this.UPDATE_CHECK_INTERVAL / 60000} minutes.`
+                );
+              } else {
+                // Don't do anything if a new Service Worker update was already
+                // signaled by an event. The problem is that after doing a hard reload
+                // (SHIFT-F5) and then re-registering the Service Worker, the events do not
+                // fire (only after F5). In that case we handle the update here.
+                if (!this.swDownloadInProgress && !this.needToReload) {
+                  console.log(`[AppComponent] Downloaded new Service Worker version. Asking user to reload ...`);
+                  this.needToReload = true;
+                  this.popupText = 'Por favor, recarregue a página para concluir a atualização do software!';
+                  this.showReloadConfirmationPopup = true;
+                }
+              }
+            });
+          } catch (err) {
+            console.log(`[AppComponent] Failed to check for Service Worker update: ${err}`);
+          }
+        });
+      };
 
-		this.startPeriodicalUpdateCheck();
+      this.startPeriodicalUpdateCheck();
+    }
 	}
 
 	/* istanbul ignore next */
@@ -192,16 +196,6 @@ export class AppComponent {
 		} else {
 			console.log('[AppComponent] User denied app reload.');
 			this.showReloadConfirmationPopup = false;
-		}
-	}
-
-	/**
-	 * Handle forwarding popup result
-	 * @param event forwarding popup result
-	 */
-	handleForwardingPopupResult(event: any): void {
-		if (event.confirm) {
-			this.showInformationPopup = false;
 		}
 	}
 
