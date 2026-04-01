@@ -205,6 +205,7 @@ export class AppComponent {
 
   onRecomecar() : void {
     console.log('onRecomecar');
+    this.progresso = 0;
     this.anamneseForm = new AnamneseForm(this.anamneses[0]);
     this.anamneseResult = [];
     this.anamneseBackup = [];
