@@ -56,6 +56,24 @@
         </button>
       </div>
 
+      <div *ngIf="anamneseForm.usuario" class="input-full">
+        <input
+          id="username"
+          type="search"
+          [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'Digite seu nome completo'"
+          [(ngModel)]="texto"
+        />
+        <input
+          id="user-cpf"
+          type="search"
+          [ngClass]="{'input-error': cpf && cpf.length > 13 && !validateCPF()}"
+          name="cpf"
+          [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'ex: 111.222.333-44'"
+          [ngModel]="cpf | cpf"
+          (ngModelChange)="cpf=$event"
+        />
+      </div>
+
       <div *ngIf="anamneseForm.texto" class="input-full">
         <input
           type="search"
@@ -215,6 +233,7 @@
 
       <div *ngIf="anamneseForm.numero" class="input-normal">
         <input
+          [ngClass]="{'input-error': numero && !validateNumero()}"
           type="search"
           [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'ex: 25'"
           [(ngModel)]="numero"
@@ -224,6 +243,7 @@
       <div *ngIf="anamneseForm.data" class="input-normal">
         <input
           type="search"
+          [ngClass]="{'input-error': data && data.length > 9 && !validateData()}"
           name="data"
           [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'dd/mm/aaaa'"
           [ngModel]="data | data"
@@ -233,6 +253,8 @@
 
       <div *ngIf="anamneseForm.telefone" class="input-normal">
         <input
+          id="telefone"
+          [ngClass]="{'input-error': telefone && telefone.length > 13 && !validateTelefone()}"
           type="search"
           [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'ex: (41)9999-88888'"
           [ngModel]="telefone | telefone"
@@ -242,6 +264,7 @@
 
       <div *ngIf="anamneseForm.email" class="input-normal">
         <input
+          id="email"
           type="search"
           placeholder="ex: nome@gmail.com"
           [(ngModel)]="email"
@@ -250,7 +273,9 @@
 
       <div *ngIf="anamneseForm.cpf" class="input-normal">
         <input
+          id="cpf"
           type="search"
+          [ngClass]="{'input-error': cpf && cpf.length > 13 && !validateCPF()}"
           name="cpf"
           [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'ex: 111.222.333-44'"
           [ngModel]="cpf | cpf"

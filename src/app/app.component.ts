@@ -38,7 +38,8 @@ export class AppComponent {
   telefone: string = '';
   cpf: string = '';
   escala: number = 5;
-  nome: string = '';
+  usuarioNome: string = '';
+  usuarioCpf: string = '';
   checkboxes = this._formBuilder.group({
     opcao1: false,
     opcao2: false,
@@ -210,7 +211,8 @@ export class AppComponent {
     this.anamneseResult = [];
     this.anamneseBackup = [];
     this.cpf = '';
-    this.nome = '';
+    this.usuarioNome = '';
+    this.usuarioCpf = '';
     this.reset();
 
     // TESTS
@@ -237,8 +239,8 @@ export class AppComponent {
   salvar() : void {
     console.log('Salvando registro: \n' + JSON.stringify(this.anamneseResult));
     const anamnese = new Anamnese();
-    anamnese.name = encodeURIComponent(this.nome);
-    anamnese.cpf = encodeURIComponent(this.cpf);
+    anamnese.name = encodeURIComponent(this.usuarioNome);
+    anamnese.cpf = encodeURIComponent(this.usuarioCpf);
     anamnese.answers = encodeURIComponent(JSON.stringify(this.anamneseResult));
     this.anamneseService.addAnamnese(anamnese).subscribe(() => {
       //alert("Anamnese salva com sucesso!");
@@ -284,7 +286,13 @@ export class AppComponent {
 
     const existAnswer = this.anamneseBackup.find((a: { id: number; }) => a.id === id);
     if (existAnswer) {
-      if (this.anamneseForm.texto) {
+      if (this.anamneseForm.usuario) {
+        if (existAnswer.answer.includes(' - CPF:')) {
+          const [nome, cpf] = existAnswer.answer.split(' - CPF:');
+          this.texto = nome;
+          this.cpf = cpf;
+        }
+      } else if (this.anamneseForm.texto) {
         if (existAnswer.answer === this.anamneseForm.opcaoTexto_desc) {
           this.isOpcaoTexto = true;
         } else {
@@ -356,13 +364,16 @@ export class AppComponent {
   onProximo() : void {
     if(this.anamneseForm.informacao) {
       this.nextQuestionAnamnese(this.anamneseForm.informacao);
+    } else if (this.anamneseForm.usuario) {
+      this.usuarioNome = this.texto;
+      this.usuarioCpf = this.cpf;
+      this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.usuarioNome + ' - CPF:' + this.usuarioCpf);
+      this.nextQuestionAnamnese( this.anamneseForm.usuario);
     } else if(this.anamneseForm.texto) {
-      if (this.anamneseForm.isNome) {
-        this.nome = this.texto;
-      }
       this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.isOpcaoTexto ? this.anamneseForm.opcaoTexto_desc : this.texto);
       this.nextQuestionAnamnese(this.anamneseForm.texto);
-    } else if(this.anamneseForm.sim) {
+    }
+    else if(this.anamneseForm.sim) {
       if (this.isSim) {
         this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, 'SIM');
         this.nextQuestionAnamnese(this.anamneseForm.sim);
@@ -431,6 +442,9 @@ export class AppComponent {
   }
 
   validateProximo() : boolean {
+    if(this.anamneseForm.usuario) {
+      return this.texto.length > 0 && this.validateCPF();
+    }
     if(this.anamneseForm.texto) {
       return this.texto.length > 0 || this.isOpcaoTexto;
     }
@@ -461,7 +475,9 @@ export class AppComponent {
   onAnterior() : void {
     const idAnterior = this.anamneseResult.length > 0 ? this.anamneseResult[this.anamneseResult.length - 1].id : this.anamneses[0].id;
     this.anamneseResult.pop();
-    if(this.anamneseForm.texto) {
+    if(this.anamneseForm.usuario) {
+      this.updateBackup(this.anamneseForm.id, this.anamneseForm.confidencial, this.usuarioNome + ' - CPF:' + this.usuarioCpf);
+    } else if(this.anamneseForm.texto) {
       this.updateBackup(this.anamneseForm.id, this.anamneseForm.confidencial, this.isOpcaoTexto ? this.anamneseForm.opcaoTexto_desc : this.texto);
     } else if(this.anamneseForm.sim) {
       if (this.isSim) {
@@ -535,14 +551,6 @@ export class AppComponent {
     this.isNaoSei = !this.isNaoSei;
     this.isSim = false;
     this.isNao = false;
-  }
-
-  onTexto() : void {
-    if (this.anamneseForm.isNome) {
-      this.nome = this.texto;
-    }
-    this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.isOpcaoTexto ? this.anamneseForm.opcaoTexto_desc : this.texto);
-    this.nextQuestionAnamnese(this.anamneseForm.texto);
   }
 
   onOpcaoTexto() : void {
