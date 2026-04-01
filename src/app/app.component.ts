@@ -712,13 +712,12 @@ export class AppComponent {
   }
 
   validateNumero() : boolean {
-    let valor = this.numero.replace(/\D/g, '');
-    return (valor.length > 0);
+    return /^\d+$/.test(this.numero)
   }
 
   validateTelefone() : boolean {
     let valor = this.telefone.replace(/\D/g, '');
-    return (valor.length > 9);
+    return /^\(\d{2}\)\d{4,5}-\d{4}$/.test(this.telefone) && (valor.length > 9 && valor.length < 12);
   }
 
   validateEmail() : boolean {
