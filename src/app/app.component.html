@@ -80,7 +80,7 @@
           id="cep"
           type="search"
           [ngClass]="{'input-error': endereco_cep && endereco_cep.length > 8 && !validateCEP()}"
-          placeholder="Digite seu CEP"
+          placeholder="00000-000"
           ngchange="verificaCEP(this)"
           [ngModel]="endereco_cep | cep"
           (ngModelChange)="onCEPChange($event)"
@@ -93,6 +93,7 @@
           [disabled]="endereco_cep.length !== 9"
           [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'Rua, Avenida...'"
           [ngModel]="endereco_logradouro"
+          (ngModelChange)="endereco_logradouro=$event"
         />
         <label>Número:</label>
         <input
@@ -100,8 +101,9 @@
           type="search"
           name="numero"
           [disabled]="endereco_cep.length !== 9"
-          [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'Número: ex: 123'"
+          [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'ex: 123'"
           [ngModel]="endereco_numero"
+          (ngModelChange)="endereco_numero=$event"
         />
         <label>Complemento:</label>
         <input
@@ -109,8 +111,9 @@
           type="search"
           name="complemento"
           [disabled]="endereco_cep.length !== 9"
-          [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'Complemento: Casa, Apto, Bloco...'"
+          [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'Casa, Apto, Bloco...'"
           [ngModel]="endereco_complemento"
+          (ngModelChange)="endereco_complemento=$event"
         />
         <label>Bairro:</label>
         <input
@@ -118,8 +121,9 @@
           type="search"
           name="bairro"
           [disabled]="endereco_cep.length !== 9"
-          [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'Bairro'"
+          [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'Centro, Jardim...'"
           [ngModel]="endereco_bairro"
+          (ngModelChange)="endereco_bairro=$event"
         />
         <label>Cidade:</label>
         <input
@@ -127,8 +131,9 @@
           type="search"
           name="cidade"
           [disabled]="endereco_cep.length !== 9"
-          [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'Cidade'"
+          [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'Curitiba, São Paulo...'"
           [ngModel]="endereco_cidade"
+          (ngModelChange)="endereco_cidade=$event"
         />
         <label>UF:</label>
         <input
@@ -139,6 +144,7 @@
           [disabled]="endereco_cep.length !== 9"
           [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'Ex: PR, SC...'"
           [ngModel]="endereco_uf"
+          (ngModelChange)="endereco_uf=$event"
         />
       </div>
 

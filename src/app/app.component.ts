@@ -301,10 +301,21 @@ export class AppComponent {
     const existAnswer = this.anamneseBackup.find((a: { id: number; }) => a.id === id);
     if (existAnswer) {
       if (this.anamneseForm.usuario) {
-        if (existAnswer.answer.includes(' - CPF:')) {
-          const [nome, cpf] = existAnswer.answer.split(' - CPF:');
+        if (existAnswer.answer.includes('|')) {
+          const [nome, cpf] = existAnswer.answer.split('|');
           this.texto = nome;
           this.cpf = cpf;
+        }
+      } else if (this.anamneseForm.endereco) {
+        if (existAnswer.answer.includes('|')) {
+          const [cep, logradouro, numero, complemento, bairro, cidade, uf] = existAnswer.answer.split('|');
+          this.endereco_cep = cep;
+          this.endereco_logradouro = logradouro;
+          this.endereco_numero = numero;
+          this.endereco_complemento = complemento;
+          this.endereco_bairro = bairro;
+          this.endereco_cidade = cidade;
+          this.endereco_uf = uf;
         }
       } else if (this.anamneseForm.texto) {
         if (existAnswer.answer === this.anamneseForm.opcaoTexto_desc) {
@@ -381,8 +392,11 @@ export class AppComponent {
     } else if (this.anamneseForm.usuario) {
       this.usuarioNome = this.texto;
       this.usuarioCpf = this.cpf;
-      this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.usuarioNome + ' - CPF:' + this.usuarioCpf);
+      this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.usuarioNome + '|' + this.usuarioCpf);
       this.nextQuestionAnamnese( this.anamneseForm.usuario);
+    } else if (this.anamneseForm.endereco) {
+      this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.endereco_cep + '|' + this.endereco_logradouro + '|' + this.endereco_numero + '|' + this.endereco_complemento + '|' + this.endereco_bairro + '|' + this.endereco_cidade + '|' + this.endereco_uf);
+      this.nextQuestionAnamnese( this.anamneseForm.endereco);
     } else if(this.anamneseForm.texto) {
       this.updateAnamnese(this.anamneseForm.id, this.anamneseForm.confidencial, this.isOpcaoTexto ? this.anamneseForm.opcaoTexto_desc : this.texto);
       this.nextQuestionAnamnese(this.anamneseForm.texto);
@@ -483,6 +497,9 @@ export class AppComponent {
     if (this.anamneseForm.email) {
       return this.validateEmail();
     }
+    if (this.anamneseForm.endereco) {
+      return this.validateEndereco();
+    }
     return true;
   }
 
@@ -490,7 +507,9 @@ export class AppComponent {
     const idAnterior = this.anamneseResult.length > 0 ? this.anamneseResult[this.anamneseResult.length - 1].id : this.anamneses[0].id;
     this.anamneseResult.pop();
     if(this.anamneseForm.usuario) {
-      this.updateBackup(this.anamneseForm.id, this.anamneseForm.confidencial, this.usuarioNome + ' - CPF:' + this.usuarioCpf);
+      this.updateBackup(this.anamneseForm.id, this.anamneseForm.confidencial, this.usuarioNome + '|' + this.usuarioCpf);
+    } else if(this.anamneseForm.endereco) {
+      this.updateBackup(this.anamneseForm.id, this.anamneseForm.confidencial, this.endereco_cep + '|' + this.endereco_logradouro + '|' + this.endereco_numero + '|' + this.endereco_complemento + '|' + this.endereco_bairro + '|' + this.endereco_cidade + '|' + this.endereco_uf);
     } else if(this.anamneseForm.texto) {
       this.updateBackup(this.anamneseForm.id, this.anamneseForm.confidencial, this.isOpcaoTexto ? this.anamneseForm.opcaoTexto_desc : this.texto);
     } else if(this.anamneseForm.sim) {
@@ -748,6 +767,20 @@ export class AppComponent {
   validateEmail() : boolean {
     const re = /\S+@\S+\.\S+/;
     return re.test(this.email);
+  }
+
+  validateUF() : boolean {
+    if (this.endereco_uf === 'AC' || this.endereco_uf === 'AL' || this.endereco_uf === 'AP' || this.endereco_uf === 'AM' || this.endereco_uf === 'BA' || this.endereco_uf === 'CE' || this.endereco_uf === 'DF' || this.endereco_uf === 'ES' || this.endereco_uf === 'GO' || this.endereco_uf === 'MA' ||
+        this.endereco_uf === 'MT' || this.endereco_uf === 'MS' || this.endereco_uf === 'MG' || this.endereco_uf === 'PA' || this.endereco_uf === 'PB' ||
+        this.endereco_uf === 'PR' || this.endereco_uf === 'PE' || this.endereco_uf === 'PI' || this.endereco_uf === 'RJ' || this.endereco_uf === 'RN' ||
+        this.endereco_uf === 'RS' || this.endereco_uf === 'RO' || this.endereco_uf === 'RR' || this.endereco_uf === 'SC' || this.endereco_uf === 'SP' || this.endereco_uf === 'SE' || this.endereco_uf === 'TO') {
+      return true;
+    }
+    return false;
+  }
+
+  validateEndereco() : boolean {
+    return this.endereco_logradouro.length > 0 && this.endereco_bairro.length > 0 && this.endereco_numero.length > 0 && this.endereco_cidade.length > 0 && this.validateUF() && this.validateCEP();
   }
 
   onCEPChange(event: any) {
