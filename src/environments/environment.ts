@@ -1,6 +1,6 @@
-import { version } from '../../package.json';
+import packageJson from '../../package.json';
 
 export const environment = {
   production: false,
-  appVersion: version
+  appVersion: packageJson.version
 };
