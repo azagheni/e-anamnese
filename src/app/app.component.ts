@@ -56,6 +56,13 @@ export class AppComponent {
   isSim: boolean = false;
   isNao: boolean = false;
   isNaoSei: boolean = false;
+  endereco_logradouro: string = '';
+  endereco_numero: string = '';
+  endereco_complemento: string = '';
+  endereco_bairro: string = '';
+  endereco_cidade: string = '';
+  endereco_uf: string = '';
+  endereco_cep: string = '';
 
   /**
 	 * Constructor
@@ -210,7 +217,6 @@ export class AppComponent {
     this.anamneseForm = new AnamneseForm(this.anamneses[0]);
     this.anamneseResult = [];
     this.anamneseBackup = [];
-    this.cpf = '';
     this.usuarioNome = '';
     this.usuarioCpf = '';
     this.reset();
@@ -224,6 +230,7 @@ export class AppComponent {
 
   reset() : void {
     this.texto = '';
+    this.cpf = '';
     this.numero = '';
     this.data = '';
     this.email = '';
@@ -234,6 +241,13 @@ export class AppComponent {
     this.isSim = false;
     this.isNao = false;
     this.isNaoSei = false;
+    this.endereco_logradouro = '';
+    this.endereco_numero = '';
+    this.endereco_complemento = '';
+    this.endereco_bairro = '';
+    this.endereco_cidade = '';
+    this.endereco_uf = '';
+    this.endereco_cep = '';
   }
 
   salvar() : void {
@@ -714,6 +728,14 @@ export class AppComponent {
     return true
   }
 
+  validateCEP() : boolean {
+    if (this.endereco_cep.length > 9) {
+      return false;
+    }
+    let valor = this.endereco_cep.replace(/\D/g, '');
+    return /^\d{5}-?\d{3}$/.test(this.endereco_cep) && valor.length === 8;
+  }
+
   validateNumero() : boolean {
     return /^\d+$/.test(this.numero)
   }
@@ -726,5 +748,38 @@ export class AppComponent {
   validateEmail() : boolean {
     const re = /\S+@\S+\.\S+/;
     return re.test(this.email);
+  }
+
+  onCEPChange(event: any) {
+    this.endereco_cep = event;
+    if (this.endereco_cep.length === 9 && this.validateCEP()) {
+      this.searchAddress(this.endereco_cep);
+    }
+  }
+
+  // Função para buscar e preencher os dados do endereço
+  async searchAddress(cep: string) {
+    // Remove qualquer caractere que não seja número (como traços ou pontos)
+    const cepLimpo = cep.replace(/\D/g, '');
+    const url = `https://viacep.com.br/ws/${cepLimpo}/json/`;
+
+    try {
+        const resposta = await fetch(url);
+        const dados = await resposta.json();
+
+        // Verifica se a API retornou um erro
+        if (dados.erro) {
+            alert("CEP não encontrado.");
+            return;
+        }
+
+        this.endereco_logradouro = dados.logradouro;
+        this.endereco_bairro = dados.bairro;
+        this.endereco_cidade = dados.localidade;
+        this.endereco_uf = dados.uf;
+        document.getElementById("numero")?.focus();
+    } catch (error) {
+        console.error("Erro ao buscar o CEP: ", error);
+    }
   }
 }

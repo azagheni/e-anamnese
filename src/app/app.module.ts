@@ -17,6 +17,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CpfPipe } from './pipes/cpf.pipes';
+import { CepPipe } from './pipes/cep.pipes';
 import { DataPipe } from './pipes/data.pipes';
 import { TelefonePipe } from './pipes/telefone.pipes';
 import { DialogComponent } from './dialog/dialog.component';
@@ -29,6 +30,7 @@ import { TermsDialogComponent } from './terms-dialog/terms-dialog.component';
   declarations: [
     AppComponent,
     CpfPipe,
+    CepPipe,
     DataPipe,
     TelefonePipe,
     TermsDialogComponent,

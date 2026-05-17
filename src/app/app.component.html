@@ -74,6 +74,74 @@
         />
       </div>
 
+      <div *ngIf="anamneseForm.endereco" class="input-address">
+        <label>CEP:</label>
+        <input
+          id="cep"
+          type="search"
+          [ngClass]="{'input-error': endereco_cep && endereco_cep.length > 8 && !validateCEP()}"
+          placeholder="Digite seu CEP"
+          ngchange="verificaCEP(this)"
+          [ngModel]="endereco_cep | cep"
+          (ngModelChange)="onCEPChange($event)"
+        />
+        <label>Logradouro:</label>
+        <input
+          id="logradouro"
+          type="search"
+          name="logradouro"
+          [disabled]="endereco_cep.length !== 9"
+          [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'Rua, Avenida...'"
+          [ngModel]="endereco_logradouro"
+        />
+        <label>Número:</label>
+        <input
+          id="numero"
+          type="search"
+          name="numero"
+          [disabled]="endereco_cep.length !== 9"
+          [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'Número: ex: 123'"
+          [ngModel]="endereco_numero"
+        />
+        <label>Complemento:</label>
+        <input
+          id="complemento"
+          type="search"
+          name="complemento"
+          [disabled]="endereco_cep.length !== 9"
+          [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'Complemento: Casa, Apto, Bloco...'"
+          [ngModel]="endereco_complemento"
+        />
+        <label>Bairro:</label>
+        <input
+          id="bairro"
+          type="search"
+          name="bairro"
+          [disabled]="endereco_cep.length !== 9"
+          [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'Bairro'"
+          [ngModel]="endereco_bairro"
+        />
+        <label>Cidade:</label>
+        <input
+          id="cidade"
+          type="search"
+          name="cidade"
+          [disabled]="endereco_cep.length !== 9"
+          [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'Cidade'"
+          [ngModel]="endereco_cidade"
+        />
+        <label>UF:</label>
+        <input
+          id="uf"
+          type="search"
+          name="uf"
+          [ngClass]="{'input-error': endereco_uf && endereco_uf.length > 2}"
+          [disabled]="endereco_cep.length !== 9"
+          [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'Ex: PR, SC...'"
+          [ngModel]="endereco_uf"
+        />
+      </div>
+
       <div *ngIf="anamneseForm.texto" class="input-full">
         <input
           type="search"

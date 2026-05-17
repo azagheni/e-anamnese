@@ -33,9 +33,10 @@ input {
 
 	&::placeholder {
 		color: var(--color-text-placeholder);
+		opacity: 1;
 	}
 
-	/**
+  /**
   * States
   */
 	&:focus-visible {

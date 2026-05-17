@@ -210,6 +210,17 @@
     }
 }
 
+.input-address {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    inline-size: 100%;
+    row-gap: 8px;
+
+    & > label {
+        font-size: var(--font-size-m);
+    }
+}
+
 .input-normal {
     display: flex;
     flex-direction: column;
