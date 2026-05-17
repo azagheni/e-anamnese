@@ -6,7 +6,7 @@ import { SwUpdate } from '@angular/service-worker';
 
 import { AnamneseService } from './services/anamnese.service';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import packageInfo from '../../package.json'; // Adjust path as necessary
+import { environment } from '../environments/environment';
 import { timer } from 'rxjs';
 
 @Component({
@@ -16,7 +16,7 @@ import { timer } from 'rxjs';
 })
 export class AppComponent {
   title = 'e-anamnese';
-  version = packageInfo.version;
+  version = environment.appVersion;
   private swUpdate = inject(SwUpdate);
 	needToReload = false;
 	swDownloadInProgress = false;
