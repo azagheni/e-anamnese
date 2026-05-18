@@ -56,13 +56,15 @@
         </button>
       </div>
 
-      <div *ngIf="anamneseForm.usuario" class="input-full">
+      <div *ngIf="anamneseForm.usuario" class="input-grid">
+        <label>Nome:</label>
         <input
           id="username"
           type="search"
           [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'Digite seu nome completo'"
           [(ngModel)]="texto"
         />
+        <label>CPF:</label>
         <input
           id="user-cpf"
           type="search"
@@ -74,7 +76,7 @@
         />
       </div>
 
-      <div *ngIf="anamneseForm.endereco" class="input-address">
+      <div *ngIf="anamneseForm.endereco" class="input-grid">
         <label>CEP:</label>
         <input
           id="cep"
