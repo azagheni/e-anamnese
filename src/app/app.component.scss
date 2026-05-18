@@ -195,7 +195,7 @@
     display: flex-start;
     row-gap: 15px;
     flex-direction: column;
-    width: inherit;
+    width: 100%;
 }
 
 .input-full {
@@ -213,17 +213,29 @@
 .input-address {
     display: grid;
     grid-template-columns: 130px 1fr;
+    width: 100%;
     row-gap: 8px;
 
     & > label {
         font-size: var(--font-size-m);
     }
+
+    @media (max-width: 400px) {
+		grid-template-columns: 1fr;
+        gap: 0;
+
+        & > label {
+            margin-top: 15px;
+            margin-bottom: 0;
+        }
+	}
 }
 
 .input-normal {
     display: flex;
     flex-direction: column;
     row-gap: 15px;
+    width: 80%;
 
     & > mat-slider {
         inline-size: 84%;
