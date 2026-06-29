@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { ANAMNESES } from 'src/db-data';
 import { Anamnese } from './model/anamnese'
 import { AnamneseForm as AnamneseForm } from './model/anamnese-form';
@@ -71,7 +72,8 @@ export class AppComponent {
    */
 	constructor(
     public anamneseService: AnamneseService,
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    private http: HttpClient
   ) {
     /* istanbul ignore next */
   }
@@ -291,8 +293,119 @@ export class AppComponent {
     console.log(JSON.stringify(this.anamneseResult));
   }
 
+
+  // Função para obter a URL do vídeo com base no ID da anamnese
+  downloadBackgroundVideo(video:string) {
+    this.http.get('./assets/videos/' + video, { responseType: 'blob' }).subscribe({
+      next: () => console.log('Vídeo ' + video + ' pré-carregado pelo Service Worker'),
+      error: (err) => console.error('Erro ao pré-carregar vídeo ' + video, err)
+    });
+  }
+
+  // Dispara o download dos próximos vídeos em background.
+  downloadNextVideos(id:number) : void {
+    const anamneseForm = new AnamneseForm(this.findAnamneseById(id));
+    if (anamneseForm.informacao) {
+      const nextAnamneseForm = new AnamneseForm(this.findAnamneseById(anamneseForm.informacao));
+      this.downloadBackgroundVideo(nextAnamneseForm.video);
+    }
+    if (anamneseForm.usuario) {
+      const nextAnamneseForm = new AnamneseForm(this.findAnamneseById(anamneseForm.usuario));
+      this.downloadBackgroundVideo(nextAnamneseForm.video);
+    }
+    if (anamneseForm.endereco) {
+      const nextAnamneseForm = new AnamneseForm(this.findAnamneseById(anamneseForm.endereco));
+      this.downloadBackgroundVideo(nextAnamneseForm.video);
+    }
+    if (anamneseForm.texto) {
+      const nextAnamneseForm = new AnamneseForm(this.findAnamneseById(anamneseForm.texto));
+      this.downloadBackgroundVideo(nextAnamneseForm.video);
+    }
+    if (anamneseForm.opcaoTexto) {
+      const nextAnamneseForm = new AnamneseForm(this.findAnamneseById(anamneseForm.opcaoTexto));
+      this.downloadBackgroundVideo(nextAnamneseForm.video);
+    }
+    if (anamneseForm.sim) {
+      const nextAnamneseForm = new AnamneseForm(this.findAnamneseById(anamneseForm.sim));
+      this.downloadBackgroundVideo(nextAnamneseForm.video);
+    }
+    if (anamneseForm.nao) {
+      const nextAnamneseForm = new AnamneseForm(this.findAnamneseById(anamneseForm.nao));
+      this.downloadBackgroundVideo(nextAnamneseForm.video);
+    }
+    if (anamneseForm.naosei) {
+      const nextAnamneseForm = new AnamneseForm(this.findAnamneseById(anamneseForm.naosei));
+      this.downloadBackgroundVideo(nextAnamneseForm.video);
+    }
+    if (anamneseForm.escala) {
+      const nextAnamneseForm = new AnamneseForm(this.findAnamneseById(anamneseForm.escala));
+      this.downloadBackgroundVideo(nextAnamneseForm.video);
+    }
+    if (anamneseForm.numero) {
+      const nextAnamneseForm = new AnamneseForm(this.findAnamneseById(anamneseForm.numero));
+      this.downloadBackgroundVideo(nextAnamneseForm.video);
+    }
+    if (anamneseForm.data) {
+      const nextAnamneseForm = new AnamneseForm(this.findAnamneseById(anamneseForm.data));
+      this.downloadBackgroundVideo(nextAnamneseForm.video);
+    }
+    if (anamneseForm.cpf) {
+      const nextAnamneseForm = new AnamneseForm(this.findAnamneseById(anamneseForm.cpf));
+      this.downloadBackgroundVideo(nextAnamneseForm.video);
+    }
+    if (anamneseForm.email) {
+      const nextAnamneseForm = new AnamneseForm(this.findAnamneseById(anamneseForm.email));
+      this.downloadBackgroundVideo(nextAnamneseForm.video);
+    }
+    if (anamneseForm.telefone) {
+      const nextAnamneseForm = new AnamneseForm(this.findAnamneseById(anamneseForm.telefone));
+      this.downloadBackgroundVideo(nextAnamneseForm.video);
+    }
+    if (anamneseForm.checkbox) {
+      const nextAnamneseForm = new AnamneseForm(this.findAnamneseById(anamneseForm.checkbox));
+      this.downloadBackgroundVideo(nextAnamneseForm.video);
+    }
+    if (anamneseForm.opcao1) {
+      const nextAnamneseForm = new AnamneseForm(this.findAnamneseById(anamneseForm.opcao1));
+      this.downloadBackgroundVideo(nextAnamneseForm.video);
+    }
+    if (anamneseForm.opcao2) {
+      const nextAnamneseForm = new AnamneseForm(this.findAnamneseById(anamneseForm.opcao2));
+      this.downloadBackgroundVideo(nextAnamneseForm.video);
+    }
+    if (anamneseForm.opcao3) {
+      const nextAnamneseForm = new AnamneseForm(this.findAnamneseById(anamneseForm.opcao3));
+      this.downloadBackgroundVideo(nextAnamneseForm.video);
+    }
+    if (anamneseForm.opcao4) {
+      const nextAnamneseForm = new AnamneseForm(this.findAnamneseById(anamneseForm.opcao4));
+      this.downloadBackgroundVideo(nextAnamneseForm.video);
+    }
+    if (anamneseForm.opcao5) {
+      const nextAnamneseForm = new AnamneseForm(this.findAnamneseById(anamneseForm.opcao5));
+      this.downloadBackgroundVideo(nextAnamneseForm.video);
+    }
+    if (anamneseForm.opcao6) {
+      const nextAnamneseForm = new AnamneseForm(this.findAnamneseById(anamneseForm.opcao6));
+      this.downloadBackgroundVideo(nextAnamneseForm.video);
+    }
+    if (anamneseForm.opcao7) {
+      const nextAnamneseForm = new AnamneseForm(this.findAnamneseById(anamneseForm.opcao7));
+      this.downloadBackgroundVideo(nextAnamneseForm.video);
+    }
+    if (anamneseForm.opcao8) {
+      const nextAnamneseForm = new AnamneseForm(this.findAnamneseById(anamneseForm.opcao8));
+      this.downloadBackgroundVideo(nextAnamneseForm.video);
+    }
+    if (anamneseForm.opcao9) {
+      const nextAnamneseForm = new AnamneseForm(this.findAnamneseById(anamneseForm.opcao9));
+      this.downloadBackgroundVideo(nextAnamneseForm.video);
+    }
+  }
+
   nextQuestionAnamnese(id:number) : void {
     this.reset();
+    this.downloadNextVideos(id);
     this.anamneseForm = new AnamneseForm(this.findAnamneseById(id));
     this.progresso = this.anamneses.findIndex((obj: any) => obj.id === this.anamneseForm.id) / (this.anamneses.length - 1) * 100;
     this.progresso = parseFloat(this.progresso.toFixed(0));
