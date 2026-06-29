@@ -65,6 +65,8 @@ export class AppComponent {
   endereco_uf: string = '';
   endereco_cep: string = '';
 
+  lastDownloadedVideo: string = '';
+
   /**
 	 * Constructor
 	 *
@@ -296,6 +298,10 @@ export class AppComponent {
 
   // Função para obter a URL do vídeo com base no ID da anamnese
   downloadBackgroundVideo(video:string) {
+    if (video === this.lastDownloadedVideo)
+      return;
+
+    this.lastDownloadedVideo = video;
     this.http.get('./assets/videos/' + video, { responseType: 'blob' }).subscribe({
       next: () => console.log('Vídeo ' + video + ' pré-carregado pelo Service Worker'),
       error: (err) => console.error('Erro ao pré-carregar vídeo ' + video, err)
