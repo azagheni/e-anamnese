@@ -330,7 +330,7 @@
       <div *ngIf="anamneseForm.telefone" class="input-normal">
         <input
           id="telefone"
-          [ngClass]="{'input-error': telefone && telefone.length > 13 && !validateTelefone()}"
+          [ngClass]="{'input-error': telefone && telefone.length > 14 && !validateTelefone()}"
           type="search"
           [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'ex: (41)9999-88888'"
           [ngModel]="telefone | telefone"
