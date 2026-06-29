@@ -31,7 +31,7 @@
 </div>
 
 <div class="video-container">
-  <img *ngIf="anamneseForm.inicio" src="./assets/images/welcome.gif" alt="Bem vindo" />
+  <img *ngIf="anamneseForm.inicio" [src]="'./assets/images/' + anamneseForm.video" alt="Bem vindo" />
   <video *ngIf="!anamneseForm.inicio" [src]="'./assets/videos/' + anamneseForm.video" playsinline webkit-playsinline autoplay muted loop type="video/mp4" poster="./assets/images/video.gif"></video>
 </div>
 
@@ -93,7 +93,7 @@
           type="search"
           name="logradouro"
           [disabled]="endereco_cep.length !== 9"
-          [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'Rua, Avenida...'"
+          placeholder='Rua, Avenida...'
           [ngModel]="endereco_logradouro"
           (ngModelChange)="endereco_logradouro=$event"
         />
@@ -103,7 +103,7 @@
           type="search"
           name="numero"
           [disabled]="endereco_cep.length !== 9"
-          [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'ex: 123'"
+          placeholder='ex: 123'
           [ngModel]="endereco_numero"
           (ngModelChange)="endereco_numero=$event"
         />
@@ -113,7 +113,7 @@
           type="search"
           name="complemento"
           [disabled]="endereco_cep.length !== 9"
-          [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'Casa, Apto, Bloco...'"
+          placeholder='Casa, Apto, Bloco...'
           [ngModel]="endereco_complemento"
           (ngModelChange)="endereco_complemento=$event"
         />
@@ -123,7 +123,7 @@
           type="search"
           name="bairro"
           [disabled]="endereco_cep.length !== 9"
-          [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'Centro, Jardim...'"
+          placeholder='Centro, Jardim...'
           [ngModel]="endereco_bairro"
           (ngModelChange)="endereco_bairro=$event"
         />
@@ -133,7 +133,7 @@
           type="search"
           name="cidade"
           [disabled]="endereco_cep.length !== 9"
-          [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'Curitiba, São Paulo...'"
+          placeholder='Curitiba, São Paulo...'
           [ngModel]="endereco_cidade"
           (ngModelChange)="endereco_cidade=$event"
         />
@@ -144,7 +144,7 @@
           name="uf"
           [ngClass]="{'input-error': endereco_uf && endereco_uf.length > 2}"
           [disabled]="endereco_cep.length !== 9"
-          [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'Ex: PR, SC...'"
+          placeholder='Ex: PR, SC...'
           [ngModel]="endereco_uf"
           (ngModelChange)="endereco_uf=$event"
         />
@@ -342,7 +342,7 @@
         <input
           id="email"
           type="search"
-          placeholder="ex: nome@gmail.com"
+          [placeholder]="anamneseForm.placeholder ? anamneseForm.placeholder : 'ex: nome@gmail.com'"
           [(ngModel)]="email"
         />
       </div>
