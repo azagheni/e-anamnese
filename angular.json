@@ -92,7 +92,7 @@
 						"sslKey": "./dev-server-certs/localhost.key",
 						"sslCert": "./dev-server-certs/localhost.crt",
 						"ssl": true
-					}          
+					}
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
