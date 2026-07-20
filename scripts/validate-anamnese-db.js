@@ -5,6 +5,8 @@ const defaultFile = path.resolve(process.cwd(), 'src', 'db-data.ts');
 const inputFile = process.argv[2] ? path.resolve(process.cwd(), process.argv[2]) : defaultFile;
 
 const jumpKeys = new Set([
+  'inicio',
+  'fim',
   'sim',
   'nao',
   'naosei',
@@ -16,7 +18,19 @@ const jumpKeys = new Set([
   'endereco',
   'telefone',
   'email',
-  'inicio'
+  'numero',
+  'cpf',
+  'escala',
+  'informacao',
+  'opcao1',
+  'opcao2',
+  'opcao3',
+  'opcao4',
+  'opcao5',
+  'opcao6',
+  'opcao7',
+  'opcao8',
+  'opcao9'  
 ]);
 
 function extractArray(rawFile) {
