@@ -30,7 +30,7 @@ const jumpKeys = new Set([
   'opcao6',
   'opcao7',
   'opcao8',
-  'opcao9'  
+  'opcao9'
 ]);
 
 function extractArray(rawFile) {
