@@ -54,7 +54,8 @@ input {
 		background-color: var(--color-accent-bg--disabled);
 		color: var(--color-text-secondary);
 	}
-	&:not(:disabled):is(:focus, :focus-within) {
+	&:not(:disabled):focus,
+	&:not(:disabled):focus-within {
 		border-color: var(--color-accent-border--focus);
 	}
 	&:not(:disabled):focus,

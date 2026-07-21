@@ -1,8 +1,5 @@
 import { AnamneseData } from './anamnese-data';
 
-// External dependencies
-import { assign } from 'lodash';
-
 /**
  * Anamnese data class
  */
@@ -22,7 +19,7 @@ export class Anamnese implements AnamneseData {
         this.answers = '';
 
         if (data) {
-            assign(this, data);
+            Object.assign(this, data);
         }
     }
 }

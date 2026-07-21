@@ -1,9 +1,6 @@
 
 import { AnamneseFormData } from './anamnese-form-data';
 
-// External dependencies
-import { assign } from 'lodash';
-
 /**
  * Anamnese data class
  */
@@ -131,7 +128,7 @@ export class AnamneseForm implements AnamneseFormData {
         this.opcaoTexto_desc = '';
 
         if (data) {
-			assign(this, data);
+			Object.assign(this, data);
 		}
 	}
 }
