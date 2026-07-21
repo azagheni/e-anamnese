@@ -261,8 +261,8 @@ export class AppComponent {
     anamnese.cpf = encodeURIComponent(this.usuarioCpf);
     anamnese.answers = encodeURIComponent(JSON.stringify(this.anamneseResult));
     this.anamneseService.addAnamnese(anamnese).subscribe(() => {
-      //alert("Anamnese salva com sucesso!");
-      console.log('Anamnese salva com sucesso!');
+    //alert("Anamnese salva com sucesso!");
+    console.log('Anamnese salva com sucesso!');
     });
   }
 
@@ -501,7 +501,6 @@ export class AppComponent {
 
     if (this.anamneseForm.fim) {
       this.salvar();
-      //alert('Necessário implementar ação de salvar para concluir o registro da anamnese!');
     }
   }
 
