@@ -880,7 +880,7 @@ export class AppComponent {
 
   validateTelefone() : boolean {
     let valor = this.telefone.replace(/\D/g, '');
-    return /^\(\d{2}\)\d{4,5}-\d{4}$/.test(this.telefone) && (valor.length > 9 && valor.length < 12);
+    return /^\(\d{2}\)\d{4,5}-\d{4,5}$/.test(this.telefone) && (valor.length > 9 && valor.length < 12);
   }
 
   validateEmail() : boolean {
