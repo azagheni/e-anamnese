@@ -3,6 +3,7 @@ const path = require('path');
 
 const defaultFile = path.resolve(process.cwd(), 'src', 'db-data.ts');
 const inputFile = process.argv[2] ? path.resolve(process.cwd(), process.argv[2]) : defaultFile;
+const videosDir = path.resolve(process.cwd(), 'src', 'assets', 'videos');
 
 const jumpKeys = new Set([
   'inicio',
@@ -43,10 +44,41 @@ function extractArray(rawFile) {
   return Function(`"use strict"; return (${match[1]});`)();
 }
 
+function validateVideos(records) {
+  const videoIssues = [];
+  const videosSet = new Set();
+
+  // Coletar todos os vídeos únicos referenciados
+  for (const item of records) {
+    if (item.video && typeof item.video === 'string' && item.video !== '0.mp4') {
+      videosSet.add(item.video);
+    }
+  }
+
+  // Verificar se cada vídeo existe
+  for (const videoFile of videosSet) {
+    const videoPath = path.join(videosDir, videoFile);
+    if (!fs.existsSync(videoPath)) {
+      videoIssues.push({
+        type: 'video-nao-encontrado',
+        arquivo: videoFile,
+        caminho: videoPath
+      });
+    }
+  }
+
+  return {
+    totalVideosUnicos: videosSet.size,
+    totalVideosMissing: videoIssues.length,
+    issues: videoIssues
+  };
+}
+
 function validate(records) {
   const issues = [];
   const ids = new Set(records.map((item) => item.id));
   const idCount = new Map();
+  const videoIssues = validateVideos(records);
 
   for (const item of records) {
     idCount.set(item.id, (idCount.get(item.id) || 0) + 1);
@@ -91,9 +123,16 @@ function validate(records) {
     }
   }
 
+  // Adicionar issues de vídeos
+  issues.push(...videoIssues.issues);
+
   return {
     totalPerguntas: records.length,
     totalIdsUnicos: ids.size,
+    videos: {
+      totalUnicos: videoIssues.totalVideosUnicos,
+      totalFaltando: videoIssues.totalVideosMissing
+    },
     totalIssues: issues.length,
     issues
   };
