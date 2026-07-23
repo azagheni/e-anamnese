@@ -8,6 +8,8 @@ export class Anamnese implements AnamneseData {
     name: string;
     cpf: string;
     answers: string;
+    created_at: string;
+    updated_at: string;
 
     /**
      * Constructor
@@ -17,6 +19,8 @@ export class Anamnese implements AnamneseData {
         this.name = '';
         this.cpf = '';
         this.answers = '';
+        this.created_at = '';
+        this.updated_at = '';
 
         if (data) {
             Object.assign(this, data);

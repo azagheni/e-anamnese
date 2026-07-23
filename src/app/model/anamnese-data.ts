@@ -3,4 +3,6 @@ export interface AnamneseData {
     name: string;
     cpf: string;
     answers: string;
+    created_at: string;
+    updated_at: string;
 }
