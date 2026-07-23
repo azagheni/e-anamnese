@@ -7,7 +7,7 @@ import { SwUpdate } from '@angular/service-worker';
 
 import { AnamneseService } from './services/anamnese.service';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { APP_VERSION } from './version';
+import { APP_VERSION } from '../app-version';
 import { timer } from 'rxjs';
 
 @Component({

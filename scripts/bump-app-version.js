@@ -10,12 +10,12 @@ if (!VALID_BUMP_TYPES.has(bumpType)) {
   process.exit(1);
 }
 
-const versionFilePath = path.resolve(__dirname, '..', 'src', 'app', 'version.ts');
+const versionFilePath = path.resolve(__dirname, '..', 'src', 'app-version.ts');
 const source = fs.readFileSync(versionFilePath, 'utf8');
 const match = source.match(/APP_VERSION\s*=\s*['\"](\d+)\.(\d+)\.(\d+)['\"]/);
 
 if (!match) {
-  console.error('Nao foi possivel encontrar APP_VERSION em src/app/version.ts');
+  console.error('Nao foi possivel encontrar APP_VERSION em src/app-version.ts');
   process.exit(1);
 }
 
