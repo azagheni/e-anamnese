@@ -18,6 +18,7 @@ import { timer } from 'rxjs';
 export class AppComponent {
   title = 'e-anamnese';
   version = APP_VERSION;
+  isVideo : boolean = false;
   private swUpdate = inject(SwUpdate);
 	needToReload = false;
 	swDownloadInProgress = false;
@@ -219,6 +220,7 @@ export class AppComponent {
     console.log('onRecomecar');
     this.progresso = 0;
     this.anamneseForm = new AnamneseForm(this.anamneses[0]);
+    this.isVideo = this.anamneseForm.video.includes('.mp4');
     this.anamneseResult = [];
     this.anamneseBackup = [];
     this.usuarioNome = '';
@@ -413,6 +415,7 @@ export class AppComponent {
     this.reset();
     this.downloadNextVideos(id);
     this.anamneseForm = new AnamneseForm(this.findAnamneseById(id));
+    this.isVideo = this.anamneseForm.video.includes('.mp4');
     this.progresso = this.anamneses.findIndex((obj: any) => obj.id === this.anamneseForm.id) / (this.anamneses.length - 1) * 100;
     this.progresso = parseFloat(this.progresso.toFixed(0));
     console.log(`Next question: ` +  id );

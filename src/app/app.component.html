@@ -31,8 +31,8 @@
 </div>
 
 <div class="video-container">
-  <img *ngIf="anamneseForm.inicio" [src]="'./assets/videos/' + anamneseForm.video" alt="Bem vindo" />
-  <video *ngIf="!anamneseForm.inicio" [src]="'./assets/videos/' + anamneseForm.video" playsinline webkit-playsinline autoplay muted loop type="video/mp4" poster="./assets/images/video.gif"></video>
+  <img *ngIf="!isVideo" [src]="'./assets/videos/' + anamneseForm.video" [alt]="anamneseForm.descricao" />
+  <video *ngIf="isVideo" [src]="'./assets/videos/' + anamneseForm.video" playsinline webkit-playsinline autoplay muted loop type="video/mp4" poster="./assets/images/video.gif"></video>
 </div>
 
 <div class="content">

@@ -5,9 +5,12 @@
     "ng": "ng",
     "start": "ng serve --host=0.0.0.0 --port=4200",
     "build": "ng build",
+    "validate:anamnese-db": "node scripts/validate-anamnese-db.js",
+    "version:patch": "node scripts/bump-app-version.js patch",
+    "version:minor": "node scripts/bump-app-version.js minor",
+    "version:major": "node scripts/bump-app-version.js major",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "validate:anamnese-db": "node scripts/validate-anamnese-db.js"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
