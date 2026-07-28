@@ -32,7 +32,7 @@
 
 <div class="video-container">
   <img *ngIf="!isVideo" [src]="'./assets/videos/' + anamneseForm.video" [alt]="anamneseForm.descricao" />
-  <video *ngIf="isVideo" [src]="'./assets/videos/' + anamneseForm.video" playsinline webkit-playsinline autoplay muted loop type="video/mp4" poster="./assets/images/video.gif"></video>
+  <video *ngIf="isVideo" [src]="'./assets/videos/' + anamneseForm.video" playsinline webkit-playsinline autoplay loop type="video/mp4" poster="./assets/images/video.gif"></video>
 </div>
 
 <div class="content">
