@@ -305,6 +305,13 @@
           <mat-icon *ngIf="anamneseForm.opcao9_icon" aria-hidden="true">{{ anamneseForm.opcao9_icon }}</mat-icon>
           {{ anamneseForm.opcao9_desc }}
         </button>
+
+        <button class="button-answer" [ngClass]="{'button-answer-not-checked': isCheckOptions()}" (click)="resetCheckboxes()">
+          <mat-icon *ngIf="isCheckOptions()">check_box_outline_blank</mat-icon>
+          <mat-icon *ngIf="!isCheckOptions()">check_box</mat-icon>
+          <mat-icon *ngIf="anamneseForm.opcao1_icon" aria-hidden="true">info_outline</mat-icon>
+          Nenhum dos anteriores
+        </button>
       </div>
 
       <div *ngIf="anamneseForm.numero" class="input-normal">

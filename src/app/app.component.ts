@@ -803,6 +803,14 @@ export class AppComponent {
     this.checkboxes.patchValue({opcao9: !this.checkboxes.value.opcao9});
   }
 
+  isCheckOptions() : boolean {
+    return this.checkboxes.value.opcao1 === true || this.checkboxes.value.opcao2 === true || this.checkboxes.value.opcao3 === true || this.checkboxes.value.opcao4 === true || this.checkboxes.value.opcao5 === true || this.checkboxes.value.opcao6 === true || this.checkboxes.value.opcao7 === true || this.checkboxes.value.opcao8 === true || this.checkboxes.value.opcao9 === true;
+  }
+
+  resetCheckboxes() : void {
+    this.checkboxes.setValue({opcao1: false, opcao2: false, opcao3: false, opcao4: false, opcao5: false, opcao6: false, opcao7: false, opcao8: false, opcao9: false});
+  }
+
   checkBoxValue() : string {
     let valor = '';
     if (this.anamneseForm.opcao1_desc){
