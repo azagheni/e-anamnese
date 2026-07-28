@@ -88,7 +88,9 @@ export class AppComponent {
     console.log('[AppComponent] =============== Initializing app ===============');
     const dialogRef = this.dialog.open(WelcomeDialogComponent);
     this.onRecomecar();
-    this.anamneseForm.video = "empty.mp4";
+    // workaround to show the welcome video on the first question, because the video is not loaded yet.
+    this.anamneseForm.video = "welcome.gif";
+    this.isVideo = false;
     const nextAnamneseForm = new AnamneseForm(this.findAnamneseById(1));
     this.downloadBackgroundVideo(nextAnamneseForm.video);
 
