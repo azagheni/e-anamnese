@@ -1,0 +1,39 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background: #B5E3D6;
+}
+
+.dialog-container {
+  max-width: 600px;
+  margin: auto;
+  background: #B5E3D6;
+}
+
+.dialog-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.dialog-content {
+  margin-bottom: 20px;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-accept {
+  background-color: var(--color-bg-subtle);
+  color: white;
+}
+
+.dialog-actions {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding-right: 20px;
+  cursor: pointer;
+}

@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 import { ANAMNESES } from 'src/db-data';
 import { Anamnese } from './model/anamnese'
@@ -7,6 +8,7 @@ import { SwUpdate } from '@angular/service-worker';
 
 import { AnamneseService } from './services/anamnese.service';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { WelcomeDialogComponent } from './welcome-dialog/welcome-dialog.component';
 import { APP_VERSION } from '../app-version';
 import { timer } from 'rxjs';
 
@@ -75,15 +77,31 @@ export class AppComponent {
    */
 	constructor(
     public anamneseService: AnamneseService,
+    private dialog: MatDialog,
     private _formBuilder: FormBuilder,
-    private http: HttpClient
+    private readonly http: HttpClient
   ) {
     /* istanbul ignore next */
   }
 
 	ngOnInit() {
     console.log('[AppComponent] =============== Initializing app ===============');
+    const dialogRef = this.dialog.open(WelcomeDialogComponent);
     this.onRecomecar();
+    this.anamneseForm.video = "empty.mp4";
+    const nextAnamneseForm = new AnamneseForm(this.findAnamneseById(1));
+    this.downloadBackgroundVideo(nextAnamneseForm.video);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.onRecomecar();
+      }
+    });
+    dialogRef.backdropClick().subscribe(() => {
+      dialogRef.close();
+      this.onRecomecar();
+    })
+
     // Catch update related events
     if (window.location.hostname === 'localhost') {
       console.log('Running on localhost domain - skipping Service Worker update checks!');
