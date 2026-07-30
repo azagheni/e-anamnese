@@ -282,10 +282,7 @@ export class AppComponent {
     anamnese.name = encodeURIComponent(this.usuarioNome);
     anamnese.cpf = encodeURIComponent(this.usuarioCpf);
     anamnese.answers = encodeURIComponent(JSON.stringify(this.anamneseResult));
-    this.anamneseService.addAnamnese(anamnese).subscribe(() => {
-    //alert("Anamnese salva com sucesso!");
-    console.log('Anamnese salva com sucesso!');
-    });
+    this.anamneseService.addAnamnese(anamnese).subscribe(() => { console.log('Anamnese salva com sucesso!'); });
   }
 
   updateBackup(id:number, confidential: number, answer:string) : void {
