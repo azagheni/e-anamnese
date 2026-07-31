@@ -278,10 +278,6 @@ video::-webkit-media-controls {
     border-radius: 4px;
     padding: 20px;
     box-shadow: 0 1px 16px 0 rgba(0, 0, 0, .2), 0 2px 8px 0 rgba(0, 0, 0, .14), 0 4px 8px -1px rgba(0, 0, 0, .12);
-
-	@media screen and (prefers-color-scheme: dark) {
-        box-shadow: 0 1px 16px 0 rgba(255, 255, 255, .8), 0 2px 8px 0 rgba(0, 0, 0, .14), 0 4px 8px -1px rgba(255, 255, 255, .8);
-	}
 }
 
 .button-answer {

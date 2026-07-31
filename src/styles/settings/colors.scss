@@ -130,9 +130,9 @@
 
 	/*************************************************************************************************************************************
 	 * Semantic colors
-	 * Dark theme (default)
+	 * Semantic theme (light only)
 	 *************************************************************************************************************************************/
-	color-scheme: dark light;
+	color-scheme: light;
 
 	/* Background colors */
 	/*--color-bg: var(--color-dark);*/
@@ -298,25 +298,6 @@
 		/* Shadow colors */
 		--hsl-shadow: 220 43% 11%;
 	}
-}
-
-/*
- * Manually specified dark theme
- */
-[data-theme='dark'] {
-	/* Background colors */
-	--color-bg: var(--color-dark);
-	--color-bg-subtle: var(--color-grey-900);
-	--color-bg-selection: var(--color-grey-600);
-	--color-bg-call: var(--color-grey-900);
-	--color-bg-call-secondary: var(--color-grey-850);
-
-	/* Text colors */
-	--color-text: var(--color-grey-25);
-	--color-text-secondary: var(--color-grey-200);
-
-	/* border colors */
-	--color-border: var(--color-grey-800);
 }
 
 /*
