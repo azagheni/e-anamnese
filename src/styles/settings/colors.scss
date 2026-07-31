@@ -9,7 +9,6 @@
 	 * Color palette
 	 *************************************************************************************************************************************/
 	--color-light: hsl(0 0% 100%);
-	--color-dark: hsl(0 0% 0%);
 
 	/* Primary colors */
 	--color-primary-25: hsl(204 100% 96%);
@@ -133,14 +132,6 @@
 	 * Semantic theme (light only)
 	 *************************************************************************************************************************************/
 	color-scheme: light;
-
-	/* Background colors */
-	/*--color-bg: var(--color-dark);*/
-	/*--color-bg-subtle: var(--color-grey-900);*/
-	/*--color-bg-selection: var(--color-grey-600);*/
-	/*--color-bg-call: var(--color-grey-900);*/
-	/*--color-bg-call-secondary: var(--color-grey-850);*/
-	/*--color-bg--disabled: var(--color-grey-100);*/
 
 	/* Background colors */
 	--color-bg: var(--color-light);
