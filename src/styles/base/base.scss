@@ -4,6 +4,8 @@
 
 html {
 	/* Colors */
+	color-scheme: light;
+	color-scheme: only light;
 	accent-color: var(--color-accent-bg);
 	background-color: var(--color-bg);
 	color: var(--color-text);
@@ -23,9 +25,18 @@ html {
 
 body {
 	margin: 0;
+	background-color: var(--color-bg);
+	color: var(--color-text);
+	min-block-size: 100vh;
 	overflow: hidden;
 	font-size: var(--font-size-m);
 	font-weight: var(--font-weight-normal);
+}
+
+app-root {
+	display: block;
+	min-block-size: 100vh;
+	background-color: var(--color-bg);
 }
 
 main {
