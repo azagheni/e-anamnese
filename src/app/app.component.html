@@ -17,7 +17,8 @@
       <mat-icon aria-hidden="true">close</mat-icon>
     </div>
     <div class="button-recomecar" *ngIf="anamneseForm.id == 1" (click)="onSwitchTheme()">
-      <mat-icon aria-hidden="true">close</mat-icon>
+      <mat-icon *ngIf="!isDarkTheme" aria-hidden="true">dark_mode</mat-icon>
+      <mat-icon *ngIf="isDarkTheme" aria-hidden="true">light_mode</mat-icon>
     </div>
 </div>
 <div class="progress-bar">
