@@ -18,7 +18,10 @@ import { timer } from 'rxjs';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  readonly THEME_STORAGE_KEY = 'e-anamnese.isDarkTheme';
   title = 'e-anamnese';
+  isDarkTheme : boolean = false;
+  videoPath : string = './assets/videos/';
   version = APP_VERSION;
   isVideo : boolean = false;
   private swUpdate = inject(SwUpdate);
@@ -86,6 +89,7 @@ export class AppComponent {
 
 	ngOnInit() {
     console.log('[AppComponent] =============== Initializing app ===============');
+    this.loadTheme();
     const dialogRef = this.dialog.open(WelcomeDialogComponent);
     this.onRecomecar();
     // workaround to show the welcome video on the first question, because the video is not loaded yet.
@@ -254,6 +258,31 @@ export class AppComponent {
     //});
   }
 
+  loadTheme() : void {
+    try {
+      this.isDarkTheme = localStorage.getItem(this.THEME_STORAGE_KEY) === 'true';
+    } catch (err) {
+      console.warn('[AppComponent] Não foi possível ler o tema salvo: ', err);
+      this.isDarkTheme = false;
+    }
+    this.applyTheme();
+  }
+
+  applyTheme() : void {
+    this.videoPath = this.isDarkTheme ? './assets/videos-dark/' : './assets/videos/';
+  }
+
+  onSwitchTheme() : void {
+    this.isDarkTheme = !this.isDarkTheme;
+    this.applyTheme();
+    try {
+      localStorage.setItem(this.THEME_STORAGE_KEY, String(this.isDarkTheme));
+    } catch (err) {
+      console.warn('[AppComponent] Não foi possível salvar o tema: ', err);
+    }
+    this.reloadPage();
+  }
+
   reset() : void {
     this.texto = '';
     this.cpf = '';
@@ -321,7 +350,7 @@ export class AppComponent {
       return;
 
     this.lastDownloadedVideo = video;
-    this.http.get('./assets/videos/' + video, { responseType: 'blob' }).subscribe({
+    this.http.get(this.videoPath + video, { responseType: 'blob' }).subscribe({
       next: () => console.log('Vídeo ' + video + ' pré-carregado pelo Service Worker'),
       error: (err) => console.error('Erro ao pré-carregar vídeo ' + video, err)
     });
