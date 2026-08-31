@@ -152,5 +152,6 @@ hint-report/
 /*.war
 /src/db-data.ts
 /src/assets/videos
+/src/assets/videos-dark
 /src/assets/images/welcome.gif
 /src/assets/images/welcome.webp

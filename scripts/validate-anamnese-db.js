@@ -3,7 +3,10 @@ const path = require('path');
 
 const defaultFile = path.resolve(process.cwd(), 'src', 'db-data.ts');
 const inputFile = process.argv[2] ? path.resolve(process.cwd(), process.argv[2]) : defaultFile;
-const videosDir = path.resolve(process.cwd(), 'src', 'assets', 'videos');
+const videosDirs = [
+  { nome: 'videos', caminho: path.resolve(process.cwd(), 'src', 'assets', 'videos'), opcional: false },
+  { nome: 'videos-dark', caminho: path.resolve(process.cwd(), 'src', 'assets', 'videos-dark'), opcional: true }
+];
 
 const jumpKeys = new Set([
   'inicio',
@@ -55,21 +58,32 @@ function validateVideos(records) {
     }
   }
 
-  // Verificar se cada vídeo existe
+  // Pastas opcionais (ex.: tema escuro) sao ignoradas enquanto nao existirem.
+  const dirsParaValidar = videosDirs.filter((dir) => !dir.opcional || fs.existsSync(dir.caminho));
+  const dirsIgnoradas = videosDirs
+    .filter((dir) => !dirsParaValidar.includes(dir))
+    .map((dir) => dir.nome);
+
+  // Verificar se cada vídeo existe em todas as pastas de tema
   for (const videoFile of videosSet) {
-    const videoPath = path.join(videosDir, videoFile);
-    if (!fs.existsSync(videoPath)) {
-      videoIssues.push({
-        type: 'video-nao-encontrado',
-        arquivo: videoFile,
-        caminho: videoPath
-      });
+    for (const dir of dirsParaValidar) {
+      const videoPath = path.join(dir.caminho, videoFile);
+      if (!fs.existsSync(videoPath)) {
+        videoIssues.push({
+          type: 'video-nao-encontrado',
+          pasta: dir.nome,
+          arquivo: videoFile,
+          caminho: videoPath
+        });
+      }
     }
   }
 
   return {
     totalVideosUnicos: videosSet.size,
     totalVideosMissing: videoIssues.length,
+    pastasValidadas: dirsParaValidar.map((dir) => dir.nome),
+    pastasIgnoradas: dirsIgnoradas,
     issues: videoIssues
   };
 }
@@ -131,7 +145,9 @@ function validate(records) {
     totalIdsUnicos: ids.size,
     videos: {
       totalUnicos: videoIssues.totalVideosUnicos,
-      totalFaltando: videoIssues.totalVideosMissing
+      totalFaltando: videoIssues.totalVideosMissing,
+      pastasValidadas: videoIssues.pastasValidadas,
+      pastasIgnoradas: videoIssues.pastasIgnoradas
     },
     totalIssues: issues.length,
     issues
