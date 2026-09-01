@@ -25,6 +25,9 @@ export class AnamneseForm implements AnamneseFormData {
     telefone: number;
     email: number;
     cpf: number;
+    filterIfID: number;
+    filterIfAnswer: string;
+    filterAction: number;
     endereco: number;
     endereco_logradouro: string;
     endereco_numero: string;
@@ -88,6 +91,9 @@ export class AnamneseForm implements AnamneseFormData {
         this.telefone = 0;
         this.email = 0;
         this.cpf = 0;
+        this.filterIfID = 0;
+        this.filterIfAnswer = '';
+        this.filterAction = 0;
         this.endereco = 0;
         this.endereco_logradouro = '';
         this.endereco_numero = '';

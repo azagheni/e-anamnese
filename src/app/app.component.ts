@@ -466,6 +466,14 @@ export class AppComponent {
     this.progresso = parseFloat(this.progresso.toFixed(0));
     console.log(`Next question: ` +  id );
 
+    if (this.anamneseForm.filterIfID) {
+      const filterAnswer = this.anamneseBackup.find((a: { id: number; }) => a.id === this.anamneseForm.filterIfID);
+      if (filterAnswer && filterAnswer.answer === this.anamneseForm.filterIfAnswer) {
+        this.nextQuestionAnamnese(this.anamneseForm.filterAction);
+        return;
+      }
+    }
+
     const existAnswer = this.anamneseBackup.find((a: { id: number; }) => a.id === id);
     if (existAnswer) {
       if (this.anamneseForm.usuario) {

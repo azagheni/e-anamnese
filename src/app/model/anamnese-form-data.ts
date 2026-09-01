@@ -5,7 +5,6 @@ export interface AnamneseFormData {
     impressao: string;
     video: string;
     placeholder: string;
-
     usuario: number;
     inicio: number;
     fim: number;
@@ -19,6 +18,9 @@ export interface AnamneseFormData {
     telefone: number;
     email: number;
     cpf: number;
+    filterIfID: number;
+    filterIfAnswer: string;
+    filterAction: number;
     texto: number;
         opcaoTexto: number;
         opcaoTexto_desc: string;
