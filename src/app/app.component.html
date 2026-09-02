@@ -37,7 +37,7 @@
 <div class="video-container">
   <img *ngIf="!isVideo" [src]="videoPath + anamneseForm.video" [alt]="anamneseForm.descricao" />
   <div *ngIf="isVideo" class="video-wrapper">
-    <video [src]="videoPath + anamneseForm.video" playsinline webkit-playsinline autoplay loop type="video/mp4" poster="./assets/images/video.gif" [muted]="isVideoMuted"></video>
+    <video #videoPlayer [src]="videoPath + anamneseForm.video" playsinline webkit-playsinline autoplay loop type="video/mp4" poster="./assets/images/video.gif" [muted]="isVideoMuted"></video>
     <button
       type="button"
       class="mute-button"

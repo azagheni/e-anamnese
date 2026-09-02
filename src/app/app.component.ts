@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 import { ANAMNESES } from 'src/db-data';
@@ -25,6 +25,7 @@ export class AppComponent {
   version = APP_VERSION;
   isVideo : boolean = false;
   isVideoMuted : boolean = true;
+  @ViewChild('videoPlayer') videoPlayer?: ElementRef<HTMLVideoElement>;
   private swUpdate = inject(SwUpdate);
 	needToReload = false;
 	swDownloadInProgress = false;
@@ -275,6 +276,12 @@ export class AppComponent {
 
   onToggleMute() : void {
     this.isVideoMuted = !this.isVideoMuted;
+
+    if (!this.isVideoMuted && this.videoPlayer) {
+      const video = this.videoPlayer.nativeElement;
+      video.currentTime = 0;
+      video.play();
+    }
   }
 
   onSwitchTheme() : void {
