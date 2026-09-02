@@ -24,6 +24,7 @@ export class AppComponent {
   videoPath : string = './assets/videos/';
   version = APP_VERSION;
   isVideo : boolean = false;
+  isVideoMuted : boolean = true;
   private swUpdate = inject(SwUpdate);
 	needToReload = false;
 	swDownloadInProgress = false;
@@ -270,6 +271,10 @@ export class AppComponent {
 
   applyTheme() : void {
     this.videoPath = this.isDarkTheme ? './assets/videos-dark/' : './assets/videos/';
+  }
+
+  onToggleMute() : void {
+    this.isVideoMuted = !this.isVideoMuted;
   }
 
   onSwitchTheme() : void {

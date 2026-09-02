@@ -252,12 +252,39 @@
     grid-area: video;
     padding: 20px;
 
-    video {
+    .video-wrapper {
+        position: relative;
         inline-size: 100%;
         max-inline-size: 550px;
         justify-self: center;
-        border-radius: 1rem;
-        background-color: #E3F0F8;
+
+        video {
+            inline-size: 100%;
+            display: block;
+            border-radius: 1rem;
+            background-color: #E3F0F8;
+        }
+
+        .mute-button {
+            position: absolute;
+            inset-block-end: 12px;
+            inset-inline-end: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            inline-size: 40px;
+            block-size: 40px;
+            padding: 0;
+            border: none;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            cursor: pointer;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.7);
+            }
+        }
     }
 
     img {
