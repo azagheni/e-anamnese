@@ -53,10 +53,10 @@
         Anamnese de {{ dataConsulta }}
       </div>
       <div class="center-list">
-        <div *ngFor="let exame of exames" class="exam-item">
-          <mat-icon aria-hidden="true">check_circle</mat-icon>
+        <button *ngFor="let exame of exames" class="button-answer button-answer-not-checked" (click)="onExame(exame)">
+          <mat-icon aria-hidden="true">play_circle</mat-icon>
           {{ exame.label }}
-        </div>
+        </button>
       </div>
     </div>
 
@@ -69,7 +69,8 @@
     <button *ngIf="etapa === 'cpf'" class="button-footer" (click)="onBuscar()" [disabled]="!validateCPF() || buscando">
       {{ buscando ? 'Buscando...' : 'Próximo' }}
     </button>
-    <button *ngIf="etapa !== 'cpf'" class="button-footer" (click)="onSair()">
+    <!-- Sem "Início" no vídeo do exame: o paciente volta para a lista para escolher outro exame. -->
+    <button *ngIf="etapa !== 'cpf' && etapa !== 'exame'" class="button-footer" (click)="onSair()">
       Início
     </button>
   </div>

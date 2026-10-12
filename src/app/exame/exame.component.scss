@@ -6,18 +6,7 @@
     color: gray;
 }
 
-.exam-item {
-    display: flex;
-    align-items: center;
-    column-gap: var(--spacing-xs);
-    padding: var(--spacing-s) var(--spacing-m);
-    border-radius: var(--border-radius);
-    background: white;
-    color: black;
-    box-shadow: 0px 0px 2px 2px #e6e6e8;
-
-    mat-icon {
-        flex-shrink: 0;
-        color: #4290fb;
-    }
+.button-answer mat-icon {
+    flex-shrink: 0;
+    color: #4290fb;
 }

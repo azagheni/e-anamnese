@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 import { Exam, ExamsResult } from '../model/exam';
@@ -7,17 +7,17 @@ import { AnamneseService } from '../services/anamnese.service';
 import { ThemeService } from '../services/theme.service';
 import { isValidCpf } from '../utils/cpf';
 
-type Etapa = 'cpf' | 'lista' | 'sem-exames' | 'nao-encontrado' | 'erro';
+type Etapa = 'cpf' | 'lista' | 'exame' | 'sem-exames' | 'nao-encontrado' | 'erro';
 
-// Libras video and transcription of each step.
-const ETAPAS: Record<Etapa, { video: string, descricao: string }> = {
+// Libras video and transcription of each step ('exame' uses the selected exam, see examVideo).
+const ETAPAS: Record<Exclude<Etapa, 'exame'>, { video: string, descricao: string }> = {
   'cpf': {
     video: 'exames-cpf.mp4',
     descricao: 'Digite o seu CPF no espaço abaixo para ver os exames que a médica pediu para você.'
   },
   'lista': {
     video: 'exames-lista.mp4',
-    descricao: 'Estes são os exames que a médica pediu para você.'
+    descricao: 'Estes são os exames que a médica pediu para você. Toque em um exame para ver o vídeo que explica como ele é feito.'
   },
   'sem-exames': {
     video: 'exames-sem-exames.mp4',
@@ -47,20 +47,33 @@ export class ExameComponent {
   cpf: string = '';
   buscando: boolean = false;
   exames: Exam[] = [];
+  exameSelecionado?: Exam;
   dataConsulta: string = '';
 
   constructor(
     private anamneseService: AnamneseService,
     private theme: ThemeService,
-    private router: Router
+    private router: Router,
+    private readonly http: HttpClient
   ) {}
 
   get video() : string {
-    return ETAPAS[this.etapa].video;
+    if (this.etapa === 'exame' && this.exameSelecionado) {
+      return this.examVideo(this.exameSelecionado);
+    }
+    return ETAPAS[this.etapa as Exclude<Etapa, 'exame'>].video;
   }
 
   get descricao() : string {
-    return ETAPAS[this.etapa].descricao;
+    if (this.etapa === 'exame' && this.exameSelecionado) {
+      return this.exameSelecionado.label + ': assista ao vídeo para saber como este exame é feito.';
+    }
+    return ETAPAS[this.etapa as Exclude<Etapa, 'exame'>].descricao;
+  }
+
+  // Video explaining the exam procedure, keyed by the exam id of the catalog in e-anamnese-admin.
+  examVideo(exame: Exam) : string {
+    return 'exame-' + exame.id + '.mp4';
   }
 
   onSair() : void {
@@ -70,9 +83,16 @@ export class ExameComponent {
   onAnterior() : void {
     if (this.etapa === 'cpf') {
       this.onSair();
+    } else if (this.etapa === 'exame') {
+      this.etapa = 'lista';
     } else {
       this.etapa = 'cpf';
     }
+  }
+
+  onExame(exame: Exam) : void {
+    this.exameSelecionado = exame;
+    this.etapa = 'exame';
   }
 
   validateCPF() : boolean {
@@ -101,6 +121,15 @@ export class ExameComponent {
     this.exames = this.parseExams(result.exams).filter(exam => exam.checked);
     this.dataConsulta = this.formatData(result.created_at);
     this.etapa = this.exames.length > 0 ? 'lista' : 'sem-exames';
+    this.exames.forEach(exame => this.downloadBackgroundVideo(this.examVideo(exame)));
+  }
+
+  // Preloads the exam videos so they start without waiting when the patient taps an exam.
+  downloadBackgroundVideo(video: string) : void {
+    this.http.get(this.videoPath + video, { responseType: 'blob' }).subscribe({
+      next: () => console.log('Vídeo ' + video + ' pré-carregado pelo Service Worker'),
+      error: (err) => console.error('Erro ao pré-carregar vídeo ' + video, err)
+    });
   }
 
   parseExams(exams: string | null) : Exam[] {
