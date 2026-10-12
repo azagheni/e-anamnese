@@ -1,14 +1,15 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { ANAMNESES } from 'src/db-data';
 import { Anamnese } from '../model/anamnese'
 import { AnamneseForm as AnamneseForm } from '../model/anamnese-form';
 
 import { AnamneseService } from '../services/anamnese.service';
+import { ThemeService } from '../services/theme.service';
 import { FormBuilder } from '@angular/forms';
-import { WelcomeDialogComponent } from '../welcome-dialog/welcome-dialog.component';
 import { APP_VERSION } from '../../app-version';
+import { isValidCpf } from '../utils/cpf';
 
 @Component({
   selector: 'app-anamnese',
@@ -16,9 +17,7 @@ import { APP_VERSION } from '../../app-version';
   styleUrls: ['./anamnese.component.scss']
 })
 export class AnamneseComponent {
-  readonly THEME_STORAGE_KEY = 'e-anamnese.isDarkTheme';
-  isDarkTheme : boolean = false;
-  videoPath : string = './assets/videos/';
+  videoPath : string = this.theme.videoPath;
   version = APP_VERSION;
   isVideo : boolean = false;
   isVideoMuted : boolean = true;
@@ -71,7 +70,8 @@ export class AnamneseComponent {
    */
 	constructor(
     public anamneseService: AnamneseService,
-    private dialog: MatDialog,
+    private theme: ThemeService,
+    private router: Router,
     private _formBuilder: FormBuilder,
     private readonly http: HttpClient
   ) {
@@ -80,31 +80,13 @@ export class AnamneseComponent {
 
 	ngOnInit() {
     console.log('[AnamneseComponent] =============== Initializing anamnese ===============');
-    this.loadTheme();
-    const dialogRef = this.dialog.open(WelcomeDialogComponent);
     this.onRecomecar();
-    // workaround to show the welcome video on the first question, because the video is not loaded yet.
-    this.anamneseForm.video = "welcome.gif";
-    this.isVideo = false;
-    const nextAnamneseForm = new AnamneseForm(this.findAnamneseById(1));
-    this.downloadBackgroundVideo(nextAnamneseForm.video);
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.onRecomecar();
-      }
-    });
-    dialogRef.backdropClick().subscribe(() => {
-      dialogRef.close();
-      this.onRecomecar();
-    })
+    this.downloadNextVideos(this.anamneseForm.id);
 	}
 
-	/* istanbul ignore next */
-	reloadPage = () => {
-		// Need for unit testing
-		location.reload();
-	};
+  onSair() : void {
+    this.router.navigate(['/']);
+  }
 
   findAnamneseById(id:number) {
     return ANAMNESES.find((anamnese: { id: number; }) => anamnese.id === id);
@@ -128,20 +110,6 @@ export class AnamneseComponent {
     //});
   }
 
-  loadTheme() : void {
-    try {
-      this.isDarkTheme = localStorage.getItem(this.THEME_STORAGE_KEY) === 'true';
-    } catch (err) {
-      console.warn('[AnamneseComponent] Não foi possível ler o tema salvo: ', err);
-      this.isDarkTheme = false;
-    }
-    this.applyTheme();
-  }
-
-  applyTheme() : void {
-    this.videoPath = this.isDarkTheme ? './assets/videos-dark/' : './assets/videos/';
-  }
-
   onToggleMute() : void {
     this.isVideoMuted = !this.isVideoMuted;
 
@@ -150,17 +118,6 @@ export class AnamneseComponent {
       video.currentTime = 0;
       video.play();
     }
-  }
-
-  onSwitchTheme() : void {
-    this.isDarkTheme = !this.isDarkTheme;
-    this.applyTheme();
-    try {
-      localStorage.setItem(this.THEME_STORAGE_KEY, String(this.isDarkTheme));
-    } catch (err) {
-      console.warn('[AnamneseComponent] Não foi possível salvar o tema: ', err);
-    }
-    this.reloadPage();
   }
 
   reset() : void {
@@ -775,39 +732,7 @@ export class AnamneseComponent {
   }
 
   validateCPF() : boolean {
-    let cpf = this.cpf;
-    if (typeof cpf !== "string") return false
-    cpf = cpf.replace(/[\s.-]*/igm, '')
-    if (
-        !cpf ||
-        cpf.length != 11 ||
-        cpf == "00000000000" ||
-        cpf == "11111111111" ||
-        cpf == "22222222222" ||
-        cpf == "33333333333" ||
-        cpf == "44444444444" ||
-        cpf == "55555555555" ||
-        cpf == "66666666666" ||
-        cpf == "77777777777" ||
-        cpf == "88888888888" ||
-        cpf == "99999999999"
-    ) {
-        return false
-    }
-    var soma = 0
-    var resto
-    for (var i = 1; i <= 9; i++)
-        soma = soma + parseInt(cpf.substring(i-1, i)) * (11 - i)
-    resto = (soma * 10) % 11
-    if ((resto == 10) || (resto == 11))  resto = 0
-    if (resto != parseInt(cpf.substring(9, 10)) ) return false
-    soma = 0
-    for (var i = 1; i <= 10; i++)
-        soma = soma + parseInt(cpf.substring(i-1, i)) * (12 - i)
-    resto = (soma * 10) % 11
-    if ((resto == 10) || (resto == 11))  resto = 0
-    if (resto != parseInt(cpf.substring(10, 11) ) ) return false
-    return true
+    return isValidCpf(this.cpf);
   }
 
   validateCEP() : boolean {

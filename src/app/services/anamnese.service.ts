@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Anamnese } from '../model/anamnese';
+import { ExamsResult } from '../model/exam';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,11 @@ export class AnamneseService {
 
   getAnamnese(id: number): Observable<Anamnese> {
     return this.http.get<Anamnese>(`${this.apiUrl}/${id}`, this.httpOptions);
+  }
+
+  // Exams of the latest anamnese of this CPF (with or without the mask).
+  getExamsByCpf(cpf: string): Observable<ExamsResult> {
+    return this.http.get<ExamsResult>(`${this.apiUrl}/exams${this.hash}&cpf=${encodeURIComponent(cpf)}`, this.httpOptions);
   }
 
   addAnamnese(anamnese: Anamnese): Observable<Anamnese> {

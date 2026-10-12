@@ -1,0 +1,56 @@
+<main class="main-container">
+<div class="header">
+    <div>
+      <img class="logo"
+          src="./assets/images/logo.png">
+    </div>
+    <div></div>
+    <div></div>
+    <div class="button-recomecar" (click)="onSwitchTheme()">
+      <mat-icon *ngIf="!isDarkTheme" aria-hidden="true">dark_mode</mat-icon>
+      <mat-icon *ngIf="isDarkTheme" aria-hidden="true">light_mode</mat-icon>
+    </div>
+</div>
+
+<div class="video-container">
+  <img *ngIf="!isVideo" [src]="videoPath + video" [alt]="descricao" />
+  <div *ngIf="isVideo" class="video-wrapper">
+    <video #videoPlayer [src]="videoPath + video" playsinline webkit-playsinline autoplay loop type="video/mp4" poster="./assets/images/video.gif" [muted]="isVideoMuted"></video>
+    <button
+      type="button"
+      class="mute-button"
+      (click)="onToggleMute()"
+      [attr.aria-label]="isVideoMuted ? 'Ativar áudio' : 'Desativar áudio'"
+    >
+      <mat-icon aria-hidden="true">{{ isVideoMuted ? 'volume_off' : 'volume_up' }}</mat-icon>
+    </button>
+  </div>
+</div>
+
+<div class="content">
+
+    <div class="content-transcription">
+      <div class="transcription">
+        {{ descricao }}
+      </div>
+    </div>
+
+    <div class="content-answers">
+      <div class="center-list">
+        <button class="button-answer" (click)="onAnamnese()">
+          <mat-icon aria-hidden="true">assignment</mat-icon>
+          Realizar anamnese
+        </button>
+        <button class="button-answer" (click)="onExames()">
+          <mat-icon aria-hidden="true">visibility</mat-icon>
+          Visualizar exames
+        </button>
+      </div>
+    </div>
+
+    <div class="version">
+      Version: {{ version }}
+    </div>
+
+  </div>
+</main>

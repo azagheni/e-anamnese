@@ -4,7 +4,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { InicioComponent } from './inicio/inicio.component';
 import { AnamneseComponent } from './anamnese/anamnese.component';
+import { ExameComponent } from './exame/exame.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -31,7 +33,9 @@ import { WelcomeDialogComponent } from './welcome-dialog/welcome-dialog.componen
 @NgModule({
   declarations: [
     AppComponent,
+    InicioComponent,
     AnamneseComponent,
+    ExameComponent,
     CpfPipe,
     CepPipe,
     DataPipe,

@@ -1,0 +1,76 @@
+<main class="main-container">
+<div class="header">
+    <div>
+      <img class="logo"
+          src="./assets/images/logo.png">
+    </div>
+    <div></div>
+    <div></div>
+    <div class="button-recomecar" (click)="onSair()">
+      <mat-icon aria-hidden="true">close</mat-icon>
+    </div>
+</div>
+
+<div class="video-container">
+  <div class="video-wrapper">
+    <video #videoPlayer [src]="videoPath + video" playsinline webkit-playsinline autoplay loop type="video/mp4" poster="./assets/images/video.gif" [muted]="isVideoMuted"></video>
+    <button
+      type="button"
+      class="mute-button"
+      (click)="onToggleMute()"
+      [attr.aria-label]="isVideoMuted ? 'Ativar áudio' : 'Desativar áudio'"
+    >
+      <mat-icon aria-hidden="true">{{ isVideoMuted ? 'volume_off' : 'volume_up' }}</mat-icon>
+    </button>
+  </div>
+</div>
+
+<div class="content">
+
+    <div class="content-transcription">
+      <div class="transcription">
+        {{ descricao }}
+      </div>
+    </div>
+
+    <div *ngIf="etapa === 'cpf'" class="content-answers">
+      <div class="input-normal">
+        <input
+          id="cpf"
+          type="search"
+          [ngClass]="{'input-error': cpf && cpf.length > 13 && !validateCPF()}"
+          name="cpf"
+          placeholder="ex: 111.222.333-44"
+          [ngModel]="cpf | cpf"
+          (ngModelChange)="cpf=$event"
+          (keyup.enter)="onBuscar()"
+        />
+      </div>
+    </div>
+
+    <div *ngIf="etapa === 'lista'" class="content-answers">
+      <div *ngIf="dataConsulta" class="data-consulta">
+        Anamnese de {{ dataConsulta }}
+      </div>
+      <div class="center-list">
+        <div *ngFor="let exame of exames" class="exam-item">
+          <mat-icon aria-hidden="true">check_circle</mat-icon>
+          {{ exame.label }}
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <button class="button-footer" (click)="onAnterior()">
+      Anterior
+    </button>
+    <button *ngIf="etapa === 'cpf'" class="button-footer" (click)="onBuscar()" [disabled]="!validateCPF() || buscando">
+      {{ buscando ? 'Buscando...' : 'Próximo' }}
+    </button>
+    <button *ngIf="etapa !== 'cpf'" class="button-footer" (click)="onSair()">
+      Início
+    </button>
+  </div>
+</main>
