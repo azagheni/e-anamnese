@@ -57,6 +57,19 @@
           <mat-icon aria-hidden="true">play_circle</mat-icon>
           {{ exame.label }}
         </button>
+        <button *ngIf="conclusoes.length" class="button-answer button-answer-not-checked button-conclusao" (click)="onConclusao()">
+          <mat-icon aria-hidden="true">assignment_turned_in</mat-icon>
+          Conclusão do atendimento
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="etapa === 'conclusao'" class="content-answers">
+      <div class="center-list">
+        <button *ngFor="let conclusao of conclusoes" class="button-answer button-answer-not-checked" (click)="onExame(conclusao)">
+          <mat-icon aria-hidden="true">play_circle</mat-icon>
+          {{ conclusao.label }}
+        </button>
       </div>
     </div>
 

@@ -6,6 +6,11 @@
     color: gray;
 }
 
+.button-conclusao {
+    margin-top: var(--spacing-m);
+    font-weight: bold;
+}
+
 .button-answer mat-icon {
     flex-shrink: 0;
     color: #4290fb;
