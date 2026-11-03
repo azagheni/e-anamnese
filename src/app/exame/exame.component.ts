@@ -2,7 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-import { CONCLUSION_DESCRIPTIONS, Exam, ExamsResult, isConclusion } from '../model/exam';
+import { CONCLUSION_DESCRIPTIONS, EXAM_DESCRIPTIONS, Exam, ExamsResult, isConclusion } from '../model/exam';
 import { AnamneseService } from '../services/anamnese.service';
 import { ThemeService } from '../services/theme.service';
 import { isValidCpf } from '../utils/cpf';
@@ -13,7 +13,7 @@ type Etapa = 'cpf' | 'lista' | 'conclusao' | 'exame' | 'sem-exames' | 'nao-encon
 const ETAPAS: Record<Exclude<Etapa, 'exame'>, { video: string, descricao: string }> = {
   'cpf': {
     video: 'exames-cpf.mp4',
-    descricao: 'Digite o seu CPF no espaço abaixo para ver os exames que a médica pediu para você.'
+    descricao: 'Digite seu CPF no espaço abaixo para ver os exames que você fará nesta consulta.'
   },
   'lista': {
     video: 'exames-lista.mp4',
@@ -25,15 +25,15 @@ const ETAPAS: Record<Exclude<Etapa, 'exame'>, { video: string, descricao: string
   },
   'sem-exames': {
     video: 'exames-sem-exames.mp4',
-    descricao: 'A médica ainda não definiu os seus exames. Isso acontece quando a consulta médica ainda não foi realizada.'
+    descricao: 'A oftalmologista ainda não definiu os seus exames. Isso acontece quando a consulta médica ainda não foi realizada.'
   },
   'nao-encontrado': {
     video: 'exames-nao-encontrado.mp4',
-    descricao: 'Nenhuma anamnese foi localizada para o CPF informado. Confira o número digitado e tente novamente.'
+    descricao: 'Nenhuma anamnese foi localizada com o CPF informado. Confira o número e tente novamente..'
   },
   'erro': {
     video: 'exames-erro.mp4',
-    descricao: 'Não foi possível buscar os seus exames agora. Verifique a sua conexão com a internet e tente novamente.'
+    descricao: 'O sistema está fora do ar. Tente novamente mais tarde.'
   }
 };
 
@@ -74,7 +74,8 @@ export class ExameComponent {
       if (isConclusion(this.exameSelecionado)) {
         return CONCLUSION_DESCRIPTIONS[this.exameSelecionado.id] || this.exameSelecionado.label;
       }
-      return this.exameSelecionado.label + ': assista ao vídeo para saber como este exame é feito.';
+      return EXAM_DESCRIPTIONS[this.exameSelecionado.id]
+        || this.exameSelecionado.label + ': assista ao vídeo para saber como este exame é feito.';
     }
     return ETAPAS[this.etapa as Exclude<Etapa, 'exame'>].descricao;
   }
