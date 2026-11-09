@@ -80,6 +80,8 @@
             font-weight: var(--font-weight-bold);
             text-decoration: none;
             line-height: 1.3;
+            // Respeita as quebras de linha (\n) dos textos; espaços repetidos continuam sendo unidos.
+            white-space: pre-line;
         }
     }
 

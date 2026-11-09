@@ -17,11 +17,11 @@ const ETAPAS: Record<Exclude<Etapa, 'exame'>, { video: string, descricao: string
   },
   'lista': {
     video: 'exames-lista.mp4',
-    descricao: 'Estes são os exames que a médica pediu para você. Toque em um exame para ver o vídeo que explica como ele é feito.'
+    descricao: 'Estes são os exames que você fará nesta consulta. Entre um exame e outro você deverá retornar ao aplicativo para receber informações e orientações sobre o próximo exame.'
   },
   'conclusao': {
     video: 'exames-conclusao.mp4',
-    descricao: 'Esta é a conclusão do seu atendimento. Toque em um item para ver o vídeo que explica o que a médica definiu para você.'
+    descricao: 'Abaixo há o(s) diagnóstico(s) da médica. Clique na(s) opção(ões) para maiores detalhes sobre sua consulta.'
   },
   'sem-exames': {
     video: 'exames-sem-exames.mp4',

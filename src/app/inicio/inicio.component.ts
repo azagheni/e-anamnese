@@ -22,7 +22,7 @@ export class InicioComponent {
   readonly INICIO_VIDEO = 'inicio.mp4';
   // First video of the anamnese, preloaded so it starts without waiting.
   readonly ANAMNESE_FIRST_VIDEO = 'welcome.mp4';
-  readonly descricao = 'Olá! Escolha abaixo se você quer responder a anamnese ou ver os exames que a médica pediu para você.';
+  readonly descricao = 'Olá, nesta interface há dois botões – anamnese e exames.\nPrimeiro clique no botão “anamnese” para preencher suas informações e queixas.\nO botão “exames” você clicará somente quando estiver na sala de exames com a doutora Marta.';
   readonly version = APP_VERSION;
   videoPath: string = this.theme.videoPath;
   isDarkTheme: boolean = this.theme.isDarkTheme;

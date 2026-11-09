@@ -478,6 +478,7 @@ export class AnamneseComponent {
     } else if(this.anamneseForm.fim) {
       console.log('REGISTRO CONCLUIDO COM SUCESSO');
       this.onRecomecar();
+      this.router.navigate(['/']);
     }
   }
 
