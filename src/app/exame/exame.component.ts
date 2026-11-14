@@ -13,7 +13,7 @@ type Etapa = 'cpf' | 'lista' | 'conclusao' | 'exame' | 'sem-exames' | 'nao-encon
 const ETAPAS: Record<Exclude<Etapa, 'exame'>, { video: string, descricao: string }> = {
   'cpf': {
     video: 'exames-cpf.mp4',
-    descricao: 'Digite seu CPF no espaço abaixo para ver os exames que você fará nesta consulta.'
+    descricao: 'Digite seu *CPF* no espaço abaixo para ver os exames que você fará nesta consulta.'
   },
   'lista': {
     video: 'exames-lista.mp4',

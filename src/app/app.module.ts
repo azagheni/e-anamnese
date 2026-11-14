@@ -23,6 +23,7 @@ import { CpfPipe } from './pipes/cpf.pipes';
 import { CepPipe } from './pipes/cep.pipes';
 import { DataPipe } from './pipes/data.pipes';
 import { TelefonePipe } from './pipes/telefone.pipes';
+import { NegritoPipe } from './pipes/negrito.pipes';
 import { DialogComponent } from './dialog/dialog.component';
 
 import { TermsService } from './services/terms.service';
@@ -40,6 +41,7 @@ import { WelcomeDialogComponent } from './welcome-dialog/welcome-dialog.componen
     CepPipe,
     DataPipe,
     TelefonePipe,
+    NegritoPipe,
     TermsDialogComponent,
     DialogComponent,
     WelcomeDialogComponent

@@ -1,2 +1,2 @@
 // Versao da aplicacao exibida na interface.
-export const APP_VERSION = '1.4.0';
+export const APP_VERSION = '1.4.1';

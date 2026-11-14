@@ -28,9 +28,7 @@
 <div class="content">
 
     <div class="content-transcription">
-      <div class="transcription">
-        {{ descricao }}
-      </div>
+      <div class="transcription" [innerHTML]="descricao | negrito"></div>
     </div>
 
     <div *ngIf="etapa === 'cpf'" class="content-answers">

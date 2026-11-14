@@ -41,9 +41,7 @@
 <div class="content">
 
     <div class="content-transcription">
-      <div class="transcription">
-        {{ anamneseForm.descricao }}
-      </div>
+      <div class="transcription" [innerHTML]="anamneseForm.descricao | negrito"></div>
     </div>
 
     <div *ngIf="!anamneseForm.informacao" class="content-answers">
