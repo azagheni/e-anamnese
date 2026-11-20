@@ -138,7 +138,7 @@ export class ExameComponent {
     this.exames = marcados.filter(exam => !isConclusion(exam));
     this.conclusoes = marcados.filter(exam => isConclusion(exam));
     this.dataConsulta = this.formatData(result.created_at);
-    this.etapa = marcados.length > 0 ? 'lista' : 'sem-exames';
+    this.etapa = this.exames.length > 0 ? this.conclusoes.length > 0 ? 'conclusao' : 'lista' : 'sem-exames';
     marcados.forEach(exame => this.downloadBackgroundVideo(this.examVideo(exame)));
   }
 
