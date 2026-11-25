@@ -50,12 +50,15 @@
       <div *ngIf="dataConsulta" class="data-consulta">
         Anamnese de {{ dataConsulta }}
       </div>
-      <div class="center-list">
+      <div class="center-list" *ngIf="conclusoes.length === 0">
         <button *ngFor="let exame of exames" class="button-answer button-answer-not-checked" (click)="onExame(exame)">
           <mat-icon aria-hidden="true">play_circle</mat-icon>
           {{ exame.label }}
         </button>
-        <button *ngIf="conclusoes.length" class="button-answer button-answer-not-checked button-conclusao" (click)="onConclusao()">
+      </div>
+
+      <div class="center-list" *ngIf="conclusoes.length">
+        <button class="button-answer button-answer-not-checked button-conclusao" (click)="onConclusao()">
           <mat-icon aria-hidden="true">assignment_turned_in</mat-icon>
           Diagnóstico – Orientações Médicas
         </button>
